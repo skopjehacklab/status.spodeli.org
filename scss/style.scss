@@ -1,0 +1,133 @@
+// Include PT Sans with Cyrillic support from Google Fonts
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic&subset=latin,cyrillic);
+@import "custom-variables"; // Must be before the Bootstrap stylesheets
+@import "../bootstrap-sass-3.3.5/assets/stylesheets/bootstrap";
+
+$container-margin: $jumbotron-padding * 1.5;
+$white: #fff;
+
+@mixin temperature-value-border($color){
+    border: 1px solid $color;
+}
+
+header{
+
+    @media (max-width: $screen-sm-max){
+        text-align: center;
+    }
+
+    h1{
+        margin-top: 0;
+
+        a{
+            color: inherit;
+        }
+    }
+
+    .lead{
+        font-size: $font-size-small;
+    }
+
+    .logo{
+
+        @media (max-width: $screen-sm-max){
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        margin-bottom: $padding-large-vertical;
+    }
+
+}
+
+.container{
+    margin-top: $container-margin;
+    margin-bottom: $container-margin;
+
+    .panel-title{
+        @extend .text-uppercase;
+        @extend .text-center;
+        font-size: $font-size-h4;
+    }
+
+    .page-header{
+        margin-top: $jumbotron-padding/1.5;
+    }
+}
+
+.logo{
+    margin-right: $padding-large-horizontal + 5;
+}
+
+.info-block{
+
+    @extend .text-center;
+
+    .value{
+        font-size: $font-size-h4;
+        font-weight: $headings-font-weight;
+        /*border-radius: $border-radius-base;*/
+        /*padding-left: $padding-base-horizontal;*/
+        /*padding-right: $padding-base-horizontal;*/
+    }
+
+    .description{
+        display: block;
+    }
+
+    .hot{
+        color: $brand-danger;
+        /*@include temperature-value-border($brand-danger);*/
+    }
+
+    .warm{
+        color: darken($brand-warning, 12%);
+        /*@include temperature-value-border($brand-warning);*/
+    }
+
+    .cold{
+        color: darken($brand-info, 10%);
+        /*@include temperature-value-border($brand-info);*/
+    }
+
+}
+
+.panel-open{
+    color: $white;
+    border-color: darken($brand-success, 13%);
+    background: rgba(darken($brand-success, 15%), .8);
+}
+
+.panel-closed{
+    color: $white;
+    border-color: darken($brand-danger, 3%);
+    background: rgba($brand-danger, .8);
+}
+
+.graph{
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.graph.devices{
+    min-height: 298px;
+}
+
+.graph.temperature{
+    min-height: 200px;
+}
+
+.btn-block{
+    display: block;
+}
+
+.glyphicon-text{
+    margin-left: $padding-xs-horizontal;
+}
+
+.list-avatars{
+    img{
+        border-radius: $border-radius-small;
+        max-width: $jumbotron-padding * 1.5;
+    }
+}
