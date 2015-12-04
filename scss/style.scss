@@ -131,3 +131,23 @@ header{
         max-width: $jumbotron-padding * 1.5;
     }
 }
+
+.list-related-pages{
+
+    @media (max-width: $screen-sm-max){
+        li{
+            display: inline-block;
+            margin-left: $padding-base-vertical;
+            margin-right: $padding-base-vertical;
+        }
+    }
+}
+
+.list-bank-payment-info{
+    @media (max-width: $screen-sm-max){
+        border: 1px solid $hr-border;
+        border-radius: $panel-border-radius;
+        margin-top: $padding-large-vertical;
+        padding: $padding-large-vertical;
+    }
+}
