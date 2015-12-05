@@ -151,3 +151,16 @@ header{
         padding: $padding-large-vertical;
     }
 }
+
+.figure-caption{
+    @extend .text-muted;
+    font-size: $font-size-small;
+    padding: $padding-base-vertical $padding-base-vertical $padding-xs-vertical;
+}
+
+.modal{
+    
+    dd{
+        margin-bottom: $padding-large-vertical;
+    }
+}
