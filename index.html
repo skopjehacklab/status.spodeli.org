@@ -6,6 +6,15 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/style.css">
+
+        <!-- Favicons -->
+        <link rel="icon" href="img/kika-hacklab-favicon-16x16.png" sizes="16x16" type="image/png">
+        <link rel="icon" href="img/kika-hacklab-favicon-32x32.png" sizes="32x32" type="image/png">
+        <link rel="icon" href="img/kika-hacklab-favicon-48x48.png" sizes="48x48" type="image/png">
+        <link rel="icon" href="img/kika-hacklab-favicon-192x192.png" sizes="192x192" type="image/png">
+        <link rel="apple-touch-icon" href="img/kika-hacklab-favicon-512x512.png" sizes="512x512" type="image/png">
+        <link rel="icon" href="svg/kika-logo-symbol-favicon-c2b.svg" sizes="any" type="image/svg+xml">
+        <!-- ./ Favicons -->
     </head>
     <body>
         <div class="container">
@@ -89,8 +98,8 @@
                             </div>
                         </div>
                         <div class="col-lg-4">
-                            <p><a role="button" class="btn btn-success btn-block" href="#">Зачленете се</a></p>
-                            <p><a role="button" class="btn btn-info btn-block" href="http://b10g.spodeli.org/p/blog-page_19.html">Донирајте</a></p>
+                            <p><a role="button" class="btn btn-success btn-block" href="#" data-toggle="modal" data-target="#zachleneteSe">Зачленете се</a></p>
+                            <p><a role="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#donirajte">Донирајте</a></p>
                         </div>
                     </div>
                 </div>
@@ -173,11 +182,41 @@
                     </div>
                 </div>
             </div>
+            <div id="zachleneteSe" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Зачленете се во хаклабот КИКА</h2>
+                            <p class="lead">Nulla odio tellus, vulputate vitae lorem mattis, lobortis finibus leo. Etiam semper porta suscipit. Vivamus a metus non augue fermentum aliquam et non ante.</p>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="donirajte" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Донирајте за хаклабот КИКА</h2>
+                            <p class="lead">Nulla odio tellus, vulputate vitae lorem mattis, lobortis finibus leo. Etiam semper porta suscipit. Vivamus a metus non augue fermentum aliquam et non ante.</p>
+                        </div>
+                        <div class="modal-body">
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <!--<iframe src="http://b10g.spodeli.org/p/blog-page_19.html" class="embed-responsive-item" style="border:0"></iframe>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <script src="flot-flot-958e5fd/jquery.js"></script>
         <script src="flot-flot-958e5fd/jquery.flot.js"></script>
         <script src="flot-flot-958e5fd/jquery.flot.time.js"></script>
         <script src="flot-flot-958e5fd/jquery.flot.resize.js"></script>
+
+        <script src="bootstrap-sass-3.3.5/assets/javascripts/bootstrap/transition.js"></script>
+        <script src="bootstrap-sass-3.3.5/assets/javascripts/bootstrap/modal.js"></script>
         <script>
             $(document).ready(function () {
 
