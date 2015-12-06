@@ -159,8 +159,27 @@ header{
 }
 
 .modal{
-    
+
     dd{
         margin-bottom: $padding-large-vertical;
+    }
+}
+
+.list-pp10-legend{
+
+    color: red;
+
+    li{
+        font-weight: 700;
+        margin-top: $padding-base-vertical;
+        margin-bottom: $padding-base-vertical;
+    }
+
+    span{
+        vertical-align: text-top;
+        display: inline-block;
+        color: $text-color;
+        font-weight: 400;
+        margin-left: $padding-xs-horizontal;
     }
 }
