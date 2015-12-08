@@ -10,6 +10,22 @@ $white: #fff;
     border: 1px solid $color;
 }
 
+@mixin animation($parameters){
+    -webkit-animation: $parameters;
+    animation: $parameters;
+}
+
+@mixin force-hardware-acceleration(){
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+@mixin transform($parameters){
+    -webkit-transform: $parameters;
+    transform: $parameters;
+}
+
 header{
 
     @media (max-width: $screen-sm-max){
@@ -105,16 +121,19 @@ header{
 }
 
 .graph{
+    position: relative;
     min-width: 100%;
     max-width: 100%;
 }
 
 .graph.devices{
-    min-height: 298px;
+    min-height: 300px;
+    /*min-height: 298px;*/
 }
 
 .graph.temperature{
-    min-height: 200px;
+    min-height: 300px;
+    /*min-height: 200px;*/
 }
 
 .btn-block{
@@ -183,3 +202,48 @@ header{
         margin-left: $padding-xs-horizontal;
     }
 }
+
+.panel-heading{
+
+    line-height: $line-height-base;
+}
+
+/* https://damjan.softver.org.mk/status.spodeli.org/css/loader.css */
+.loader {
+    position: absolute;
+    top: 29%;
+    left: 43%;
+    font-size: 80%;
+    border-top: $padding-base-horizontal solid rgba($gray-light, 0.2);
+    border-right: $padding-base-horizontal solid rgba($gray-light, 0.2);
+    border-bottom: $padding-base-horizontal solid rgba($gray-light, 0.2);
+    border-left: $padding-base-horizontal solid rgba($gray-light, 0.8);
+    @include force-hardware-acceleration;
+    @include animation(load8 1.1s infinite linear);
+
+    &,
+    &:after {
+        border-radius: 50%;
+        width: 10em;
+        height: 10em;
+    }
+}
+
+@-webkit-keyframes load8 {
+    0% {
+        @include transform(rotate(0deg));
+    }
+    100% {
+        @include transform(rotate(360deg));
+    }
+}
+
+@keyframes load8 {
+    0% {
+        @include transform(rotate(0deg));
+    }
+    100% {
+        @include transform(rotate(360deg));
+    }
+}
+/* ./ https://damjan.softver.org.mk/status.spodeli.org/css/loader.css*/

@@ -119,21 +119,31 @@
                     </div>
                     -->
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Уреди во хаклаб</h3>
+                        <div class="panel-heading clearfix">
+                            <div class="pull-left">
+                                <h3 class="panel-title">Уреди во КИКА</h3>
+                            </div>
+                            <div class="pull-right">
+                                <button class="btn btn-xs btn-primary btn-refresh"><span class="glyphicon glyphicon-refresh"></span></button>
+                            </div>
                         </div>
                         <div class="panel-body">
-                            <div class="graph devices"></div>
+                            <div class="graph devices" data-influx-query="SELECT value as &quot;Најавени уреди на мрежата во КИКА&quot; FROM landevices WHERE location='hacklab' AND time > now() - 30h" data-plot-options='{ "yaxis": {"tickDecimals":0, "minTickSize": 1}}'></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Температурата во хаклаб</h3>
+                        <div class="panel-heading clearfix">
+                            <div class="pull-left">
+                                <h3 class="panel-title">Температурата во КИКА</h3>
+                            </div>
+                            <div class="pull-right">
+                                <button class="btn btn-xs btn-primary btn-refresh"><span class="glyphicon glyphicon-refresh"></span></button>
+                            </div>
                         </div>
                         <div class="panel-body">
-                            <div class="row">
+<!--                            <div class="row">
                                 <div class="col-md-3 col-sm-3 col-xs-6">
                                     <div class="panel panel-default">
                                         <div class="panel-body">
@@ -174,8 +184,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="graph temperature"></div>
+                            </div>-->
+                            <div class="graph temperature" data-influx-query="SELECT outside as &quot;Тераса&quot;,random_room as &quot;Рандом&quot;,lounge_area as &quot;Ходник&quot;,hardware_room as &quot;Рандом&quot; FROM temperatures WHERE location='hacklab' AND time > now() - 30h" data-plot-options='{ "yaxis": {"axisLabel": "℃"} }'></div>
                         </div>
                     </div>
                 </div>
@@ -305,78 +315,10 @@
         <script src="flot-flot-958e5fd/jquery.flot.time.js"></script>
         <script src="flot-flot-958e5fd/jquery.flot.resize.js"></script>
 
+        <!-- Implementation from https://damjan.softver.org.mk/status.spodeli.org/ -->
+        <script src="js/damjan.softver.org.mk_status.spodeli.org_js_plot.min-nb.js"></script>
+
         <script src="bootstrap-sass-3.3.5/assets/javascripts/bootstrap/transition.js"></script>
         <script src="bootstrap-sass-3.3.5/assets/javascripts/bootstrap/modal.js"></script>
-        <script>
-            $(document).ready(function () {
-
-                var graphOptions = {
-                    color: "#333",
-                    highlightColor: "#333",
-                    legend: {
-                        margin: [10, 10],
-                        backgroundColor: "#fff",
-                        position: "sw"
-                    },
-                    shadowSize: 0,
-                    grid: {
-                        borderColor: "#ddd",
-                        margin: {top: 0, left: 20, bottom: 0, right: 0}
-                    },
-                    lines: {show: true},
-                    points: {show: false},
-                    xaxis: {
-                        labelWidth: 50,
-                        mode: "time",
-                        minTickSize: [15, "minute"]
-                    },
-                    yaxis: {}
-                };
-
-                $.ajax({
-                    url: 'https://db.softver.org.mk/influxdb/query',
-                    data: {db: 'status', q: "SELECT outside,random_room,lounge_area,hardware_room FROM temperatures WHERE location='hacklab' AND time > now() - 1d"},
-                    type: "GET",
-                    dataType: "json"
-                }).then(function (data, status) {
-                    var series = data.results[0].series[0];
-                    var plotdata = massage_influx_data_for_flot(series);
-                    var options = graphOptions;
-                    $(".graph.temperature").plot(plotdata, options);
-                });
-
-                $.ajax({
-                    url: 'https://db.softver.org.mk/influxdb/query',
-                    data: {db: 'status', q: "SELECT value FROM landevices WHERE location='hacklab' AND time > now() - 1d"},
-                    type: "GET",
-                    dataType: "json"
-                }).then(function (data, status) {
-                    var series = data.results[0].series[0];
-                    var plotdata = massage_influx_data_for_flot(series);
-                    var options = graphOptions;
-                    $(".graph.devices").plot(plotdata, options);
-                });
-
-                function massage_influx_data_for_flot(series) {
-                    var plotdata = [];
-                    for (var k = 1; k < series.columns.length; k++) {
-                        plotdata.push(make_serie(series, k));
-                    }
-                    return plotdata;
-                }
-
-                function make_serie(series, index) {
-                    var serie = {};
-                    serie.label = series.columns[index];
-                    serie.data = series.values.map(function (value) {
-                        var timestamp = value[0];
-                        timestamp = (new Date(timestamp)).getTime();
-                        return [timestamp, value[index]];
-                    });
-                    return serie;
-                }
-
-            });
-        </script>
     </body>
 </html>
