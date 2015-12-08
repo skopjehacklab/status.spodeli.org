@@ -172,15 +172,6 @@ header{
     }
 }
 
-.list-bank-payment-info{
-    @media (max-width: $screen-sm-max){
-        border: 1px solid $hr-border;
-        border-radius: $panel-border-radius;
-        margin-top: $padding-large-vertical;
-        padding: $padding-large-vertical;
-    }
-}
-
 .figure-caption{
     @extend .text-muted;
     font-size: $font-size-small;
@@ -296,4 +287,8 @@ header{
 @media (max-width:500px){
     .github-corner:hover .octo-arm{animation:none}
     .github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}
+}
+
+.text-small{
+    font-size: $font-size-small;
 }
