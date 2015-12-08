@@ -143,49 +143,49 @@
                             </div>
                         </div>
                         <div class="panel-body">
-<!--                            <div class="row">
-                                <div class="col-md-3 col-sm-3 col-xs-6">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
-                                            <div class="info-block">
-                                                <span id="tempHardware" class="value hot">30&deg;C</span>
-                                                <span class="description">Хардвер</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-3 col-xs-6">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
-                                            <div class="info-block">
-                                                <span id="tempLounge" class="value warm">24&deg;C</span>
-                                                <span class="description">Ходник</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-3 col-xs-6">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
-                                            <div class="info-block">
-                                                <span id="tempRandom" class="value warm">21&deg;C</span>
-                                                <span class="description">Рандом</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-3 col-xs-6">
-                                    <div class="panel panel-default">
-                                        <div class="panel-body">
-                                            <div class="info-block">
-                                                <span id="tempOutside" class="value cold">5&deg;C</span>
-                                                <span class="description">Тераса</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>-->
-                            <div class="graph temperature" data-influx-query="SELECT outside as &quot;Тераса&quot;,random_room as &quot;Рандом&quot;,lounge_area as &quot;Ходник&quot;,hardware_room as &quot;Рандом&quot; FROM temperatures WHERE location='hacklab' AND time > now() - 30h" data-plot-options='{ "yaxis": {"axisLabel": "℃"} }'></div>
+                            <!--                            <div class="row">
+                                                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-body">
+                                                                        <div class="info-block">
+                                                                            <span id="tempHardware" class="value hot">30&deg;C</span>
+                                                                            <span class="description">Хардвер</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-body">
+                                                                        <div class="info-block">
+                                                                            <span id="tempLounge" class="value warm">24&deg;C</span>
+                                                                            <span class="description">Ходник</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-body">
+                                                                        <div class="info-block">
+                                                                            <span id="tempRandom" class="value warm">21&deg;C</span>
+                                                                            <span class="description">Рандом</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                                                <div class="panel panel-default">
+                                                                    <div class="panel-body">
+                                                                        <div class="info-block">
+                                                                            <span id="tempOutside" class="value cold">5&deg;C</span>
+                                                                            <span class="description">Тераса</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
+                            <div class="graph temperature" data-influx-query="SELECT outside as &quot;Тераса&quot;,random_room as &quot;Рандом&quot;,lounge_area as &quot;Lounge&quot;,hardware_room as &quot;Хардвер&quot; FROM temperatures WHERE location='hacklab' AND time > now() - 30h" data-plot-options='{ "yaxis": {"axisLabel": "℃"} }'></div>
                         </div>
                     </div>
                 </div>
@@ -316,7 +316,7 @@
         <script src="flot-flot-958e5fd/jquery.flot.resize.js"></script>
 
         <!-- Implementation from https://damjan.softver.org.mk/status.spodeli.org/ -->
-        <script src="js/damjan.softver.org.mk_status.spodeli.org_js_plot.min-nb.js"></script>
+        <script src="js/damjan.softver.org.mk_status.spodeli.org_js_plot.js"></script>
 
         <script src="bootstrap-sass-3.3.5/assets/javascripts/bootstrap/transition.js"></script>
         <script src="bootstrap-sass-3.3.5/assets/javascripts/bootstrap/modal.js"></script>

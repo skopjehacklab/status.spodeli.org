@@ -26,7 +26,8 @@ $(document).ready(function () {
     $('div[data-influx-query]').each(refresh_handler);
 
     $('.btn-refresh').click(function () {
-        $('div[data-influx-query]').each(refresh_handler);
+        var graph = $(this).parent().parent().parent().children('.panel-body').children('div[data-influx-query]');
+        graph.each(refresh_handler);
     });
 
     function refresh_handler() {
