@@ -153,8 +153,10 @@ header{
 
 .list-related-pages{
 
-    .btn-block{
-        margin-bottom: $padding-base-vertical + 3;
+    @media (min-width: $screen-md-min){
+        .btn-block{
+            margin-bottom: $padding-base-vertical + 3;
+        }
     }
 
     @media (max-width: $screen-sm-max){
