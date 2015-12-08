@@ -26,8 +26,9 @@ $(document).ready(function () {
     $('div[data-influx-query]').each(refresh_handler);
 
     $('.btn-refresh').click(function () {
-        var graph = $(this).parent().parent().parent().children('.panel-body').children('div[data-influx-query]');
-        graph.each(refresh_handler);
+        var element = $(this).parent().parent().parent().children('.panel-body').children('div[data-influx-query]');
+        var doit = refresh_plot_element(element);
+        element.overlayLoader(doit);
     });
 
     function refresh_handler() {
@@ -45,7 +46,6 @@ $(document).ready(function () {
         var query = element.data('influx-query');
         var options = element.data('plot-options');
         var options = $.extend({}, GLOBAL_PLOT_OPTIONS, options);
-
         var promise = get_plot_data(dburl, dbname, query)
                 .then(function (response, status) {
                     var series = response.results[0].series[0];
@@ -82,7 +82,6 @@ $(document).ready(function () {
         return serie;
     }
 });
-
 (function ($) {
     $.wait = function (time) {
         return $.Deferred(function (dfd) {
@@ -90,7 +89,6 @@ $(document).ready(function () {
         }).promise();
     };
 }(jQuery));
-
 (function ($) {
     $.fn.overlayLoader = function (promise) {
         return this.each(function () {
