@@ -251,6 +251,11 @@ header{
 
     position: relative;
     min-height: 120px;
+
+    @media (min-width: $screen-lg-min) {
+        max-height: 120px;
+    }
+
     background: transparent;
     box-shadow: none;
 
