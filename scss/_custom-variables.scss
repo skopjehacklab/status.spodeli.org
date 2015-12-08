@@ -718,7 +718,7 @@ $panel-inner-border:          #ddd !default;
 $panel-footer-bg:             #f5f5f5 !default;
 
 $panel-default-text:          $gray-dark !default;
-$panel-default-border:        #ddd !default;
+$panel-default-border:        $btn-default-border !default;
 $panel-default-heading-bg:    lighten($gray-lighter, 1%) !default;
 
 $panel-primary-text:          #fff !default;

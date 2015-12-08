@@ -23,35 +23,31 @@
                     </div>
                     <div class="col-md-5 col-sm-12">
                         <h1><a href="#">Xаклаб КИКА, сега</a></h1>
-                        <p class="text-muted">КИКА е отворен простор на ул. „Васил Стефановски“ бр.8/1 во центарот на Скопје. <a href="http://b10g.spodeli.org/">Дознајте повеќе</a></p>
+                        <p class="text-muted">КИКА е отворен простор на ул. „Васил Стефановски“ бр.8/1 во центарот на Скопје. Постои од 16-ти октомври 2009 година.<br><a href="http://b10g.spodeli.org/">Дознајте повеќе</a></p>
                         <hr class="hidden-lg hidden-md">
                     </div>
-                    <div class="col-md-2 col-sm-12">
-                        <ul class="list-unstyled list-related-pages">
-                            <li>
-                                <span class="glyphicon glyphicon-file"></span>
-                                <a class="glyphicon-text" href="http://b10g.spodeli.org/">Блог на КИКА</a>
-                            </li>
-                            <li>
-                                <span class="glyphicon glyphicon-info-sign"></span>
-                                <a class="glyphicon-text" href="http://b10g.spodeli.org/p/blog-page_17.html">Контакт</a>
-                            </li>
-                            <li>
-                                <span class="glyphicon glyphicon-piggy-bank"></span>
-                                <a class="glyphicon-text" href="http://b10g.spodeli.org/p/blog-page_19.html">Донации</a>
-                            </li>
-                            <li>
-                                <span class="glyphicon glyphicon-book"></span>
-                                <a class="glyphicon-text" href="https://wiki.spodeli.org/">Вики</a>
-                            </li>
-                        </ul>
-                    </div>
                     <div class="col-md-4 col-sm-12 hidden-xs">
-                        <ul class="list-unstyled list-bank-payment-info">
+                        <div class="panel panel-default tweets">
+                            <a class="twitter-timeline"
+                               data-widget-id="453543134387916801"
+                               data-chrome="noheader nofooter noborders noscrollbar"
+                               data-aria-polite="assertive"
+                               href="https://twitter.com/search?q=%23%D1%85%D0%B0%D0%BA%D0%BB%D0%B0%D0%B1+%23skopjehacklab"
+                               data-tweet-limit="1">
+                            </a>
+                        </div>
+<!--                        <ul class="list-unstyled list-bank-payment-info">
                             <li>Сметка: <strong>210057088340110</strong></li>
                             <li>Банка: <strong>НЛБ Тутунска Скопје</strong></li>
                             <li>Приходна шифра: <strong>562 (Уплати за донации)</strong></li>
                             <li>Цел на дознака: <strong>донација за проект КИКА</strong></li>
+                        </ul>-->
+                    </div>
+                    <div class="col-md-2 col-sm-12">
+                        <ul class="list-unstyled list-related-pages">
+                            <li><a class="btn btn-block btn-default" href="http://b10g.spodeli.org/">Блог на КИКА</a></li>
+                            <li><a class="btn btn-block btn-default" href="http://b10g.spodeli.org/p/blog-page_17.html">Активности</a></li>
+                            <li><a class="btn btn-block btn-default" href="http://b10g.spodeli.org/p/blog-page_17.html">Контакт</a></li>
                         </ul>
                     </div>
                 </div>
@@ -190,6 +186,10 @@
                     </div>
                 </div>
             </div>
+            <hr>
+            <footer class="text-center">
+                <p><a href="">Fork me on GitHub</a></p>
+            </footer>
             <div id="zachleneteSe" class="modal fade" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -320,5 +320,23 @@
 
         <script src="bootstrap-sass-3.3.5/assets/javascripts/bootstrap/transition.js"></script>
         <script src="bootstrap-sass-3.3.5/assets/javascripts/bootstrap/modal.js"></script>
+
+        <script>window.twttr = (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0],
+                        t = window.twttr || {};
+                if (d.getElementById(id))
+                    return t;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "https://platform.twitter.com/widgets.js";
+                fjs.parentNode.insertBefore(js, fjs);
+
+                t._e = [];
+                t.ready = function (f) {
+                    t._e.push(f);
+                };
+
+                return t;
+            }(document, "script", "twitter-wjs"));</script>
     </body>
 </html>

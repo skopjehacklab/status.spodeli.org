@@ -153,12 +153,20 @@ header{
 
 .list-related-pages{
 
+    .btn-block{
+        margin-bottom: $padding-base-vertical + 3;
+    }
+
     @media (max-width: $screen-sm-max){
         li{
             display: inline-block;
             margin-left: $padding-base-vertical;
             margin-right: $padding-base-vertical;
         }
+    }
+
+    li:last-child{
+        margin-bottom: 0;
     }
 }
 
@@ -247,3 +255,28 @@ header{
     }
 }
 /* ./ https://damjan.softver.org.mk/status.spodeli.org/css/loader.css*/
+
+.tweets{
+
+    position: relative;
+    min-height: 120px;
+    background: transparent;
+    box-shadow: none;
+
+    &:before{
+        display: block;
+        text-align: center;
+        content: 'Tweets loading...';
+        font-size: $font-size-h2;
+        color: $btn-default-border;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        top: 30%;
+    }
+}
+
+.btn-block{
+    display: block;
+}
