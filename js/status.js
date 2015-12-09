@@ -2,20 +2,18 @@
 
 $(document).ready(function () {
     var INFLUXDB_URL = "https://db.softver.org.mk/influxdb/query";
-    var INFLUXDB_QUERY = "SELECT doorstatus FROM doorstatus where location='hacklab' and time > now() - 24h order by time";
     var INFLUXDB_DBNAME = "status";
-//    var test = '';
 
     function updateStatus() {
         var sega = new Date();
+        var influxdbQuery = $('#status').attr('data-influx-query');
         $.ajax({
             url: INFLUXDB_URL,
             type: 'GET',
             dataType: 'json',
-            data: {db: INFLUXDB_DBNAME, q: INFLUXDB_QUERY, epoch: 'ms'},
+            data: {db: INFLUXDB_DBNAME, q: influxdbQuery, epoch: 'ms'},
             success: function (response) {
 
-//                test = response;
                 var sega = new Date();
                 var vrednosti = response.results[0].series[0].values;
                 var otvoren = 0;
@@ -28,6 +26,7 @@ $(document).ready(function () {
                         otvoren = sega.getTime() - datum.getTime();
                     }
                 }
+
                 otvoren = secondsToString(otvoren / 1000);
 
                 if (vrednosti[vrednosti.length - 1][1] === "CLOSED") {
@@ -44,6 +43,44 @@ $(document).ready(function () {
         });
     }
 
+    function updateDevices() {
+        var sega = new Date();
+        var influxdbQuery = $('#currentDevices').attr('data-influx-query');
+        $.ajax({
+            url: INFLUXDB_URL,
+            type: 'GET',
+            dataType: 'json',
+            data: {db: INFLUXDB_DBNAME, q: influxdbQuery, epoch: 'ms'},
+            success: function (response) {
+                var logged_devices = response.results[0].series[0].values[0][1];
+                var total_devices = response.results[0].series[0].values[0][2];
+
+                switch (true) {
+                    case (logged_devices === 0):
+                    {
+                        $("#currentDevices").parent().parent().toggleClass('panel-danger');
+                        str_najaveni = "најавени";
+                        break;
+                    }
+                    case (logged_devices % 10 === 1):
+                    {
+                        $("#currentDevices").parent().parent().toggleClass('panel-success');
+                        str_najaveni = "најавен";
+                        break;
+                    }
+                    case (logged_devices > 0 || logged_devices === 11):
+                    {
+                        $("#currentDevices").parent().parent().toggleClass('panel-success');
+                        str_najaveni = "најавени";
+                        break;
+                    }
+                }
+
+                $('#currentDevices').text(logged_devices + " " + str_najaveni + ", од вкупно " + total_devices + " уреди");
+            }
+        });
+    }
+
     function secondsToString(seconds) {
         var numhours = Math.floor(seconds / 3600);
         var numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
@@ -52,5 +89,6 @@ $(document).ready(function () {
     }
 
     updateStatus();
+    updateDevices();
 
 });
