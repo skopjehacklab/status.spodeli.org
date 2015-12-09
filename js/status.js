@@ -5,7 +5,6 @@ $(document).ready(function () {
     var INFLUXDB_DBNAME = "status";
 
     function updateStatus() {
-        var sega = new Date();
         var influxdbQuery = $('#status').attr('data-influx-query');
         $.ajax({
             url: INFLUXDB_URL,
@@ -13,7 +12,6 @@ $(document).ready(function () {
             dataType: 'json',
             data: {db: INFLUXDB_DBNAME, q: influxdbQuery, epoch: 'ms'},
             success: function (response) {
-
                 var sega = new Date();
                 var vrednosti = response.results[0].series[0].values;
                 var otvoren = 0;
@@ -38,7 +36,6 @@ $(document).ready(function () {
                     $("#status").parent().parent().toggleClass('panel-open');
                     $("#status-time").text("пред " + otvoren);
                 }
-
             }
         });
     }
@@ -76,7 +73,7 @@ $(document).ready(function () {
                     }
                 }
 
-                $('#currentDevices').text(logged_devices + " " + str_najaveni + ", од вкупно " + total_devices + " уреди");
+                $('#currentDevices').text(logged_devices + " " + str_najaveni + ", од вкупно " + total_devices);
             }
         });
     }
