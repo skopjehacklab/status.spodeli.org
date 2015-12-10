@@ -104,8 +104,8 @@ $(document).ready(function () {
     // Update network speeds every 30 seconds
     window.setInterval("updateNetworkSpeeds()", 1000 * 30);
 
-    // Update status and devices every 10 minutes
-    window.setInterval("updateStatus()", 1000 * 60 * 10);
-    window.setInterval("updateDevices()", 1000 * 60 * 10);
+    // Update status and devices every 5 minutes
+    window.setInterval("updateStatus()", 1000 * 60 * 5);
+    window.setInterval("updateDevices()", 1000 * 60 * 5);
 
 });
