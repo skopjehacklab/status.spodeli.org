@@ -263,11 +263,7 @@ header{
 .tweets{
 
     position: relative;
-
-    @media (min-width: $screen-lg-min) {
-        max-height: 120px;
-    }
-
+    min-height: 120px;
     background: transparent;
     box-shadow: none;
 
