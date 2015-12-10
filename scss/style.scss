@@ -140,6 +140,19 @@ header{
     display: block;
 }
 
+.btns-call-to-action{
+    @media (min-width: $screen-lg-min){
+        .btn{
+            margin-bottom: $padding-large-vertical;
+        }
+    }
+    @media (max-width: $screen-md-max){
+        .btn{
+            margin-bottom: $padding-large-vertical * 2;
+        }
+    }
+}
+
 .glyphicon-text{
     margin-left: $padding-xs-horizontal;
 }
@@ -276,10 +289,6 @@ header{
         z-index: -1;
         top: 37%;
     }
-}
-
-.btn-block{
-    display: block;
 }
 
 .github-corner:hover .octo-arm{
