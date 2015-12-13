@@ -1,3 +1,5 @@
+/* Implementation from https://damjan.softver.org.mk/status.spodeli.org/ */
+
 $(document).ready(function () {
     var INFLUXDB_URL = "https://db.softver.org.mk/influxdb/query";
     var INFLUXDB_DBNAME = "status";
@@ -93,12 +95,7 @@ $(document).ready(function () {
     $.fn.overlayLoader = function (promise) {
         return this.each(function () {
             var parent = $(this);
-            var loader = $('<div class=loader/>');
-// Does not work properly accross browsers!
-// loader.css({
-// top: parent.height() / 2 - loader.height() / 2,
-// left: parent.width() / 2 - loader.width() / 2
-// });
+            var loader = $('<div class="loader"></div>');
             parent.append(loader);
             if (promise && promise.then) {
                 // this is unreliable in jquery < 3.0
