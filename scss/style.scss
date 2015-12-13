@@ -152,6 +152,11 @@ header{
             margin-bottom: $padding-large-vertical * 2;
         }
     }
+    @media (max-width: $screen-sm-max){
+        .btn-member{
+            margin-bottom: $padding-large-vertical;
+        }
+    }
 }
 
 .glyphicon-text{
@@ -171,7 +176,7 @@ header{
         margin-bottom: $padding-base-vertical + 3;
     }
 
-    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max){
+    @media (min-width: $screen-xs-min) and (max-width: $screen-sm-max){
         li{
             display: inline-block;
             margin-bottom: 0;
