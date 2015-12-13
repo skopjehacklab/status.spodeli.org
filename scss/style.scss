@@ -227,9 +227,10 @@ header{
     top: - $jumbotron-padding/2;
     right: 0;
     bottom: 0;
-    left: 0;
+    left: $jumbotron-padding/4;
     margin: auto;
     overflow: visible;
+    text-align: center;
     font-size: 80%;
     border-top: $loader-size solid rgba($gray-light, 0.2);
     border-right: $loader-size solid rgba($gray-light, 0.2);
