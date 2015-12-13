@@ -268,7 +268,13 @@ header{
 .tweets{
 
     position: relative;
-    min-height: 75px;
+    @media (min-width: $screen-md-min){
+        min-height: 120px;
+    }
+    @media (max-width: $screen-sm-max){
+        min-height: 90px;
+    }
+
     background: transparent;
     box-shadow: none;
 
@@ -291,6 +297,16 @@ header{
         bottom: 0;
         right: 0;
         height: $jumbotron-padding;
+    }
+
+    .twitter-timeline{
+        @media (min-width: $screen-md-min){
+            max-height: 120px !important;
+        }
+
+        ul.tweet-controls{
+            visibility: visible !important;
+        }
     }
 }
 
