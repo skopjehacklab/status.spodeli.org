@@ -25,7 +25,6 @@ function updateStatus() {
             }
 
             otvoren = secondsToString(otvoren / 1000);
-
             status_container.removeClass('panel-open panel-closed');
             if (vrednosti[vrednosti.length - 1][1] === "CLOSED") {
                 $("#status").text("Затворен");
@@ -98,20 +97,13 @@ function secondsToString(seconds) {
     var str_numhours = 'часови';
     var str_numminutes = 'минути';
 
-    switch (true) {
-        case (numhours % 10 === 1 && numhours !== 11):
-        {
-            str_numhours = "час";
-            break;
-        }
+    if (numhours % 10 === 1 && numhours !== 11) {
+        str_numhours = "час";
     }
 
-    switch (true) {
-        case (numminutes % 10 === 1 && numminutes !== 11):
-        {
-            str_numminutes = "минута";
-            break;
-        }
+    if (numminutes % 10 === 1 && numminutes !== 11)
+    {
+        str_numminutes = "минута";
     }
 
     return numhours + " " + str_numhours + " и " + numminutes + " " + str_numminutes;
