@@ -27,7 +27,6 @@ function updateStatus() {
             otvoren = secondsToString(otvoren / 1000);
 
             status_container.removeClass('panel-open panel-closed');
-
             if (vrednosti[vrednosti.length - 1][1] === "CLOSED") {
                 $("#status").text("Затворен");
                 status_container.addClass('panel-closed');
@@ -52,9 +51,7 @@ function updateDevices() {
         success: function (response) {
             var logged_devices = response.results[0].series[0].values[0][1];
             var total_devices = response.results[0].series[0].values[0][2];
-
             devices_container.removeClass('panel-danger panel-success');
-
             switch (true) {
                 case (logged_devices === 0):
                 {
@@ -89,7 +86,6 @@ function updateNetworkSpeeds() {
         success: function (response) {
             var TK = response['Telekabel'];
             var BL = response['Blizoo'];
-
             $('#rxkbs').text(parseFloat(TK['rxkbs']) + parseFloat(BL['rxkbs']) + " kB/s");
             $('#txkbs').text(parseFloat(TK['rxkbs']) + parseFloat(BL['txkbs']) + " kB/s");
         }
@@ -99,21 +95,37 @@ function updateNetworkSpeeds() {
 function secondsToString(seconds) {
     var numhours = Math.floor(seconds / 3600);
     var numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
-    return numhours + " часови и " + numminutes + " минути ";
+    var str_numhours = 'часови';
+    var str_numminutes = 'минути';
+
+    switch (true) {
+        case (numhours % 10 === 1 && numhours !== 11):
+        {
+            str_numhours = "час";
+            break;
+        }
+    }
+
+    switch (true) {
+        case (numminutes % 10 === 1 && numminutes !== 11):
+        {
+            str_numminutes = "минута";
+            break;
+        }
+    }
+
+    return numhours + " " + str_numhours + " и " + numminutes + " " + str_numminutes;
 }
 
 $(document).ready(function () {
 
-    // First update
+// First update
     updateStatus();
     updateDevices();
     updateNetworkSpeeds();
-
     // Update network speeds every 30 seconds
     window.setInterval("updateNetworkSpeeds()", 1000 * 30);
-
     // Update status and devices every 5 minutes
     window.setInterval("updateStatus()", 1000 * 60 * 5);
     window.setInterval("updateDevices()", 1000 * 60 * 5);
-
 });
