@@ -142,7 +142,7 @@
                             </div>
                         </div>
                         <div class="panel-body">
-                            <span class="temperature-values" data-influx-query="SELECT outside,random_room,lounge_area,hardware_room FROM temperatures WHERE location='hacklab' LIMIT 1"></span>
+                            <span class="temperature-values" data-influx-query="SELECT outside,random_room,lounge_area,hardware_room FROM temperatures WHERE location='hacklab' ORDER BY time DESC LIMIT 1"></span>
                             <div class="row">
                                 <div class="col-sm-3 col-xs-6">
                                     <div class="panel panel-default" id="hardware_room">
