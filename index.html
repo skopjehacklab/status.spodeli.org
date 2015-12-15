@@ -22,16 +22,20 @@
         <!-- ./ Favicons -->
     </head>
     <body>
+        <button type="button" class="btn btn-lg btn-default navbar-toggle collapsed" data-toggle="collapse" data-target="#relatedPages">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </button>
         <div class="container">
-            <header class="page-header">
+            <header>
                 <div class="row">
                     <div class="col-md-1 col-sm-12">
                         <a href="http://status.spodeli.org/"><figure><img class="logo img-responsive" width="80" height="80" src="svg/kika-logo-symbol-only-c2b.svg" alt="лого на хаклаб КИКА"></figure></a>
                     </div>
                     <div class="col-md-5 col-sm-12">
                         <h1><a href="#">Xаклаб КИКА, сега</a></h1>
-                        <p class="text-muted">КИКА е јавен простор на ул. „Васил Стефановски“ бр.8/1 во центарот на Скопје. Постои од <strong>16-ти октомври 2009</strong> година.<br><a rel="related" href="http://b10g.spodeli.org/">Дознајте повеќе</a></p>
-                        <hr class="hidden-lg hidden-md">
+                        <p class="text-muted">КИКА е јавен простор на ул. „Васил Стефановски“ бр.8/1 во центарот на Скопје. Постои од <strong>16-ти октомври 2009</strong> година.</p>
+                        <p><a rel="related" href="http://b10g.spodeli.org/">Дознајте повеќе</a></p>
                     </div>
                     <div class="col-md-4 col-sm-12 hidden-xs">
                         <div class="panel panel-default tweets">
@@ -45,7 +49,7 @@
                         </div>
                     </div>
                     <div class="col-md-2 col-sm-12">
-                        <ul class="list-unstyled list-related-pages">
+                        <ul class="list-unstyled list-related-pages collapse navbar-collapse" id="relatedPages">
                             <li><a class="btn btn-block btn-default" rel="related" href="http://b10g.spodeli.org/">Блог на КИКА</a></li>
                             <li><a class="btn btn-block btn-default" rel="related" href="https://wiki.spodeli.org/%D0%A5%D0%B0%D0%BA%D0%BB%D0%B0%D0%B1/%D0%90%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D0%BE%D1%81%D1%82%D0%B8">Активности</a></li>
                             <li><a class="btn btn-block btn-default" rel="related" href="http://b10g.spodeli.org/p/blog-page_17.html">Контакт</a></li>
@@ -53,144 +57,145 @@
                     </div>
                 </div>
             </header>
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="panel panel-default">
-                        <div class="panel-body info-block">
-                            <span id="status" class="value text-uppercase" data-influx-query="SELECT doorstatus FROM doorstatus WHERE location='hacklab' AND time > now() - 24h ORDER BY time">се вчитува</span>
-                            <span id="status-time" class="description">се вчитува</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="panel panel-default">
-                        <div class="panel-body info-block">
-                            <span id="currentDevices" class="value" data-influx-query="SELECT value,total FROM landevices WHERE location='hacklab' ORDER BY time DESC LIMIT 1">се вчитува</span>
-                            <span class="description">уреди на мрежата во КИКА</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-12">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="panel panel-default">
-                                <div class="panel-body info-block">
-                                    <span id="rxkbs" class="value">се вчитува</span>
-                                    <span class="description">брзина на download</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="panel panel-default">
-                                <div class="panel-body info-block">
-                                    <span id="txkbs" class="value">се вчитува</span>
-                                    <span class="description">брзина на upload</span>
-                                </div>
+            <div class="widgets">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body info-block">
+                                <span id="status" class="value text-uppercase" data-influx-query="SELECT doorstatus FROM doorstatus WHERE location='hacklab' AND time > now() - 24h ORDER BY time">се вчитува</span>
+                                <span id="status-time" class="description">се вчитува</span>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-2 col-sm-12">
-                    <div class="row btns-call-to-action">
-                        <div class="col-sm-6 col-lg-12">
-                            <a role="button" class="btn btn-member btn-info btn-block" href="#" data-toggle="modal" data-target="#zachleneteSe">Зачленете се</a>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body info-block">
+                                <span id="currentDevices" class="value" data-influx-query="SELECT value,total FROM landevices WHERE location='hacklab' ORDER BY time DESC LIMIT 1">се вчитува</span>
+                                <span class="description">уреди на мрежата во КИКА</span>
+                            </div>
                         </div>
-                        <div class="col-sm-6 col-lg-12">
-                            <a role="button" class="btn btn-donate btn-success btn-block" data-toggle="modal" data-target="#donirajte">Донирајте</a>
+                    </div>
+                    <div class="col-lg-4 col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="panel panel-default">
+                                    <div class="panel-body info-block">
+                                        <span id="rxkbs" class="value">се вчитува</span>
+                                        <span class="description">брзина на download</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="panel panel-default">
+                                    <div class="panel-body info-block">
+                                        <span id="txkbs" class="value">се вчитува</span>
+                                        <span class="description">брзина на upload</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-sm-12">
+                        <div class="row btns-call-to-action">
+                            <div class="col-sm-6 col-lg-12">
+                                <a role="button" class="btn btn-member btn-info btn-block" href="#" data-toggle="modal" data-target="#zachleneteSe">Зачленете се</a>
+                            </div>
+                            <div class="col-sm-6 col-lg-12">
+                                <a role="button" class="btn btn-donate btn-success btn-block" data-toggle="modal" data-target="#donirajte">Донирајте</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- Присутни, за кога ќе биде потребно
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Присутни</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="list-inline list-avatars">
+                                    <li><a href="#" title="@Twitter_Name"><img src="https://avatars2.githubusercontent.com/u/502412?v=3&amp;s=96" alt="avatar"></a></li>
+                                    <li><a href="#" title="@Twitter_Name"><img src="https://avatars1.githubusercontent.com/u/81654?v=3&amp;s=96" alt="avatar"></a></li>
+                                    <li><a href="#" title="@Twitter_Name"><img src="https://avatars0.githubusercontent.com/u/359855?v=3&amp;s=96" alt="avatar"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading clearfix">
+                                <div class="pull-left">
+                                    <h3 class="panel-title">Уреди во КИКА</h3>
+                                </div>
+                                <div class="pull-right">
+                                    <button class="btn btn-xs btn-primary btn-refresh"><span class="glyphicon glyphicon-refresh"></span></button>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="graph devices" data-influx-query="SELECT value as &quot;Најавени уреди на мрежата во КИКА&quot; FROM landevices WHERE location='hacklab' AND time > now() - 30h" data-plot-options='{ "yaxis": {"tickDecimals":0, "minTickSize": 1}}'></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default panel-temperature">
+                            <div class="panel-heading clearfix">
+                                <div class="pull-left">
+                                    <h3 class="panel-title">Температурата во КИКА</h3>
+                                </div>
+                                <div class="pull-right">
+                                    <button class="btn btn-xs btn-primary btn-refresh"><span class="glyphicon glyphicon-refresh"></span></button>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <span class="temperature-values" data-influx-query="SELECT outside,random_room,lounge_area,hardware_room FROM temperatures WHERE location='hacklab' ORDER BY time DESC LIMIT 1"></span>
+                                <div class="row">
+                                    <div class="col-sm-3 col-xs-6">
+                                        <div class="panel panel-default" id="hardware_room">
+                                            <div class="panel-body">
+                                                <div class="info-block">
+                                                    <span class="value">&#8230;</span>
+                                                    <span class="description">Хардвер</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-6">
+                                        <div class="panel panel-default" id="lounge_area">
+                                            <div class="panel-body">
+                                                <div class="info-block">
+                                                    <span class="value">&#8230;</span>
+                                                    <span class="description">Lounge</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-6">
+                                        <div class="panel panel-default" id="random_room">
+                                            <div class="panel-body">
+                                                <div class="info-block">
+                                                    <span class="value">&#8230;</span>
+                                                    <span class="description">Рандом</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-6">
+                                        <div class="panel panel-default" id="outside">
+                                            <div class="panel-body">
+                                                <div class="info-block">
+                                                    <span class="value">&#8230;</span>
+                                                    <span class="description">Тераса</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="graph temperature" data-influx-query="SELECT outside as &quot;Тераса&quot;,random_room as &quot;Рандом&quot;,lounge_area as &quot;Lounge&quot;,hardware_room as &quot;Хардвер&quot; FROM temperatures WHERE location='hacklab' AND time > now() - 30h" data-plot-options='{ "yaxis": {"axisLabel": "℃"} }'></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <!-- Присутни, за кога ќе биде потребно
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Присутни</h3>
-                        </div>
-                        <div class="panel-body">
-                            <ul class="list-inline list-avatars">
-                                <li><a href="#" title="@Twitter_Name"><img src="https://avatars2.githubusercontent.com/u/502412?v=3&amp;s=96" alt="avatar"></a></li>
-                                <li><a href="#" title="@Twitter_Name"><img src="https://avatars1.githubusercontent.com/u/81654?v=3&amp;s=96" alt="avatar"></a></li>
-                                <li><a href="#" title="@Twitter_Name"><img src="https://avatars0.githubusercontent.com/u/359855?v=3&amp;s=96" alt="avatar"></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading clearfix">
-                            <div class="pull-left">
-                                <h3 class="panel-title">Уреди во КИКА</h3>
-                            </div>
-                            <div class="pull-right">
-                                <button class="btn btn-xs btn-primary btn-refresh"><span class="glyphicon glyphicon-refresh"></span></button>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <div class="graph devices" data-influx-query="SELECT value as &quot;Најавени уреди на мрежата во КИКА&quot; FROM landevices WHERE location='hacklab' AND time > now() - 30h" data-plot-options='{ "yaxis": {"tickDecimals":0, "minTickSize": 1}}'></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="panel panel-default panel-temperature">
-                        <div class="panel-heading clearfix">
-                            <div class="pull-left">
-                                <h3 class="panel-title">Температурата во КИКА</h3>
-                            </div>
-                            <div class="pull-right">
-                                <button class="btn btn-xs btn-primary btn-refresh"><span class="glyphicon glyphicon-refresh"></span></button>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <span class="temperature-values" data-influx-query="SELECT outside,random_room,lounge_area,hardware_room FROM temperatures WHERE location='hacklab' ORDER BY time DESC LIMIT 1"></span>
-                            <div class="row">
-                                <div class="col-sm-3 col-xs-6">
-                                    <div class="panel panel-default" id="hardware_room">
-                                        <div class="panel-body">
-                                            <div class="info-block">
-                                                <span class="value">&#8230;</span>
-                                                <span class="description">Хардвер</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3 col-xs-6">
-                                    <div class="panel panel-default" id="lounge_area">
-                                        <div class="panel-body">
-                                            <div class="info-block">
-                                                <span class="value">&#8230;</span>
-                                                <span class="description">Lounge</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3 col-xs-6">
-                                    <div class="panel panel-default" id="random_room">
-                                        <div class="panel-body">
-                                            <div class="info-block">
-                                                <span class="value">&#8230;</span>
-                                                <span class="description">Рандом</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3 col-xs-6">
-                                    <div class="panel panel-default" id="outside">
-                                        <div class="panel-body">
-                                            <div class="info-block">
-                                                <span class="value">&#8230;</span>
-                                                <span class="description">Тераса</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="graph temperature" data-influx-query="SELECT outside as &quot;Тераса&quot;,random_room as &quot;Рандом&quot;,lounge_area as &quot;Lounge&quot;,hardware_room as &quot;Хардвер&quot; FROM temperatures WHERE location='hacklab' AND time > now() - 30h" data-plot-options='{ "yaxis": {"axisLabel": "℃"} }'></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr>
             <footer class="text-small text-center text-muted">
                 <ul class="list-unstyled">
                     <li><a rel="related" href="http://b10g.spodeli.org/">Хаклаб КИКА</a></li>
@@ -342,6 +347,7 @@
 
         <script src="bootstrap-sass-3.3.5/assets/javascripts/bootstrap/transition.js"></script>
         <script src="bootstrap-sass-3.3.5/assets/javascripts/bootstrap/modal.js"></script>
+        <script src="bootstrap-sass-3.3.5/assets/javascripts/bootstrap/collapse.js"></script>
 
         <script>!function (d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';

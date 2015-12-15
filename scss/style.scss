@@ -58,8 +58,15 @@ header{
 }
 
 .container{
-    margin-top: $container-margin;
-    margin-bottom: $container-margin;
+/*    @media (max-width: $screen-xs-max){
+        margin-top: $container-margin / 2;
+        margin-bottom: $container-margin / 2;
+    }*/
+
+    /*@media (min-width: $screen-sm-min){*/
+        margin-top: $container-margin * 1.5;
+        margin-bottom: $container-margin;
+    /*}*/
 
     .panel-title{
         @extend .text-uppercase;
@@ -67,8 +74,31 @@ header{
         font-size: $font-size-h4;
     }
 
-    .page-header{
-        margin-top: $jumbotron-padding/1.5;
+    header{
+        border-bottom: none;
+
+        @media (min-width: $screen-md-min){
+            margin-bottom: $padding-base-horizontal;
+        }
+
+        @media (max-width: $screen-xs-max){
+            figure{
+                display: inline-block;
+            }
+        }
+
+        .navbar-collapse{
+            @media (max-width: $screen-xs-max){
+                padding-top: $padding-large-horizontal;
+                border-top: 1px solid $hr-border;
+            }
+            @media (max-width: $screen-sm-max){
+                padding-bottom: $padding-large-horizontal;
+                margin-bottom: 0;
+            }
+            padding-left: 0;
+            padding-right: 0;
+        }
     }
 }
 
@@ -160,6 +190,21 @@ header{
         .btn-member{
             margin-bottom: $padding-large-vertical;
         }
+    }
+}
+
+.btn{
+
+    &.navbar-toggle{
+        padding: $padding-base-vertical $padding-base-horizontal;
+        position: absolute;
+        top: $padding-small-vertical;
+        left: $padding-base-horizontal;
+    }
+
+    &.collapsed{
+        border: none;
+        background: transparent;
     }
 }
 
@@ -284,6 +329,9 @@ header{
     @media (max-width: $screen-sm-max){
         min-height: 90px;
     }
+    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max){
+        margin-top: $padding-base-horizontal;
+    }
 
     background: transparent;
     box-shadow: none;
@@ -333,6 +381,13 @@ header{
 
 .text-small{
     font-size: $font-size-small;
+}
+
+.widgets{
+    padding-top: $container-margin/2;
+    margin-bottom: $container-margin/2;
+    border-top: 1px solid $hr-border;
+    border-bottom: 1px solid $hr-border;
 }
 
 footer{
