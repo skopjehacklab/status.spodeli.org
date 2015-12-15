@@ -91,6 +91,26 @@ function updateNetworkSpeeds() {
     });
 }
 
+function updateTempValues() {
+    var influxdbQuery = $('.temperature-values').attr('data-influx-query');
+    $('.panel-temperature .value').css({'color': 'inherit'}).html("&#8230;");
+    $.ajax({
+        url: INFLUXDB_URL,
+        type: 'GET',
+        dataType: 'json',
+        data: {db: INFLUXDB_DBNAME, q: influxdbQuery, epoch: 'ms'},
+        success: function (response) {
+
+            var columns = response.results[0].series[0].columns;
+            var values = response.results[0].series[0].values[0];
+
+            for (var i = 1; i < values.length; i++) {
+                $("#" + columns[i] + " span.value").html(values[i] + "&deg;C").css({'color': plot_colors[i - 1]});
+            }
+        }
+    });
+}
+
 function secondsToString(seconds) {
     var numhours = Math.floor(seconds / 3600);
     var numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
@@ -111,13 +131,20 @@ function secondsToString(seconds) {
 
 $(document).ready(function () {
 
-// First update
+    // Update individual room temperature values on parent button click
+    $('.panel-temperature .btn-refresh').click(updateTempValues);
+
+    // First update
     updateStatus();
     updateDevices();
     updateNetworkSpeeds();
+    updateTempValues();
+
     // Update network speeds every 30 seconds
     window.setInterval("updateNetworkSpeeds()", 1000 * 30);
-    // Update status and devices every 5 minutes
+
+    // Update status, devices and temperature every 5 minutes
     window.setInterval("updateStatus()", 1000 * 60 * 5);
     window.setInterval("updateDevices()", 1000 * 60 * 5);
+    window.setInterval("updateTemp()", 1000 * 60 * 5);
 });
