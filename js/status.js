@@ -146,5 +146,5 @@ $(document).ready(function () {
     // Update status, devices and temperature every 5 minutes
     window.setInterval("updateStatus()", 1000 * 60 * 5);
     window.setInterval("updateDevices()", 1000 * 60 * 5);
-    window.setInterval("updateTemp()", 1000 * 60 * 5);
+    window.setInterval("updateTempValues()", 1000 * 60 * 5);
 });
