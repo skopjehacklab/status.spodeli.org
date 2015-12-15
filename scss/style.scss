@@ -133,8 +133,12 @@ header{
 }
 
 .graph.temperature{
-    min-height: 300px;
-    /*min-height: 200px;*/
+    /*min-height: 300px;*/
+    min-height: 203px;
+}
+
+.legendLabel{
+    padding-left: $padding-small-vertical;
 }
 
 .btn-block{
