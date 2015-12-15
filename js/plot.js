@@ -1,4 +1,4 @@
-/* Implementation from https://damjan.softver.org.mk/status.spodeli.org/ */
+/* Modified implementation from https://damjan.softver.org.mk/status.spodeli.org/ */
 
 $(document).ready(function () {
     var INFLUXDB_URL = "https://db.softver.org.mk/influxdb/query";
@@ -22,7 +22,8 @@ $(document).ready(function () {
             labelWidth: 50,
             mode: "time",
             minTickSize: [15, "minute"]
-        }
+        },
+        colors: plot_colors
     };
 
     $('div[data-influx-query]').each(refresh_handler);
