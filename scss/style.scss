@@ -68,6 +68,10 @@ header{
         margin-bottom: $container-margin;
     /*}*/
 
+    .title-description{
+        margin-bottom: $padding-large-horizontal;
+    }
+
     .panel-title{
         @extend .text-uppercase;
         @extend .text-center;
@@ -76,10 +80,6 @@ header{
 
     header{
         border-bottom: none;
-
-        @media (min-width: $screen-md-min){
-            margin-bottom: $padding-base-horizontal;
-        }
 
         @media (max-width: $screen-xs-max){
             figure{
@@ -121,22 +121,6 @@ header{
     .description{
         display: block;
     }
-
-    .hot{
-        color: $brand-danger;
-        /*@include temperature-value-border($brand-danger);*/
-    }
-
-    .warm{
-        color: darken($brand-warning, 12%);
-        /*@include temperature-value-border($brand-warning);*/
-    }
-
-    .cold{
-        color: darken($brand-info, 10%);
-        /*@include temperature-value-border($brand-info);*/
-    }
-
 }
 
 .panel-open{
@@ -323,14 +307,12 @@ header{
 .tweets{
 
     position: relative;
+    
     @media (min-width: $screen-md-min){
         min-height: 120px;
     }
     @media (max-width: $screen-sm-max){
         min-height: 90px;
-    }
-    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max){
-        margin-top: $padding-base-horizontal;
     }
 
     background: transparent;
