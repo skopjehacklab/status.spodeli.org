@@ -15,7 +15,7 @@ function updateStatus() {
             var vrednosti = response.results[0].series[0].values;
             var otvoren = 0;
             for (var i = vrednosti.length - 1; i > 0; i--) {
-                item = vrednosti[i - 1];
+                var item = vrednosti[i - 1];
                 if (item[1] !== vrednosti[vrednosti.length - 1][1]) {
                     break;
                 } else {
