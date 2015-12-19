@@ -58,14 +58,14 @@ header{
 }
 
 .container{
-/*    @media (max-width: $screen-xs-max){
-        margin-top: $container-margin / 2;
-        margin-bottom: $container-margin / 2;
-    }*/
+    /*    @media (max-width: $screen-xs-max){
+            margin-top: $container-margin / 2;
+            margin-bottom: $container-margin / 2;
+        }*/
 
     /*@media (min-width: $screen-sm-min){*/
-        margin-top: $container-margin * 1.5;
-        margin-bottom: $container-margin;
+    margin-top: $container-margin * 1.5;
+    margin-bottom: $container-margin;
     /*}*/
 
     .title-description{
@@ -81,7 +81,7 @@ header{
     header{
         border-bottom: none;
 
-        @media (max-width: $screen-xs-max){
+        @media (max-width: $screen-phone){
             figure{
                 display: inline-block;
             }
@@ -89,9 +89,25 @@ header{
 
         .navbar-collapse{
             @media (max-width: $screen-xs-max){
-                padding-top: $padding-large-horizontal;
-                border-top: 1px solid $hr-border;
+                z-index: 9;
+                position: fixed;
+                top: 0;
+                left:0;
+                right: 0;
+                bottom: 0;
+                padding-top: ($jumbotron-padding * 2) + $padding-xs-vertical;
+                padding-left: $padding-base-horizontal;
+                padding-right: $padding-base-horizontal;
+                background: rgba($brand-warning, 0.95);
             }
+
+            @media (min-width: $screen-xs-min) and (max-width: $screen-xs-max){
+                padding-top: $padding-large-horizontal;
+                bottom: auto;
+                text-align: right;
+                border-bottom: 5px solid darken($brand-warning, 12%);
+            }
+
             @media (max-width: $screen-sm-max){
                 padding-bottom: $padding-large-horizontal;
                 margin-bottom: 0;
@@ -99,6 +115,32 @@ header{
             padding-left: 0;
             padding-right: 0;
         }
+    }
+}
+
+.navbar-toggle{
+    font-size: $font-size-large;
+    padding: $padding-base-vertical $padding-base-horizontal;
+    position: fixed;
+    z-index: 10;
+    top: $padding-small-vertical;
+    left: $padding-base-horizontal;
+
+    .glyphicon{
+        @extend .glyphicon-remove;
+        color: darken($brand-warning, 45%);
+    }
+
+    &.collapsed{
+
+        .glyphicon{
+            @extend .glyphicon-menu-hamburger;
+            color: $text-color;
+        }
+
+        border: none;
+        position: absolute;
+        background: transparent;
     }
 }
 
@@ -174,21 +216,6 @@ header{
         .btn-member{
             margin-bottom: $padding-large-vertical;
         }
-    }
-}
-
-.btn{
-
-    &.navbar-toggle{
-        padding: $padding-base-vertical $padding-base-horizontal;
-        position: absolute;
-        top: $padding-small-vertical;
-        left: $padding-base-horizontal;
-    }
-
-    &.collapsed{
-        border: none;
-        background: transparent;
     }
 }
 
@@ -307,7 +334,7 @@ header{
 .tweets{
 
     position: relative;
-    
+
     @media (min-width: $screen-md-min){
         min-height: 120px;
     }
