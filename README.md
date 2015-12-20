@@ -1,6 +1,6 @@
 #KIKA Hacklab Status Information Dashboard
 
-[Dashboard page](http://status.spodeli.org/) with status information about [KIKA hacklab](http://b10g.spodeli.org/p/info-in-english.html), including:
+Responsive and mobile-friendly [dashboard page](http://status.spodeli.org/) with status information about [KIKA hacklab](http://b10g.spodeli.org/p/info-in-english.html), including:
 
 * Information about whether the hacklab is currently open or closed and for how long
 * The number of signed in, out of the total devices discovered in the local network
