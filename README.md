@@ -13,7 +13,7 @@ Responsive and mobile-friendly [dashboard page](http://status.spodeli.org/) with
 * Graphical representation of the temperature registered in the hacklab during several past hours
 * Information about becoming a Member of the hacklab
 * Bank account information for donations
-* Links to [KIKA blog](http://b10g.spodeli.org/) and other related pages
+* Links to the [KIKA blog](http://b10g.spodeli.org/) and other related pages
 
 Graphs are implemented with [Flot](http://www.flotcharts.org/) and metrics are stored in [InfluxDB](https://influxdb.com/docs/v0.9/introduction/overview.html).
 
