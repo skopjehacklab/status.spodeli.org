@@ -1,5 +1,7 @@
 #KIKA Hacklab Status Information Dashboard
 
+![status.spodeli.org screenshot](img/status-spodeli-org-screenshot.png)
+
 Responsive and mobile-friendly [dashboard page](http://status.spodeli.org/) with status information about [KIKA hacklab](http://b10g.spodeli.org/p/info-in-english.html), including:
 
 * Information about whether the hacklab is currently open or closed and for how long
