@@ -198,6 +198,10 @@ header{
     padding-left: $padding-small-vertical;
 }
 
+.flot-overlay:hover{
+    cursor: pointer;
+}
+
 .btn-block{
     display: block;
 }
