@@ -178,6 +178,14 @@ header{
     background: rgba($brand-danger, .8);
 }
 
+.panel-controls{
+    @extend .text-right;
+    
+    .btn{
+        margin-left: $padding-xs-horizontal;
+    }
+}
+
 .graph{
     position: relative;
     min-width: 100%;
