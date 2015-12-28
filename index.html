@@ -358,6 +358,20 @@
         <script src="bootstrap-sass-3.3.6/assets/javascripts/bootstrap/collapse.js"></script>
 
         <script>
+            // Load Roboto from Google Fonts
+            WebFontConfig = {
+                google: {families: ['Roboto:400,400italic,700,700italic:latin,cyrillic']}
+            };
+            (function () {
+                var wf = document.createElement('script');
+                wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+                wf.type = 'text/javascript';
+                wf.async = 'true';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(wf, s);
+            })();
+
             // Don't load Twitter widget if screen size is lower than 768px
             if (screen && screen.width > 767) {
                 !function (d, s, id) {

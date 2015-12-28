@@ -1,7 +1,5 @@
 @charset "utf-8";
 
-// Include PT Sans with Cyrillic support from Google Fonts
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic&subset=latin,cyrillic);
 @import "custom-variables"; // Must be before the Bootstrap stylesheets
 @import "../bootstrap-sass-3.3.6/assets/stylesheets/bootstrap";
 
