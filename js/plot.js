@@ -29,7 +29,7 @@ $(document).ready(function () {
     $('div[data-influx-query]').each(refresh_handler);
 
     $('.btn-refresh').click(function () {
-        var element = $(this).parent().parent().parent().children('.panel-body').children('div[data-influx-query]');
+        var element = $(this).parent().parent().parent().parent().children('.panel-body').children('div[data-influx-query]');
         var doit = refresh_plot_element(element);
         element.overlayLoader(doit);
     });
