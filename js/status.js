@@ -86,7 +86,7 @@ function updateNetworkSpeeds() {
             var TK = response['Telekabel'];
             var BL = response['Blizoo'];
             $('#rxkbs').text(parseFloat(TK['rxkbs']) + parseFloat(BL['rxkbs']) + " kB/s");
-            $('#txkbs').text(parseFloat(TK['rxkbs']) + parseFloat(BL['txkbs']) + " kB/s");
+            $('#txkbs').text(parseFloat(TK['txkbs']) + parseFloat(BL['txkbs']) + " kB/s");
         }
     });
 }
