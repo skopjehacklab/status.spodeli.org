@@ -17,4 +17,5 @@ Responsive and mobile-friendly [dashboard page](http://status.spodeli.org/) with
 
 Graphs are implemented with [Flot](http://www.flotcharts.org/) and metrics are stored in [InfluxDB](https://influxdb.com/docs/v0.9/introduction/overview.html).
 
-More information about the metrics database are available [here](https://github.com/skopjehacklab/status.spodeli.org).
+###Metrics database
+Metrics are currently stored in [Influxdb](https://influxdb.com/docs/v0.9/introduction/overview.html) by the scripts in [kika-info-bus](https://github.com/skopjehacklab/kika-info-bus/tree/master/influxdb-logger). Example queries:
