@@ -57,6 +57,22 @@ header{
 
 }
 
+.info-panel{
+    .container{
+        margin-top: $jumbotron-padding * 1.25;
+    }
+
+    .widgets{
+        padding-top: 0;
+        border-top: 0;
+        border-bottom: 0;
+    }
+
+    .tweets{
+        min-height: 90px;
+    }
+}
+
 .container{
     /*    @media (max-width: $screen-xs-max){
             margin-top: $container-margin / 2;

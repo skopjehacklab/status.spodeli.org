@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#">
+    <head>
+        <title>Инфо-панел на хаклаб КИКА</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/style.css">
+
+        <meta name="description" content="Проверете каква е состојбата во хаклабот КИКА. Дали е отворен или затворен, каква е температурата во КИКА итн.">
+        <meta property="og:url" content="http://status.spodeli.org/">
+        <meta property="og:title" content="Хаклаб КИКА, сега">
+        <meta property="og:description" content="Проверете каква е состојбата во хаклабот КИКА. Дали е отворен или затворен, каква е температурата во КИКА итн.">
+        <meta property="og:image" content="http://status.spodeli.org/img/kika-hacklab-favicon-512x512.png">
+        <meta property="fb:app_id" content="962423030498745">
+
+        <!-- Favicons -->
+        <link rel="shortcut icon" href="img/kika-hacklab-favicon.ico" sizes="16x16 32x32 48x48" type="image/x-icon">
+        <link rel="shortcut icon" href="img/kika-hacklab-favicon-192x192.png" sizes="192x192" type="image/png">
+        <link rel="apple-touch-icon" href="img/kika-hacklab-favicon-512x512-ios.png" sizes="512x512" type="image/png">
+        <!--<link rel="icon" href="svg/kika-logo-symbol-favicon-c2b.svg" sizes="any" type="image/svg+xml">-->
+        <!-- ./ Favicons -->
+    </head>
+    <body class="info-panel">
+        <div class="container">
+            <header>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 title-description">
+                        <a class="pull-left" rel="home" href="http://status.spodeli.org/"><figure><img class="logo" width="80" height="80" src="svg/kika-logo-symbol-only-c2b.svg" alt="лого на хаклаб КИКА"></figure></a>
+                        <h1><a rel="home" href="http://status.spodeli.org/">Xаклаб КИКА, сега</a></h1>
+                        <p class="text-muted">Се наоѓате на ул. „Васил Стефановски“ бр.8/1 во Скопје. <strong>Лозинката за WiFi е <span class="text-success">sz123456</span></strong>.</p>
+                    </div>
+                    <div class="col-md-6 col-sm-12 hidden-xs">
+                        <div class="panel panel-default tweets">
+                            <a class="twitter-timeline"
+                               data-widget-id="674870156879896576"
+                               data-chrome="noheader nofooter noborders noscrollbar"
+                               data-aria-polite="assertive"
+                               href="https://twitter.com/search?q=-%D0%B7%D0%B0%D1%82%D0%B2%D0%BE%D1%80%D0%B5%D0%BD%20-%D0%BE%D1%82%D0%B2%D0%BE%D1%80%D0%B5%D0%BD%20%23skopjehacklab%20OR%20%23%D1%85%D0%B0%D0%BA%D0%BB%D0%B0%D0%B1"
+                               data-tweet-limit="1">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="widgets">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body info-block">
+                                <span id="status" class="value text-uppercase" data-influx-query="SELECT doorstatus FROM doorstatus WHERE location='hacklab' ORDER BY time">се вчитува</span>
+                                <span id="status-time" class="description">се вчитува</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body info-block">
+                                <span id="currentDevices" class="value" data-influx-query="SELECT value,total FROM landevices WHERE location='hacklab' ORDER BY time DESC LIMIT 1">се вчитува</span>
+                                <span class="description">уреди на мрежата во КИКА</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="panel panel-default">
+                                    <div class="panel-body info-block">
+                                        <span id="rxkbs" class="value">се вчитува</span>
+                                        <span class="description">брзина на download</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="panel panel-default">
+                                    <div class="panel-body info-block">
+                                        <span id="txkbs" class="value">се вчитува</span>
+                                        <span class="description">брзина на upload</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading clearfix">
+                                <h3 class="panel-title">Уреди во КИКА</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="graph devices" data-influx-query="SELECT value as &quot;Најавени уреди на мрежата во КИКА&quot; FROM landevices WHERE location='hacklab' AND time > now() - 30h" data-plot-options='{ "yaxis": {"tickDecimals":0, "minTickSize": 1}}'></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default panel-temperature">
+                            <div class="panel-heading clearfix">
+                                <h3 class="panel-title">Температурата во КИКА</h3>
+                            </div>
+                            <div class="panel-body">
+                                <span class="temperature-values" data-influx-query="SELECT outside,random_room,lounge_area,hardware_room FROM temperatures WHERE location='hacklab' ORDER BY time DESC LIMIT 1"></span>
+                                <div class="row">
+                                    <div class="col-sm-3 col-xs-6">
+                                        <div class="panel panel-default" id="hardware_room">
+                                            <div class="panel-body">
+                                                <div class="info-block">
+                                                    <span class="value">&#8230;</span>
+                                                    <span class="description">Хардвер</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-6">
+                                        <div class="panel panel-default" id="lounge_area">
+                                            <div class="panel-body">
+                                                <div class="info-block">
+                                                    <span class="value">&#8230;</span>
+                                                    <span class="description">Lounge</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-6">
+                                        <div class="panel panel-default" id="random_room">
+                                            <div class="panel-body">
+                                                <div class="info-block">
+                                                    <span class="value">&#8230;</span>
+                                                    <span class="description">Рандом</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-6">
+                                        <div class="panel panel-default" id="outside">
+                                            <div class="panel-body">
+                                                <div class="info-block">
+                                                    <span class="value">&#8230;</span>
+                                                    <span class="description">Тераса</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="graph temperature" data-influx-query="SELECT outside as &quot;Тераса&quot;,random_room as &quot;Рандом&quot;,lounge_area as &quot;Lounge&quot;,hardware_room as &quot;Хардвер&quot; FROM temperatures WHERE location='hacklab' AND time > now() - 30h" data-plot-options='{ "yaxis": {"axisLabel": "℃"} }'></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="flot-flot-958e5fd/jquery.js"></script>
+        <script src="flot-flot-958e5fd/jquery.flot.js"></script>
+        <script src="flot-flot-958e5fd/jquery.flot.time.js"></script>
+        <script src="flot-flot-958e5fd/jquery.flot.resize.js"></script>
+
+        <script>
+            // Define Plot colors and make them reusable for the individual room temperature values.
+            // This is probably not the best approach or solution, but it works for now.
+            var plot_colors = [
+                '#E6AC00',
+                '#5AA',
+                '#AE1215',
+                '#693'
+            ];
+        </script>
+
+        <!-- Implementation from https://damjan.softver.org.mk/status.spodeli.org/ -->
+        <script src="js/plot.js"></script>
+        <script src="js/status.js"></script>
+
+        <script>
+            // Load Roboto from Google Fonts
+            WebFontConfig = {
+                google: {families: ['Roboto:400,400italic,700,700italic:latin,cyrillic']}
+            };
+            (function () {
+                var wf = document.createElement('script');
+                wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+                wf.type = 'text/javascript';
+                wf.async = 'true';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(wf, s);
+            })();
+
+            // Don't load Twitter widget if screen size is lower than 768px
+            if (screen && screen.width > 767) {
+                !function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                    if (!d.getElementById(id)) {
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = p + "://platform.twitter.com/widgets.js";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }
+                }(document, "script", "twitter-wjs");
+            }
+        </script>
+    </body>
+</html>
