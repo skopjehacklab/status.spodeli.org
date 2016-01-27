@@ -50,29 +50,23 @@ function updateDevices() {
         success: function (response) {
             var logged_devices = response.results[0].series[0].values[0][1];
             var total_devices = response.results[0].series[0].values[0][2];
+            var str_najaveni = 'најавени';
+            var str_uredi = 'уреди';
             devices_container.removeClass('panel-danger panel-success');
-            switch (true) {
-                case (logged_devices === 0):
-                {
-                    devices_container.addClass('panel-danger');
-                    str_najaveni = "најавени";
-                    break;
-                }
-                case (logged_devices % 10 === 1):
-                {
-                    devices_container.addClass('panel-success');
-                    str_najaveni = "најавен";
-                    break;
-                }
-                case (logged_devices > 0 || logged_devices === 11):
-                {
-                    devices_container.addClass('panel-success');
-                    str_najaveni = "најавени";
-                    break;
-                }
+
+            if (logged_devices % 10 === 1 && logged_devices !== 11)
+            {
+                devices_container.addClass('panel-success');
+                str_najaveni = "најавен";
             }
 
-            $('#currentDevices').text(logged_devices + " " + str_najaveni + ", од вкупно " + total_devices);
+            if (total_devices % 10 === 1 && total_devices !== 11)
+            {
+                str_uredi = "уред";
+            }
+
+            $('.current-devices .value').text(logged_devices + " " + str_najaveni + ", од вкупно " + total_devices);
+            $('.current-devices .description').text(str_uredi + " на мрежата во КИКА");
         }
     });
 }
@@ -135,7 +129,7 @@ $(document).ready(function () {
     $('.panel-temperature .btn-refresh').click(updateTempValues);
 
     // Go to the Grafana Dashboard on button click
-    $('.btn-grafana').click(function(){
+    $('.btn-grafana').click(function () {
         window.location = "http://grafana.softver.org.mk/dashboard/db/hacklab";
     });
 
