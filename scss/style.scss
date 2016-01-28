@@ -27,6 +27,44 @@ $loader-size: $jumbotron-padding * 0.58;
     transform: $parameters;
 }
 
+@mixin loading-text($text){
+    display: block;
+    text-align: center;
+    content: $text;
+    font-size: $font-size-large;
+    color: $btn-default-border;
+    position: absolute;
+    z-index: -1;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: $jumbotron-padding;
+}
+
+// http://snook.ca/archives/html_and_css/simplest-css-slideshow
+@mixin fade($num:1, $fade:1, $visible:2) {
+    $a: 100 / (($fade + $visible) * $num);
+    @keyframes fade {
+        0%   { opacity: 0; }
+        #{$a * $fade}%   { opacity: 1; }
+        #{$a * ($fade + $visible)}%  { opacity: 1; }
+        #{$a * ($fade + $visible + $fade)}%  { opacity: 0; }
+        100% { opacity: 0; }
+    }
+
+    animation-name: fade;
+    animation-duration: (($fade + $visible) * $num) + s;
+    animation-iteration-count: infinite;
+
+    @for $i from 1 through $num {
+        &:nth-child(#{$i}) {
+            animation-delay: (#{($fade + $visible) * ($i - 1)}) + s;
+        }
+    }
+}
+
 header{
 
     @media (max-width: $screen-sm-max){
@@ -198,6 +236,39 @@ header{
 
     .btn{
         margin-left: $padding-xs-horizontal;
+    }
+}
+
+.fadein img {
+    opacity: 0;
+    // Absolute positioning is an accessibility issue, but good for now.
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    @include fade($num: 20, $fade: 1, $visible: 9);
+}
+
+.panel-tumblr{
+    background-color: $panel-default-heading-bg;
+    position: relative;
+    overflow: hidden;
+    min-height: 371px;
+    max-height: 371px;
+
+    &:before{
+        @include loading-text('содржина од Tumblr');
+        z-index: 0;
+    }
+
+    img{
+        min-width: 100%;
+        max-width: 100%;
+        height: auto;
+        overflow: hidden;
+        border-radius: $border-radius-base;
     }
 }
 
@@ -382,19 +453,7 @@ header{
     }
 
     &:before{
-        display: block;
-        text-align: center;
-        content: 'содржина од Twitter';
-        font-size: $font-size-large;
-        color: $btn-default-border;
-        position: absolute;
-        z-index: -1;
-        margin: auto;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        height: $jumbotron-padding;
+        @include loading-text('содржина од Twitter');
     }
 
     .twitter-timeline{

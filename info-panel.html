@@ -87,11 +87,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="panel panel-default">
-                            <div class="panel-heading clearfix">
-                                <h3 class="panel-title">Уреди во КИКА</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div class="graph devices" data-influx-query="SELECT value as &quot;Најавени уреди на мрежата во КИКА&quot; FROM landevices WHERE location='hacklab' AND time > now() - 30h" data-plot-options='{ "yaxis": {"tickDecimals":0, "minTickSize": 1}}'></div>
+                            <div class="panel-body panel-tumblr">
+                                <div class="fadein" id="tumblr"></div>
                             </div>
                         </div>
                     </div>
@@ -170,6 +167,9 @@
         <!-- Implementation from https://damjan.softver.org.mk/status.spodeli.org/ -->
         <script src="js/plot.js"></script>
         <script src="js/status.js"></script>
+
+        <!-- Tumblr Foo -->
+        <script src='http://skopjehacklab.tumblr.com/api/read/json?number=1;type=photo'></script>
 
         <script>
             // Load Roboto from Google Fonts

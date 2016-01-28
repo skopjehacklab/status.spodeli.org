@@ -123,6 +123,22 @@ function secondsToString(seconds) {
     return numhours + " " + str_numhours + " и " + numminutes + " " + str_numminutes;
 }
 
+// https://github.com/skopjehacklab/infopanel/blob/gh-pages/js/infopanel.js
+function shuffle(o) {
+    //http://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array-in-javascript
+    for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+}
+
+// https://github.com/skopjehacklab/infopanel/blob/gh-pages/js/infopanel.js
+function populateTumblr() {
+    var imgs = shuffle(tumblr_api_read.posts);
+    imgs.forEach(function (item) {
+        console.log(imgs);
+        $("#tumblr").append('<img src="' + item['photo-url-1280'] + '" >');
+    });
+}
+
 $(document).ready(function () {
 
     // Update individual room temperature values on parent button click
@@ -138,6 +154,7 @@ $(document).ready(function () {
     updateDevices();
     updateNetworkSpeeds();
     updateTempValues();
+    populateTumblr();
 
     // Update network speeds every 30 seconds
     window.setInterval("updateNetworkSpeeds()", 1000 * 30);
@@ -146,4 +163,5 @@ $(document).ready(function () {
     window.setInterval("updateStatus()", 1000 * 60 * 5);
     window.setInterval("updateDevices()", 1000 * 60 * 5);
     window.setInterval("updateTempValues()", 1000 * 60 * 5);
+
 });
