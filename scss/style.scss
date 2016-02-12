@@ -6,6 +6,7 @@
 $container-margin: $jumbotron-padding * 1.5;
 $white: #fff;
 $loader-size: $jumbotron-padding * 0.58;
+$panel-height: 345px;
 
 @mixin temperature-value-border($color){
     border: 1px solid $color;
@@ -109,6 +110,17 @@ header{
 
     .tweets{
         min-height: 90px;
+    }
+
+    .panel-temperature{
+        @media (min-width: $screen-md-min){
+            min-height: $panel-height;
+            max-height: $panel-height;    
+        }
+    }
+
+    .graph.temperature{
+        min-height: 175px;
     }
 }
 
@@ -243,8 +255,8 @@ header{
     background-color: $panel-default-heading-bg;
     position: relative;
     overflow: hidden;
-    min-height: 374px;
-    max-height: 374px;
+    min-height: $panel-height;
+    max-height: $panel-height;
 
     &:before{
         @include loading-text('содржина од Tumblr');
@@ -278,11 +290,9 @@ header{
 
 .graph.devices{
     min-height: 300px;
-    /*min-height: 298px;*/
 }
 
 .graph.temperature{
-    /*min-height: 300px;*/
     min-height: 203px;
 }
 
