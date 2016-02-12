@@ -134,7 +134,6 @@ function shuffle(o) {
 function populateTumblr() {
     var imgs = shuffle(tumblr_api_read.posts);
     imgs.forEach(function (item) {
-        console.log(imgs);
         $("#tumblr").append('<img src="' + item['photo-url-1280'] + '" >');
     });
 }
