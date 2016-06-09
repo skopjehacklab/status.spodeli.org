@@ -145,7 +145,7 @@ $(document).ready(function () {
 
     // Go to the Grafana Dashboard on button click
     $('.btn-grafana').click(function () {
-        window.location = "http://grafana.softver.org.mk/dashboard/db/hacklab";
+        window.location = "http://grafana.softver.org.mk/";
     });
 
     // First update
