@@ -201,9 +201,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="graph temperature" 
-                                    data-influx-query="SELECT moving_average(median(outside), 5) as &quot;Тераса&quot;, moving_average(median(random_room), 5) as &quot;Рандом&quot;, moving_average(median(lounge_area), 5) as &quot;Lounge&quot;,moving_average(median(hardware_room), 5) as &quot;Хардвер&quot; FROM temperatures WHERE location='hacklab' AND time > now() - 30h group by time(1m)" data-plot-options='{ "yaxis": {"axisLabel": "℃"} }'>
-                                    
+                                <div class="graph temperature"
+                                    data-influx-query="SELECT outside as &quot;Тераса&quot;, random_room as &quot;Рандом&quot;, lounge_area as &quot;Lounge&quot;,hardware_room as &quot;Хардвер&quot; FROM temperatures WHERE location='hacklab' AND time > now() - 30h" data-plot-options='{"calcMedian":true, "yaxis": {"axisLabel": "℃"} }'>
+
                                 </div>
                             </div>
                         </div>

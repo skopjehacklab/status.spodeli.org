@@ -52,7 +52,7 @@ $(document).ready(function () {
         var promise = get_plot_data(dburl, dbname, query)
                 .then(function (response, status) {
                     var series = response.results[0].series[0];
-                    return massage_influx_data_for_flot(series);
+                    return massage_influx_data_for_flot(series, options);
                 })
                 .then(function (plotdata) {
                     element.plot(plotdata, options);
@@ -68,20 +68,33 @@ $(document).ready(function () {
         });
     }
 
-    function massage_influx_data_for_flot(series) {
+    function massage_influx_data_for_flot(series, options) {
         var plotdata = [];
         for (var k = 1; k < series.columns.length; k++) {
-            plotdata.push(extract_serie(series, k));
+            plotdata.push(extract_serie(series, k, options));
         }
         return plotdata;
     }
 
-    function extract_serie(series, index) {
+    function numerically(a, b) { return a - b; }
+
+    function extract_serie(series, index, options) {
         var serie = {};
         serie.label = series.columns[index];
-        serie.data = series.values.map(function (value) {
-            return [value[0], value[index]];
-        });
+        if (options.calcMedian) {
+            var values = series.values;
+            var results = []
+            for (var ix = 1; ix < values.length - 1; ++ix) {
+                var moving3point = [values[ix - 1][index], values[ix][index], values[ix + 1][index]]
+                var median = moving3point.sort(numerically)[1]
+                results.push([values[ix][0], median])
+            }
+            serie.data = results;
+        } else {
+            serie.data = series.values.map(function(value) {
+                return [value[0], value[index]];
+            })
+        }
         return serie;
     }
 });
