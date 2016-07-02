@@ -6,501 +6,529 @@
 $container-margin: $jumbotron-padding * 1.5;
 $white: #fff;
 $loader-size: $jumbotron-padding * 0.58;
-$panel-height: 345px;
+$panel-height: 52vh;
 
 @mixin temperature-value-border($color){
-    border: 1px solid $color;
+  border: 1px solid $color;
 }
 
 @mixin animation($parameters){
-    -webkit-animation: $parameters;
-    animation: $parameters;
+  -webkit-animation: $parameters;
+  animation: $parameters;
 }
 
 @mixin force-hardware-acceleration(){
-    -webkit-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 @mixin transform($parameters){
-    -webkit-transform: $parameters;
-    transform: $parameters;
+  -webkit-transform: $parameters;
+  transform: $parameters;
 }
 
 @mixin loading-text($text){
-    display: block;
-    text-align: center;
-    content: $text;
-    font-size: $font-size-large;
-    color: $btn-default-border;
-    position: absolute;
-    z-index: -1;
-    margin: auto;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    height: $jumbotron-padding;
+  display: block;
+  text-align: center;
+  content: $text;
+  font-size: $font-size-large;
+  color: $btn-default-border;
+  position: absolute;
+  z-index: -1;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: $jumbotron-padding;
 }
 
 // http://snook.ca/archives/html_and_css/simplest-css-slideshow
 @mixin fade($num:1, $fade:1, $visible:2) {
-    $a: 100 / (($fade + $visible) * $num);
-    @keyframes fade {
-        0%   { opacity: 0; }
-        #{$a * $fade}%   { opacity: 1; }
-        #{$a * ($fade + $visible)}%  { opacity: 1; }
-        #{$a * ($fade + $visible + $fade)}%  { opacity: 0; }
-        100% { opacity: 0; }
-    }
+  $a: 100 / (($fade + $visible) * $num);
+  @keyframes fade {
+    0%   { opacity: 0; }
+    #{$a * $fade}%   { opacity: 1; }
+    #{$a * ($fade + $visible)}%  { opacity: 1; }
+    #{$a * ($fade + $visible + $fade)}%  { opacity: 0; }
+    100% { opacity: 0; }
+  }
 
-    animation-name: fade;
-    animation-duration: (($fade + $visible) * $num) + s;
-    animation-iteration-count: infinite;
+  animation-name: fade;
+  animation-duration: (($fade + $visible) * $num) + s;
+  animation-iteration-count: infinite;
 
-    @for $i from 1 through $num {
-        &:nth-child(#{$i}) {
-            animation-delay: (#{($fade + $visible) * ($i - 1)}) + s;
-        }
+  @for $i from 1 through $num {
+    &:nth-child(#{$i}) {
+      animation-delay: (#{($fade + $visible) * ($i - 1)}) + s;
     }
+  }
 }
 
 header{
 
+  @media (max-width: $screen-sm-max){
+    text-align: center;
+  }
+
+  h1{
+    margin-top: 0;
+
+    a{
+      color: inherit;
+    }
+  }
+
+  .lead{
+    font-size: $font-size-small;
+  }
+
+  .logo{
+
     @media (max-width: $screen-sm-max){
-        text-align: center;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    h1{
-        margin-top: 0;
-
-        a{
-            color: inherit;
-        }
-    }
-
-    .lead{
-        font-size: $font-size-small;
-    }
-
-    .logo{
-
-        @media (max-width: $screen-sm-max){
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        margin-bottom: $padding-large-vertical;
-    }
+    margin-bottom: $padding-large-vertical;
+  }
 
 }
 
 .info-panel{
-    .container{
-        margin-top: $jumbotron-padding * 1.25;
-        margin-bottom: 0;
+
+  .container{
+    margin-top: $jumbotron-padding;
+  }
+
+  .logo{
+    @media (min-width: $screen-md-min){
+      float: left;
+      margin-right: $padding-large-horizontal;
+    }
+  }
+
+  .text-muted{
+    white-space: pre-line;
+  }
+
+  .page-title{
+    display: inline-block;
+    margin: 0 0 $padding-base-vertical;
+    font-size: $font-size-h3;
+  }
+
+  .widgets{
+    padding-top: 0;
+    border-top: 0;
+    border-bottom: 0;
+  }
+
+  .tweets{
+    font-size: inherit !important;
+    min-height: $panel-height - 0.8;
+  }
+
+  .twitter-timeline{
+    max-height: $panel-height - 0.8;
+  }
+
+  .list-temperatures{
+
+    text-align: center;
+    margin-bottom: $jumbotron-padding/2;
+
+    li{
+
+      padding: 0;
+
+      &:not(:first-child),
+        &:not(:last-child){
+        margin: 0 $padding-large-vertical;
+      }
     }
 
-    .widgets{
-        padding-top: 0;
-        border-top: 0;
-        border-bottom: 0;
-    }
+  }
 
-    .tweets{
-        min-height: 90px;
+  .panel-temperature{
+    @media (min-width: $screen-md-min){
+      min-height: $panel-height;
+      max-height: $panel-height;
     }
+  }
 
-    .panel-temperature{
-        @media (min-width: $screen-md-min){
-            min-height: $panel-height;
-            max-height: $panel-height;    
-        }
-    }
+  .panel-tumblr{
 
-    .graph.temperature{
-        min-height: 175px;
-    }
+    padding: 0;
+    min-height: ($panel-height - 2.5)/2;
+  }
+
+  .graph.temperature{
+    min-height: ($panel-height*3)/4.5;
+  }
 }
 
 .container{
-    /*    @media (max-width: $screen-xs-max){
-            margin-top: $container-margin / 2;
-            margin-bottom: $container-margin / 2;
-        }*/
+  margin-top: $container-margin * 1.5;
+  margin-bottom: $container-margin;
 
-    /*@media (min-width: $screen-sm-min){*/
-    margin-top: $container-margin * 1.5;
-    margin-bottom: $container-margin;
-    /*}*/
+  .title-description{
+    margin-bottom: $padding-large-horizontal;
+  }
 
-    .title-description{
-        margin-bottom: $padding-large-horizontal;
+  .panel-title{
+    @extend .text-uppercase;
+    font-size: $font-size-h4;
+  }
+
+  header{
+    border-bottom: none;
+
+    @media (max-width: $screen-phone){
+      figure{
+        display: inline-block;
+      }
     }
 
-    .panel-title{
-        @extend .text-uppercase;
-        font-size: $font-size-h4;
+    .navbar-collapse{
+      @media (max-width: $screen-xs-max){
+        z-index: 9;
+        position: fixed;
+        top: 0;
+        left:0;
+        right: 0;
+        bottom: 0;
+        padding-top: ($jumbotron-padding * 2) + $padding-xs-vertical;
+        padding-left: $padding-base-horizontal;
+        padding-right: $padding-base-horizontal;
+        background: rgba($brand-warning, 0.95);
+      }
+
+      @media (min-width: $screen-xs-min) and (max-width: $screen-xs-max){
+        padding-top: $padding-large-horizontal;
+        bottom: auto;
+        text-align: right;
+        border-bottom: 5px solid darken($brand-warning, 12%);
+      }
+
+      @media (max-width: $screen-sm-max){
+        padding-bottom: $padding-large-horizontal;
+        margin-bottom: 0;
+      }
+      padding-left: 0;
+      padding-right: 0;
     }
-
-    header{
-        border-bottom: none;
-
-        @media (max-width: $screen-phone){
-            figure{
-                display: inline-block;
-            }
-        }
-
-        .navbar-collapse{
-            @media (max-width: $screen-xs-max){
-                z-index: 9;
-                position: fixed;
-                top: 0;
-                left:0;
-                right: 0;
-                bottom: 0;
-                padding-top: ($jumbotron-padding * 2) + $padding-xs-vertical;
-                padding-left: $padding-base-horizontal;
-                padding-right: $padding-base-horizontal;
-                background: rgba($brand-warning, 0.95);
-            }
-
-            @media (min-width: $screen-xs-min) and (max-width: $screen-xs-max){
-                padding-top: $padding-large-horizontal;
-                bottom: auto;
-                text-align: right;
-                border-bottom: 5px solid darken($brand-warning, 12%);
-            }
-
-            @media (max-width: $screen-sm-max){
-                padding-bottom: $padding-large-horizontal;
-                margin-bottom: 0;
-            }
-            padding-left: 0;
-            padding-right: 0;
-        }
-    }
+  }
 }
 
 .navbar-toggle{
-    font-size: $font-size-large;
-    padding: $padding-base-vertical $padding-base-horizontal;
-    position: fixed;
-    z-index: 10;
-    top: $padding-small-vertical;
-    left: $padding-base-horizontal;
+  font-size: $font-size-large;
+  padding: $padding-base-vertical $padding-base-horizontal;
+  position: fixed;
+  z-index: 10;
+  top: $padding-small-vertical;
+  left: $padding-base-horizontal;
+
+  .glyphicon{
+    @extend .glyphicon-remove;
+    color: darken($brand-warning, 45%);
+  }
+
+  &.collapsed{
 
     .glyphicon{
-        @extend .glyphicon-remove;
-        color: darken($brand-warning, 45%);
+      @extend .glyphicon-menu-hamburger;
+      color: $text-color;
     }
 
-    &.collapsed{
-
-        .glyphicon{
-            @extend .glyphicon-menu-hamburger;
-            color: $text-color;
-        }
-
-        border: none;
-        position: absolute;
-        background: transparent;
-    }
+    border: none;
+    position: absolute;
+    background: transparent;
+  }
 }
 
 .logo{
-    margin-right: $padding-large-horizontal + 5;
+  margin-right: $padding-large-horizontal + 5;
 }
 
 .info-block{
 
-    @extend .text-center;
+  @extend .text-center;
 
-    .value{
-        font-size: $font-size-h4;
-        font-weight: $headings-font-weight;
-        /*border-radius: $border-radius-base;*/
-        /*padding-left: $padding-base-horizontal;*/
-        /*padding-right: $padding-base-horizontal;*/
-    }
+  .value{
+    font-size: $font-size-h4;
+    font-weight: $headings-font-weight;
+  }
 
-    .description{
-        display: block;
-    }
+  .description{
+    display: block;
+  }
 }
 
 .panel-open{
-    color: $white;
-    border-color: darken($brand-success, 13%);
-    background: rgba(darken($brand-success, 15%), .8);
+  color: $white;
+  border-color: darken($brand-success, 13%);
+  background: rgba(darken($brand-success, 15%), .8);
 }
 
 .panel-closed{
-    color: $white;
-    border-color: darken($brand-danger, 3%);
-    background: rgba($brand-danger, .8);
+  color: $white;
+  border-color: darken($brand-danger, 3%);
+  background: rgba($brand-danger, .8);
 }
 
 .panel-controls{
-    @extend .text-right;
+  @extend .text-right;
 
-    .btn{
-        margin-left: $padding-xs-horizontal;
-    }
+  .btn{
+    margin-left: $padding-xs-horizontal;
+  }
 }
 
 .panel-tumblr{
-    background-color: $panel-default-heading-bg;
-    position: relative;
-    overflow: hidden;
-    min-height: $panel-height;
-    max-height: $panel-height;
+  background-color: $panel-default-heading-bg;
+  position: relative;
+  overflow: hidden;
+  min-height: $panel-height;
 
-    &:before{
-        @include loading-text('содржина од Tumblr');
-        z-index: 0;
+  &:before{
+    @include loading-text('содржина од Tumblr');
+    z-index: 0;
+  }
+
+  .fadein {
+
+    img {
+      opacity: 0;
+      // Absolute positioning is an accessibility issue, but good for now.
+      position: absolute;
+      margin: auto;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      @include fade($num: 20, $fade: 1, $visible: 9);
+      min-width: 100%;
+      max-width: 100%;
+      height: auto;
     }
-
-    .fadein {
-
-        img {
-            opacity: 0;
-            // Absolute positioning is an accessibility issue, but good for now.
-            position: absolute;
-            margin: auto;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            @include fade($num: 20, $fade: 1, $visible: 9);
-            min-width: 100%;
-            max-width: 100%;
-            height: auto;
-        }
-    }
+  }
 }
 
 .graph{
-    position: relative;
-    min-width: 100%;
-    max-width: 100%;
+  position: relative;
+  min-width: 100%;
+  max-width: 100%;
 }
 
 .graph.devices{
-    min-height: 300px;
+  min-height: 300px;
 }
 
 .graph.temperature{
-    min-height: 203px;
+  min-height: 203px;
 }
 
 .legendLabel{
-    padding-left: $padding-small-vertical;
+  padding-left: $padding-small-vertical;
 }
 
 .flot-overlay:hover{
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .btn-block{
-    display: block;
+  display: block;
 }
 
 .btns-call-to-action{
-    @media (min-width: $screen-lg-min){
-        .btn{
-            margin-bottom: $padding-large-vertical;
-        }
+  @media (min-width: $screen-lg-min){
+    .btn{
+      margin-bottom: $padding-large-vertical;
     }
-    @media (max-width: $screen-md-max){
-        .btn{
-            margin-bottom: $padding-large-vertical * 2;
-        }
+  }
+  @media (max-width: $screen-md-max){
+    .btn{
+      margin-bottom: $padding-large-vertical * 2;
     }
-    @media (max-width: $screen-sm-max){
-        .btn-member{
-            margin-bottom: $padding-large-vertical;
-        }
+  }
+  @media (max-width: $screen-sm-max){
+    .btn-member{
+      margin-bottom: $padding-large-vertical;
     }
+  }
 }
 
 .glyphicon-text{
-    margin-left: $padding-xs-horizontal;
+  margin-left: $padding-xs-horizontal;
 }
 
 .list-avatars{
-    img{
-        border-radius: $border-radius-small;
-        max-width: $jumbotron-padding * 1.5;
-    }
+  img{
+    border-radius: $border-radius-small;
+    max-width: $jumbotron-padding * 1.5;
+  }
 }
 
 .list-related-pages{
 
-    li {
-        margin-bottom: $padding-base-vertical + 3;
+  li {
+    margin-bottom: $padding-base-vertical + 3;
+  }
+
+  @media (min-width: $screen-xs-min) and (max-width: $screen-sm-max){
+
+    margin-bottom: 0;
+
+    li{
+      display: inline-block;
+      margin-bottom: 0;
+      margin-left: $padding-base-vertical;
+      margin-right: $padding-base-vertical;
     }
+  }
 
-    @media (min-width: $screen-xs-min) and (max-width: $screen-sm-max){
-
-        margin-bottom: 0;
-
-        li{
-            display: inline-block;
-            margin-bottom: 0;
-            margin-left: $padding-base-vertical;
-            margin-right: $padding-base-vertical;
-        }
-    }
-
-    li:last-child{
-        margin-bottom: 0;
-    }
+  li:last-child{
+    margin-bottom: 0;
+  }
 }
 
 .figure-caption{
-    @extend .text-muted;
-    font-size: $font-size-small;
-    padding: $padding-base-vertical $padding-base-vertical $padding-xs-vertical;
+  @extend .text-muted;
+  font-size: $font-size-small;
+  padding: $padding-base-vertical $padding-base-vertical $padding-xs-vertical;
 }
 
 .modal{
 
-    dd{
-        margin-bottom: $padding-large-vertical;
-    }
+  dd{
+    margin-bottom: $padding-large-vertical;
+  }
 }
 
 .list-pp10-legend{
 
-    color: red;
+  color: red;
 
-    li{
-        font-weight: 700;
-        margin-top: $padding-base-vertical;
-        margin-bottom: $padding-base-vertical;
-    }
+  li{
+    font-weight: 700;
+    margin-top: $padding-base-vertical;
+    margin-bottom: $padding-base-vertical;
+  }
 
-    span{
-        vertical-align: text-top;
-        display: inline-block;
-        color: $text-color;
-        font-weight: 400;
-        margin-left: $padding-xs-horizontal;
-    }
+  span{
+    vertical-align: text-top;
+    display: inline-block;
+    color: $text-color;
+    font-weight: 400;
+    margin-left: $padding-xs-horizontal;
+  }
 }
 
 .panel-heading{
-    line-height: $line-height-base;
+  line-height: $line-height-base;
 }
 
 /* https://damjan.softver.org.mk/status.spodeli.org/css/loader.css */
 .loader {
-    position: absolute;
-    top: - $jumbotron-padding/2;
-    right: 0;
-    bottom: 0;
-    left: $jumbotron-padding/4;
-    margin: auto;
-    overflow: visible;
-    text-align: center;
-    font-size: 80%;
-    border-top: $loader-size solid rgba($gray-light, 0.2);
-    border-right: $loader-size solid rgba($gray-light, 0.2);
-    border-bottom: $loader-size solid rgba($gray-light, 0.2);
-    border-left: $loader-size solid rgba($gray-light, 1);
-    @include force-hardware-acceleration;
-    @include animation(load8 1.1s infinite linear);
+  position: absolute;
+  top: - $jumbotron-padding/2;
+  right: 0;
+  bottom: 0;
+  left: $jumbotron-padding/4;
+  margin: auto;
+  overflow: visible;
+  text-align: center;
+  font-size: 80%;
+  border-top: $loader-size solid rgba($gray-light, 0.2);
+  border-right: $loader-size solid rgba($gray-light, 0.2);
+  border-bottom: $loader-size solid rgba($gray-light, 0.2);
+  border-left: $loader-size solid rgba($gray-light, 1);
+  @include force-hardware-acceleration;
+  @include animation(load8 1.1s infinite linear);
 
-    &,
-    &:after {
-        border-radius: 50%;
-        width: $jumbotron-padding * 4;
-        height: $jumbotron-padding * 4;
-    }
+  &,
+  &:after {
+    border-radius: 50%;
+    width: $jumbotron-padding * 4;
+    height: $jumbotron-padding * 4;
+  }
 }
 
 @-webkit-keyframes load8 {
-    0% {
-        @include transform(rotate(0deg));
-    }
-    100% {
-        @include transform(rotate(360deg));
-    }
+  0% {
+    @include transform(rotate(0deg));
+  }
+  100% {
+    @include transform(rotate(360deg));
+  }
 }
 
 @keyframes load8 {
-    0% {
-        @include transform(rotate(0deg));
-    }
-    100% {
-        @include transform(rotate(360deg));
-    }
+  0% {
+    @include transform(rotate(0deg));
+  }
+  100% {
+    @include transform(rotate(360deg));
+  }
 }
 /* ./ https://damjan.softver.org.mk/status.spodeli.org/css/loader.css*/
 
 .tweets{
 
-    position: relative;
+  position: relative;
 
-    @media (min-width: $screen-md-min){
-        min-height: 120px;
-    }
-    @media (max-width: $screen-sm-max){
-        min-height: 90px;
-    }
+  @media (min-width: $screen-md-min){
+    min-height: 120px;
+  }
+  @media (max-width: $screen-sm-max){
+    min-height: 90px;
+  }
 
-    background: transparent;
-    box-shadow: none;
+  background: transparent;
+  box-shadow: none;
 
-    @media (min-width: $screen-md-min) and (max-width: $screen-md-max){
-        padding-left: $padding-small-vertical;
-        padding-right: $padding-small-vertical;
-    }
+  @media (min-width: $screen-md-min) and (max-width: $screen-md-max){
+    padding-left: $padding-small-vertical;
+    padding-right: $padding-small-vertical;
+  }
 
-    &:before{
-        @include loading-text('содржина од Twitter');
-    }
-
-    .twitter-timeline{
-        @media (min-width: $screen-md-min){
-            max-height: 120px !important;
-        }
-    }
+  &:before{
+    @include loading-text('содржина од Twitter');
+  }
 }
 
 .github-corner:hover .octo-arm{
-    animation:octocat-wave 560ms ease-in-out
+  animation:octocat-wave 560ms ease-in-out
 }
 
 @keyframes octocat-wave{
-    0%,100%{transform:rotate(0)}
-    20%,60%{transform:rotate(-25deg)}
-    40%,80%{transform:rotate(10deg)}
+  0%,100%{transform:rotate(0)}
+  20%,60%{transform:rotate(-25deg)}
+  40%,80%{transform:rotate(10deg)}
 }
 
 @media (max-width:500px){
-    .github-corner:hover .octo-arm{animation:none}
-    .github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}
+  .github-corner:hover .octo-arm{animation:none}
+  .github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}
 }
 
 .text-small{
-    font-size: $font-size-small;
+  font-size: $font-size-small;
 }
 
 .widgets{
-    padding-top: $container-margin/2;
-    margin-bottom: $container-margin/2;
-    border-top: 1px solid $hr-border;
-    border-bottom: 1px solid $hr-border;
+  padding-top: $container-margin/2;
+  margin-bottom: $container-margin/2;
+  border-top: 1px solid $hr-border;
+  border-bottom: 1px solid $hr-border;
 }
 
 footer{
 
-    a{
-        font-weight: 700;
-        color: inherit;
-    }
+  a{
+    font-weight: 700;
+    color: inherit;
+  }
 }
