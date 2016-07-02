@@ -497,6 +497,12 @@ header{
   &:before{
     @include loading-text('содржина од Twitter');
   }
+
+  .twitter-timeline{
+    @media (min-width: $screen-md-min){
+      max-height: 120px !important;
+    }
+  }
 }
 
 .github-corner:hover .octo-arm{
