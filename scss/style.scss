@@ -128,11 +128,15 @@ header{
   .tweets{
     font-size: inherit !important;
     min-height: $panel-height - 0.8;
+
+    .twitter-timeline{
+      @media (min-width: $screen-md-min){
+        max-height: $panel-height - 0.8 !important;
+      }
+    }
+
   }
 
-  .twitter-timeline{
-    max-height: $panel-height - 0.8;
-  }
 
   .list-temperatures{
 
@@ -500,7 +504,7 @@ header{
 
   .twitter-timeline{
     @media (min-width: $screen-md-min){
-      max-height: 120px !important;
+      max-height: 110px !important;
     }
   }
 }
