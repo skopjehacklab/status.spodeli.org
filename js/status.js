@@ -108,7 +108,7 @@ function updateTempValues() {
 function secondsToString(seconds) {
   var numhours = Math.floor(seconds / 3600);
   var numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
-  var str_numhours = 'часови';
+  var str_numhours = 'часа';
   var str_numminutes = 'минути';
 
   if (numhours % 10 === 1 && numhours !== 11) {
