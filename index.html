@@ -67,7 +67,7 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="panel panel-default">
                             <div class="panel-body info-block">
-                                <span id="status" class="value text-uppercase" data-influx-query="SELECT doorstatus FROM doorstatus WHERE location='hacklab' ORDER BY time">се вчитува</span>
+                                <span id="status" class="value text-uppercase" data-influx-query="SELECT doorstatus FROM doorstatus WHERE location='hacklab' ORDER BY time DESC LIMIT 1">се вчитува</span>
                                 <span id="status-time" class="description">се вчитува</span>
                             </div>
                         </div>

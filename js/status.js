@@ -9,32 +9,24 @@ function updateStatus() {
     url: INFLUXDB_URL,
     type: 'GET',
     dataType: 'json',
-    data: {db: INFLUXDB_DBNAME, q: influxdbQuery, epoch: 'ms'},
-    success: function (response) {
-      var sega = new Date();
-      var vrednosti = response.results[0].series[0].values;
-      var otvoren = 0;
-      for (var i = vrednosti.length - 1; i > 0; i--) {
-        var item = vrednosti[i - 1];
-        if (item[1] !== vrednosti[vrednosti.length - 1][1]) {
-          break;
-        } else {
-          var datum = new Date(item[0]);
-          otvoren = sega.getTime() - datum.getTime();
-        }
-      }
+    data: {db: INFLUXDB_DBNAME, q: influxdbQuery, epoch: 'ms'}
+  }).then(function (response) {
+    var now = (new Date()).getTime();
+    var last_value = response.results[0].series[0].values[0];
+    var timestamp = last_value[0];
+    var status = last_value[1];
+    var timediff = (now - timestamp) / 1000;
 
-      otvoren = secondsToString(otvoren / 1000);
-      status_container.removeClass('panel-open panel-closed');
-      if (vrednosti[vrednosti.length - 1][1] === "CLOSED") {
-        $("#status").text("Затворен");
-        status_container.addClass('panel-closed');
-        $("#status-time").text("веќе " + otvoren);
-      } else {
-        $("#status").text("Отворен");
-        status_container.addClass('panel-open');
-        $("#status-time").text("пред " + otvoren);
-      }
+    var timediff_fancy = secondsToString(timediff);
+    status_container.removeClass('panel-open panel-closed');
+    if (status === "CLOSED") {
+      $("#status").text("Затворен");
+      status_container.addClass('panel-closed');
+      $("#status-time").text("веќе " + timediff_fancy);
+    } else {
+      $("#status").text("Отворен");
+      status_container.addClass('panel-open');
+      $("#status-time").text("пред " + timediff_fancy);
     }
   });
 }
