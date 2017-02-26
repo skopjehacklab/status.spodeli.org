@@ -98,21 +98,45 @@ function updateTempValues() {
 }
 
 function secondsToString(seconds) {
+  var numweeks = Math.round(seconds / (7 * 86400));
+  var numdays = Math.round(seconds / 86400);
+  var numdays_week = Math.round(numdays - (7 * numweeks));
   var numhours = Math.floor(seconds / 3600);
   var numminutes = Math.floor(((seconds % 86400) % 3600) / 60);
+
+  var str_numweeks = 'недели';
+  var str_numdays = 'дена';
+  var str_numdays_week = 'дена';
   var str_numhours = 'часа';
   var str_numminutes = 'минути';
+
+  if (numweeks % 10 === 1 && numweeks !== 11) {
+    str_numweeks = "недела";
+  }
+
+  if (numdays_week % 10 === 1 && numdays_week !== 11) {
+    str_numdays_week = "ден";
+  }
+
+  if (numdays % 10 === 1 && numdays !== 11) {
+    str_numdays = "ден";
+  }
 
   if (numhours % 10 === 1 && numhours !== 11) {
     str_numhours = "час";
   }
 
-  if (numminutes % 10 === 1 && numminutes !== 11)
-  {
+  if (numminutes % 10 === 1 && numminutes !== 11) {
     str_numminutes = "минута";
   }
 
-  return numhours + " " + str_numhours + " и " + numminutes + " " + str_numminutes;
+  if (numdays > 7) {
+    return numweeks + " " + str_numweeks + " и " + numdays_week + " " + str_numdays_week;
+  } else if (numhours > 24) {
+    return numdays + " " + str_numdays;
+  } else {
+    return numhours + " " + str_numhours + " и " + numminutes + " " + str_numminutes;
+  }
 }
 
 // https://github.com/skopjehacklab/infopanel/blob/gh-pages/js/infopanel.js
