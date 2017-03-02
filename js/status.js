@@ -131,7 +131,12 @@ function secondsToString(seconds) {
   }
 
   if (numdays > 7) {
-    return numweeks + " " + str_numweeks + " и " + numdays_week + " " + str_numdays_week;
+    if (numdays_week > 0){
+      return numweeks + " " + str_numweeks + " и " + numdays_week + " " + str_numdays_week;
+    }
+    else{
+      return numweeks + " " + str_numweeks;
+    }
   } else if (numhours > 24) {
     return numdays + " " + str_numdays;
   } else {
