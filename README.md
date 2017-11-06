@@ -1,4 +1,4 @@
-#KIKA Hacklab Status Information Dashboard
+# KIKA Hacklab Status Information Dashboard
 
 ![status.spodeli.org screenshot](img/status-spodeli-org-screenshot.png)
 
@@ -17,7 +17,11 @@ Responsive and mobile-friendly [dashboard page](http://status.spodeli.org/) with
 
 Graphs are implemented with [Flot](http://www.flotcharts.org/) and metrics are stored in [InfluxDB](https://influxdb.com/docs/v0.9/introduction/overview.html).
 
-###Metrics database
+### Bulding front-end assets
+
+Run `npm install` to install all required `npm` modules, then `gulp` to rebuild all front-end assets.
+
+### Metrics database
 Metrics are currently stored in [Influxdb](https://influxdb.com/docs/v0.9/introduction/overview.html) by the scripts in [kika-info-bus](https://github.com/skopjehacklab/kika-info-bus/tree/master/influxdb-logger). Example queries:
 
 ```
