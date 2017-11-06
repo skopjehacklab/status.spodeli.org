@@ -1,0 +1,21 @@
+.navbar-toggle {
+  font-size: @font-size-large;
+  padding: @padding-base-vertical @padding-base-horizontal;
+  position: fixed;
+  z-index: 10;
+  top: @padding-small-vertical;
+  left: @padding-base-horizontal;
+  .glyphicon {
+    .glyphicon-remove;
+    color: darken(@brand-warning, 45%);
+  }
+  &.collapsed {
+    .glyphicon {
+      .glyphicon-menu-hamburger;
+      color: @text-color;
+    }
+    border: none;
+    position: absolute;
+    background: transparent;
+  }
+}

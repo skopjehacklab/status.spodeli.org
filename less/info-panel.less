@@ -1,0 +1,57 @@
+.info-panel {
+  .container {
+    margin-top: @jumbotron-padding;
+  }
+  .logo {
+    @media (min-width: @screen-md-min) {
+      float: left;
+      margin-right: @padding-large-horizontal;
+    }
+  }
+  .text-muted {
+    white-space: pre-line;
+  }
+  .page-title {
+    display: inline-block;
+    margin: 0 0 @padding-base-vertical;
+    font-size: @font-size-h3;
+  }
+  .widgets {
+    padding-top: 0;
+    border-top: 0;
+    border-bottom: 0;
+  }
+  .tweets {
+    font-size: inherit !important;
+    min-height: @panel-height - 0.8;
+    .twitter-timeline {
+      @media (min-width: @screen-md-min) {
+        max-height: @panel-height - 0.8 !important;
+      }
+    }
+  }
+  .list-temperatures {
+    text-align: center;
+    margin-bottom: @jumbotron-padding/2;
+    li {
+      padding: 0;
+      &:not(:first-child),
+      &:not(:last-child) {
+        margin: 0 @padding-large-vertical;
+      }
+    }
+  }
+  .panel-temperature {
+    @media (min-width: @screen-md-min) {
+      min-height: @panel-height;
+      max-height: @panel-height;
+    }
+  }
+  .panel-tumblr {
+    padding: 0;
+    min-height: (@panel-height - 2.5)/2;
+  }
+  .graph.temperature {
+    min-height: (@panel-height*3)/4.5;
+  }
+}

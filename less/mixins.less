@@ -1,0 +1,40 @@
+.temperature-value-border(@color) {
+  border: 1px solid @color;
+}
+
+.animation(@parameters) {
+  -webkit-animation: @parameters;
+  animation: @parameters;
+}
+
+.force-hardware-acceleration() {
+  transform: translateZ(0);
+}
+
+.transform(@parameters) {
+  -webkit-transform: @parameters;
+  transform: @parameters;
+}
+
+.loading-text(@text) {
+  display: block;
+  text-align: center;
+  content: @text;
+  font-size: @font-size-large;
+  color: @btn-default-border;
+  position: absolute;
+  z-index: -1;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: @jumbotron-padding;
+}
+
+.fade(@n, @i: 1) when (@i =< @n) {
+  .column-@{i} {
+    width: (@i * 100% / @n);
+  }
+  .fade(@n, (@i + 1));
+}

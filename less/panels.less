@@ -1,0 +1,47 @@
+.panel-open {
+  color: @white;
+  border-color: darken(@brand-success, 13%);
+  background: fade(darken(@brand-success, 15%), 80%);
+}
+
+.panel-closed {
+  color: @white;
+  border-color: darken(@brand-danger, 3%);
+  background: fade(@brand-danger, 80%);
+}
+
+.panel-controls {
+  .text-right;
+  .btn {
+    margin-left: @padding-xs-horizontal;
+  }
+}
+
+.panel-tumblr {
+  background-color: @panel-default-heading-bg;
+  position: relative;
+  overflow: hidden;
+  min-height: @panel-height;
+  &:before {
+    .loading-text('содржина од Tumblr');
+    z-index: 0;
+  }
+  .fadein {
+    img {
+      opacity: 0; // Absolute positioning is an accessibility issue, but good for now.
+      position: absolute;
+      margin: auto;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0; // .fade(@num: 20, @fade: 1, @visible: 9);
+      min-width: 100%;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.panel-heading {
+  line-height: @line-height-base;
+}
