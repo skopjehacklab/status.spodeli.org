@@ -1,0 +1,32 @@
+{
+  "name": "status.spodeli.org",
+  "version": "1.0.0",
+  "description": "Status information dashboard for hacklab KIKA",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skopjehacklab/status.spodeli.org.git"
+  },
+  "keywords": [
+    "hacklab",
+    "kika",
+    "skopje",
+    "macedonia"
+  ],
+  "author": "Goce Mitevski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skopjehacklab/status.spodeli.org/issues"
+  },
+  "homepage": "https://github.com/skopjehacklab/status.spodeli.org#readme",
+  "devDependencies": {
+    "bootstrap": "^3.3.7",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-less": "^3.3.2"
+  }
+}
