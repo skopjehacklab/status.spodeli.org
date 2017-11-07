@@ -7,7 +7,7 @@ var autoprefixer = require('gulp-autoprefixer');
 // var rename = require('gulp-rename');
 
 // The default Gulp.js task
-gulp.task('default', ['bootstrap-fonts', 'bootstrap-js', 'less', 'watch']);
+gulp.task('default', ['bootstrap-fonts', 'bootstrap-js', 'jquery', 'less', 'watch']);
 
 // Rebuild CSS from LESS
 gulp.task('less', function () {
@@ -25,16 +25,22 @@ gulp.task('less', function () {
         .pipe(gulp.dest('css'));
 });
 
-// Copy Bootstrap js assets in assets/js
+// Copy Bootstrap js assets
 gulp.task('bootstrap-js', function () {
     return gulp.src('node_modules/bootstrap/dist/js/bootstrap.min.js')
-            .pipe(gulp.dest('js'));
+        .pipe(gulp.dest('js'));
+});
+
+// Copy jQuery js assets
+gulp.task('jquery', function () {
+    return gulp.src('node_modules/jquery/dist/jquery.min.js')
+        .pipe(gulp.dest('js'));
 });
 
 // Copy Bootstrap font files in assets/fonts
 gulp.task('bootstrap-fonts', function () {
     return gulp.src('node_modules/bootstrap/dist/fonts/*')
-            .pipe(gulp.dest('fonts'));
+        .pipe(gulp.dest('fonts'));
 });
 
 // Watch for LESS and JS file changes
