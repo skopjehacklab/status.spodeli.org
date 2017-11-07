@@ -166,18 +166,18 @@ function shuffle(o) {
 }
 
 // https://github.com/skopjehacklab/infopanel/blob/gh-pages/js/infopanel.js
-function populateTumblr() {
+function populateTumblr(tumblr_id) {
   var imgs = shuffle(tumblr_api_read.posts);
-  imgs.forEach(function (item) {
-    $("#tumblr").append('<img src="' + item['photo-url-1280'] + '" >');
-  });
-}
+  var activeClass = '';
 
-// TODO: Сликите понекогаш се исти во двата слајдери. Ова да се поправи.
-function populateTumblr2() {
-  var imgs2 = shuffle(tumblr_api_read.posts);
-  imgs2.forEach(function (item) {
-    $("#tumblr2").append('<img src="' + item['photo-url-1280'] + '" >');
+  $(imgs).each(function (key, item) {
+    if (key < 1) {
+      activeClass = 'active';
+    } else {
+      activeClass = '';
+    }
+
+    $(tumblr_id.selector).find(".carousel-inner").append('<div class="item ' + activeClass + '"><img src="' + item['photo-url-1280'] + '" ></div>');
   });
 }
 
@@ -199,8 +199,11 @@ $(document).ready(function () {
 
   // Don't populate Tumblr if not on info-panel.html page
   if (window.location.href.indexOf("info-panel") > -1) {
-    populateTumblr();
-    populateTumblr2();
+    populateTumblr($("#tumblr"));
+    populateTumblr($("#tumblr2"));
+    $('.carousel').carousel({
+      interval: 8000
+    });
   }
 
   // Update network speeds every 30 seconds
