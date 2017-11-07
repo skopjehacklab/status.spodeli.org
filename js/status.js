@@ -176,9 +176,6 @@ function populateTumblr(tumblr_id) {
     } else {
       activeClass = '';
     }
-
-    console.log(item);
-
     $(tumblr_id.selector).find(".carousel-inner").append('<div class="item ' + activeClass + '"><img src="' + item['photo-url-500'] + '" ></div>');
   });
 }
