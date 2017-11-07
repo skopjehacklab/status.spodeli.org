@@ -7,7 +7,7 @@ var autoprefixer = require('gulp-autoprefixer');
 // var rename = require('gulp-rename');
 
 // The default Gulp.js task
-gulp.task('default', ['bootstrap-fonts', 'bootstrap-js', 'jquery', 'less', 'watch']);
+gulp.task('default', ['bootstrap-fonts', 'bootstrap-js', 'jquery', 'jquery-flot', 'less', 'watch']);
 
 // Rebuild CSS from LESS
 gulp.task('less', function () {
@@ -35,6 +35,12 @@ gulp.task('bootstrap-js', function () {
 gulp.task('jquery', function () {
     return gulp.src('node_modules/jquery/dist/jquery.min.js')
         .pipe(gulp.dest('js'));
+});
+
+// Copy jQuery Flot js assets
+gulp.task('jquery-flot', function () {
+    return gulp.src('node_modules/jquery.flot/jquery.flot*.js')
+        .pipe(gulp.dest('js/flot'));
 });
 
 // Copy Bootstrap font files in assets/fonts
