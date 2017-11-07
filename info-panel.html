@@ -101,10 +101,14 @@
                         </div>
                         <div class="col-md-5">
                             <div class="panel panel-default panel-tumblr">
-                                <div class="fadein" id="tumblr"></div>
+                                <div class="carousel slide carousel-fade" id="tumblr" data-ride="tumblr">
+                                    <div class="carousel-inner"></div>
+                                </div>
                             </div>
                             <div class="panel panel-default panel-tumblr">
-                                <div class="fadein" id="tumblr2"></div>
+                                <div class="carousel slide carousel-fade" id="tumblr2" data-ride="tumblr2">
+                                    <div class="carousel-inner"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -152,7 +156,9 @@
     <script src="js/plot.js"></script>
     <script src="js/status.js"></script>
 
-    <!-- Tumblr Foo -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Tumblr Fotos -->
     <script src='http://skopjehacklab.tumblr.com/api/read/json?num=30;type=photo'></script>
 
     <script>
