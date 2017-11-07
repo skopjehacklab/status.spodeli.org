@@ -29,10 +29,3 @@
   right: 0;
   height: @jumbotron-padding;
 }
-
-.fade(@n, @i: 1) when (@i =< @n) {
-  .column-@{i} {
-    width: (@i * 100% / @n);
-  }
-  .fade(@n, (@i + 1));
-}
