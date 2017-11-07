@@ -2,6 +2,7 @@
 
 var INFLUXDB_URL = "https://db.softver.org.mk/influxdb/query";
 var INFLUXDB_DBNAME = "status";
+
 function updateStatus() {
   var influxdbQuery = $('#status').attr('data-influx-query');
   var status_container = $("#status").parent().parent();
@@ -9,7 +10,11 @@ function updateStatus() {
     url: INFLUXDB_URL,
     type: 'GET',
     dataType: 'json',
-    data: {db: INFLUXDB_DBNAME, q: influxdbQuery, epoch: 'ms'}
+    data: {
+      db: INFLUXDB_DBNAME,
+      q: influxdbQuery,
+      epoch: 'ms'
+    }
   }).then(function (response) {
     var now = (new Date()).getTime();
     var last_value = response.results[0].series[0].values[0];
@@ -38,7 +43,11 @@ function updateDevices() {
     url: INFLUXDB_URL,
     type: 'GET',
     dataType: 'json',
-    data: {db: INFLUXDB_DBNAME, q: influxdbQuery, epoch: 'ms'},
+    data: {
+      db: INFLUXDB_DBNAME,
+      q: influxdbQuery,
+      epoch: 'ms'
+    },
     success: function (response) {
       var logged_devices = response.results[0].series[0].values[0][1];
       var total_devices = response.results[0].series[0].values[0][2];
@@ -46,14 +55,12 @@ function updateDevices() {
       var str_uredi = 'уреди';
       devices_container.removeClass('panel-danger panel-success');
 
-      if (logged_devices % 10 === 1 && logged_devices !== 11)
-      {
+      if (logged_devices % 10 === 1 && logged_devices !== 11) {
         devices_container.addClass('panel-success');
         str_najaveni = "најавен";
       }
 
-      if (total_devices % 10 === 1 && total_devices !== 11)
-      {
+      if (total_devices % 10 === 1 && total_devices !== 11) {
         str_uredi = "уред";
       }
 
@@ -79,19 +86,27 @@ function updateNetworkSpeeds() {
 
 function updateTempValues() {
   var influxdbQuery = $('.temperature-values').attr('data-influx-query');
-  $('.panel-temperature .value').css({'color': 'inherit'}).html("&#8230;");
+  $('.panel-temperature .value').css({
+    'color': 'inherit'
+  }).html("&#8230;");
   $.ajax({
     url: INFLUXDB_URL,
     type: 'GET',
     dataType: 'json',
-    data: {db: INFLUXDB_DBNAME, q: influxdbQuery, epoch: 'ms'},
+    data: {
+      db: INFLUXDB_DBNAME,
+      q: influxdbQuery,
+      epoch: 'ms'
+    },
     success: function (response) {
 
       var columns = response.results[0].series[0].columns;
       var values = response.results[0].series[0].values[0];
 
       for (var i = 1; i < values.length; i++) {
-        $("#" + columns[i] + " span.value").html(values[i] + "&deg;C").css({'color': plot_colors[i - 1]});
+        $("#" + columns[i] + " span.value").html(values[i] + "&deg;C").css({
+          'color': plot_colors[i - 1]
+        });
       }
     }
   });
@@ -131,10 +146,9 @@ function secondsToString(seconds) {
   }
 
   if (numdays > 7) {
-    if (numdays_week > 0){
+    if (numdays_week > 0) {
       return numweeks + " " + str_numweeks + " и " + numdays_week + " " + str_numdays_week;
-    }
-    else{
+    } else {
       return numweeks + " " + str_numweeks;
     }
   } else if (numhours > 24) {
@@ -147,14 +161,12 @@ function secondsToString(seconds) {
 // https://github.com/skopjehacklab/infopanel/blob/gh-pages/js/infopanel.js
 function shuffle(o) {
   //http://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array-in-javascript
-  for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x)
-    ;
+  for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
   return o;
 }
 
 // https://github.com/skopjehacklab/infopanel/blob/gh-pages/js/infopanel.js
 function populateTumblr() {
-
   var imgs = shuffle(tumblr_api_read.posts);
   imgs.forEach(function (item) {
     $("#tumblr").append('<img src="' + item['photo-url-1280'] + '" >');
@@ -184,8 +196,12 @@ $(document).ready(function () {
   updateDevices();
   updateNetworkSpeeds();
   updateTempValues();
-  populateTumblr();
-  populateTumblr2();
+
+  // Don't populate Tumblr if not on info-panel.html page
+  if (window.location.href.indexOf("info-panel") > -1) {
+    populateTumblr();
+    populateTumblr2();
+  }
 
   // Update network speeds every 30 seconds
   window.setInterval("updateNetworkSpeeds()", 1000 * 30);
