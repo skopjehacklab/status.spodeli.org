@@ -66,6 +66,21 @@ function updateDevices() {
 
       $('.current-devices .value').text(logged_devices + " " + str_najaveni + ", од вкупно " + total_devices);
       $('.current-devices .description').text(str_uredi + " на мрежата во КИКА");
+	  
+	  var last_value = response.results[0].series[0].values[0];
+      var timestamp = last_value[0];
+      var now = (new Date()).getTime();
+      var timediff = (now - timestamp) / 1000;
+      if (timediff > 3600) {
+        var status_container = $("#status").parent().parent();
+        status_container.removeClass('panel-open panel-closed');
+        $("#status").text("Непознато");
+        status_container.addClass('panel-closed');
+        var timediff_fancy = secondsToString(timediff);
+        $("#status-time").text("нема одговор веќе " + timediff_fancy);
+      } else {
+		window.console && console.log('timestamp=' + timestamp + ' timediff=' + timediff);
+	  }
     }
   });
 }
