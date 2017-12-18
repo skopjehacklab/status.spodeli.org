@@ -51,8 +51,10 @@ $(document).ready(function () {
         var options = $.extend({}, GLOBAL_PLOT_OPTIONS, options);
         var promise = get_plot_data(dburl, dbname, query)
                 .then(function (response, status) {
-                    var series = response.results[0].series[0];
-                    return massage_influx_data_for_flot(series, options);
+					if (response && response.results && response.results.length > 0 && response.results[0].series && response.results[0].series.length > 0) {
+                      var series = response.results[0].series[0];
+                      return massage_influx_data_for_flot(series, options);
+					}
                 })
                 .then(function (plotdata) {
                     element.plot(plotdata, options);

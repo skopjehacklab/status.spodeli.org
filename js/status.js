@@ -2,6 +2,7 @@
 
 var INFLUXDB_URL = "https://db.softver.org.mk/influxdb/query";
 var INFLUXDB_DBNAME = "status";
+var noInternetAccess = false;
 
 function updateStatus() {
   var influxdbQuery = $('#status').attr('data-influx-query');
@@ -23,16 +24,18 @@ function updateStatus() {
     var timediff = (now - timestamp) / 1000;
 
     var timediff_fancy = secondsToString(timediff);
-    status_container.removeClass('panel-open panel-closed');
-    if (status === "CLOSED") {
-      $("#status").text("Затворен");
-      status_container.addClass('panel-closed');
-      $("#status-time").text("веќе " + timediff_fancy);
-    } else {
-      $("#status").text("Отворен");
-      status_container.addClass('panel-open');
-      $("#status-time").text("пред " + timediff_fancy);
-    }
+	if (!noInternetAccess) {
+		status_container.removeClass('panel-open panel-closed');
+		if (status === "CLOSED") {
+		  $("#status").text("Затворен");
+		  status_container.addClass('panel-closed');
+		  $("#status-time").text("веќе " + timediff_fancy);
+		} else {
+		  $("#status").text("Отворен");
+		  status_container.addClass('panel-open');
+		  $("#status-time").text("пред " + timediff_fancy);
+		}
+	}
   });
 }
 
@@ -72,6 +75,7 @@ function updateDevices() {
       var now = (new Date()).getTime();
       var timediff = (now - timestamp) / 1000;
       if (timediff > 3600) {
+		noInternetAccess = true;
         var status_container = $("#status").parent().parent();
         status_container.removeClass('panel-open panel-closed');
         $("#status").text("Непознато");
