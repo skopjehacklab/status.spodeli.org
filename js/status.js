@@ -24,18 +24,18 @@ function updateStatus() {
     var timediff = (now - timestamp) / 1000;
 
     var timediff_fancy = secondsToString(timediff);
-	if (!noInternetAccess) {
-		status_container.removeClass('panel-open panel-closed');
-		if (status === "CLOSED") {
-		  $("#status").text("Затворен");
-		  status_container.addClass('panel-closed');
-		  $("#status-time").text("веќе " + timediff_fancy);
-		} else {
-		  $("#status").text("Отворен");
-		  status_container.addClass('panel-open');
-		  $("#status-time").text("пред " + timediff_fancy);
-		}
-	}
+    if (!noInternetAccess) {
+      status_container.removeClass('panel-open panel-closed');
+      if (status === "CLOSED") {
+        $("#status").text("Затворен");
+        status_container.addClass('panel-closed');
+        $("#status-time").text("веќе " + timediff_fancy);
+      } else {
+        $("#status").text("Отворен");
+        status_container.addClass('panel-open');
+        $("#status-time").text("пред " + timediff_fancy);
+      }
+    }
   });
 }
 
@@ -74,8 +74,9 @@ function updateDevices() {
       var timestamp = last_value[0];
       var now = (new Date()).getTime();
       var timediff = (now - timestamp) / 1000;
+      noInternetAccess = false;
       if (timediff > 3600) {
-		noInternetAccess = true;
+        noInternetAccess = true;
         var status_container = $("#status").parent().parent();
         status_container.removeClass('panel-open panel-closed');
         $("#status").text("Непознато");
@@ -83,8 +84,8 @@ function updateDevices() {
         var timediff_fancy = secondsToString(timediff);
         $("#status-time").text("нема одговор веќе " + timediff_fancy);
       } else {
-		window.console && console.log('timestamp=' + timestamp + ' timediff=' + timediff);
-	  }
+        window.console && console.log('timestamp=' + timestamp + ' timediff=' + timediff);
+      }
     }
   });
 }
