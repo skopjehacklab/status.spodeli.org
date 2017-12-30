@@ -89,13 +89,8 @@
                                             <span class="value">&#8230;</span>
                                             <span class="description">Рандом</span>
                                         </li>
-                                        <li class="info-block" id="outside">
-                                            <span class="value">&#8230;</span>
-                                            <span class="description">Тераса</span>
-                                        </li>
                                     </ul>
-                                    <div class="graph temperature" data-influx-query="SELECT outside as &quot;Тераса&quot;,random_room as &quot;Рандом&quot;,lounge_area as &quot;Lounge&quot;,hardware_room as &quot;Хардвер&quot; FROM temperatures WHERE location='hacklab' AND time > now() - 30h"
-                                        data-plot-options='{ "yaxis": {"axisLabel": "℃"} }'></div>
+                                    <div class="graph temperature" data-influx-query="SELECT random_room as &quot;Рандом&quot;,lounge_area as &quot;Lounge&quot;,hardware_room as &quot;Хардвер&quot; FROM temperatures WHERE location='hacklab' AND time > now() - 30h" data-plot-options='{ "yaxis": {"axisLabel": "℃"} }'></div>
                                 </div>
                             </div>
                         </div>
