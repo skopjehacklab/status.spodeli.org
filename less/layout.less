@@ -195,8 +195,10 @@ header {
     .loading-text('содржина од Twitter');
   }
   .twitter-timeline {
+    width: 100% !important;
     @media (min-width: @screen-md-min) {
-      max-height: 110px !important;
+      height: 110px !important;
+      min-height: 110px !important;
     }
   }
 }
