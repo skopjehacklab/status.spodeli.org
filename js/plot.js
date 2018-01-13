@@ -21,6 +21,7 @@ $(document).ready(function () {
         xaxis: {
             labelWidth: 50,
             mode: "time",
+            timezone: "browser",
             minTickSize: [15, "minute"]
         },
         colors: plot_colors
