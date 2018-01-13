@@ -52,22 +52,16 @@ function updateDevices() {
             epoch: 'ms'
         },
         success: function(response) {
-            var logged_devices = response.results[0].series[0].values[0][1];
-            var total_devices = response.results[0].series[0].values[0][2];
-            var str_najaveni = 'најавени';
+            var total_devices = response.results[0].series[0].values[0][1];
             var str_uredi = 'уреди';
             devices_container.removeClass('panel-danger panel-success');
-
-            if (logged_devices % 10 === 1 && logged_devices !== 11) {
-                devices_container.addClass('panel-success');
-                str_najaveni = "најавен";
-            }
+            devices_container.addClass('panel-success');
 
             if (total_devices % 10 === 1 && total_devices !== 11) {
                 str_uredi = "уред";
             }
 
-            $('.current-devices .value').text(logged_devices + " " + str_najaveni + ", од вкупно " + total_devices);
+            $('.current-devices .value').text("вкупно " + total_devices);
             $('.current-devices .description').text(str_uredi + " на мрежата во КИКА");
 
             var last_value = response.results[0].series[0].values[0];
