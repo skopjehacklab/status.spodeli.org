@@ -139,7 +139,7 @@
                             </div>
                         </div>
                         <div class="panel-body">
-                            <div class="graph devices" data-influx-query="SELECT value as &quot;Најавени уреди на мрежата во КИКА&quot; FROM landevices WHERE location='hacklab' AND time > now() - 30h" data-plot-options='{ "yaxis": {"tickDecimals":0, "minTickSize": 1}}'></div>
+                           <div class="graph devices" data-influx-query="SELECT value as &quot;Најавени уреди на мрежата во КИКА&quot; FROM landevices WHERE location='hacklab' AND time > now() - 30h" data-plot-options='{ "yaxis": {"tickDecimals":0, "minTickSize": 1}, "lines": {"steps": true}}'></div>
                         </div>
                     </div>
                 </div>
