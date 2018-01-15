@@ -157,7 +157,7 @@
                             </div>
                         </div>
                         <div class="panel-body">
-                            <span class="temperature-values" data-influx-query="SELECT outside,random_room,lounge_area,hardware_room FROM temperatures WHERE location='hacklab' ORDER BY time DESC LIMIT 1"></span>
+                            <span class="temperature-values" data-influx-query="SELECT random_room, lounge_area, hardware_room FROM temperatures WHERE location='hacklab' ORDER BY time DESC LIMIT 1"></span>
                             <div class="row">
                                 <div class="col-sm-4 col-xs-6">
                                     <div class="panel panel-default" id="hardware_room">
@@ -174,7 +174,7 @@
                                         <div class="panel-body">
                                             <div class="info-block">
                                                 <span class="value">&#8230;</span>
-                                                <span class="description">Lounge</span>
+                                                <span class="description">Рандом</span>
                                             </div>
                                         </div>
                                     </div>
@@ -184,13 +184,13 @@
                                         <div class="panel-body">
                                             <div class="info-block">
                                                 <span class="value">&#8230;</span>
-                                                <span class="description">Рандом</span>
+                                                <span class="description">Lounge</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="graph temperature" data-influx-query="SELECT random_room as &quot;Рандом&quot;, lounge_area as &quot;Lounge&quot;,hardware_room as &quot;Хардвер&quot; FROM temperatures WHERE location='hacklab' AND time > now() - 30h" data-plot-options='{"calcMedian":true, "yaxis": {"axisLabel": "℃"} }'>
+                            <div class="graph temperature" data-influx-query="SELECT random_room as &quot;Lounge&quot;, lounge_area as &quot;Рандом&quot;, hardware_room as &quot;Хардвер&quot; FROM temperatures WHERE location='hacklab' AND time > now() - 30h" data-plot-options='{"calcMedian":true, "yaxis": {"axisLabel": "℃"} }'>
                             </div>
                         </div>
                     </div>
