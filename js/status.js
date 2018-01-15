@@ -61,8 +61,8 @@ function updateDevices() {
                 str_uredi = "уред";
             }
 
-            $('.current-devices .value').text("вкупно " + total_devices);
-            $('.current-devices .description').text(str_uredi + " на мрежата во КИКА");
+            $('.current-devices .value').text("вкупно " + total_devices + " " + str_uredi);
+            $('.current-devices .description').text("на мрежата во КИКА");
 
             var last_value = response.results[0].series[0].values[0];
             var timestamp = last_value[0];
