@@ -63,7 +63,7 @@ function updateDevices() {
 
             $('.current-devices .value').text("вкупно " + total_devices + " " + str_uredi);
             $('.current-devices .description').text("на мрежата во КИКА");
-
+/*
             var last_value = response.results[0].series[0].values[0];
             var timestamp = last_value[0];
             var now = (new Date()).getTime();
@@ -79,7 +79,7 @@ function updateDevices() {
                 $("#status-time").text("нема одговор веќе " + timediff_fancy);
             } else {
                 window.console && console.log('timestamp=' + timestamp + ' timediff=' + timediff);
-            }
+            }*/
         }
     });
 }
@@ -113,6 +113,23 @@ function updateTempValues() {
             epoch: 'ms'
         },
         success: function(response) {
+
+			var last_value = response.results[0].series[0].values[0];
+            var timestamp = last_value[0];
+            var now = (new Date()).getTime();
+            var timediff = (now - timestamp) / 1000;
+            noInternetAccess = false;
+            if (timediff > 3600) {
+                noInternetAccess = true;
+                var status_container = $("#status").parent().parent();
+                status_container.removeClass('panel-open panel-closed');
+                $("#status").text("Непознато");
+                status_container.addClass('panel-closed');
+                var timediff_fancy = secondsToString(timediff);
+                $("#status-time").text("нема одговор веќе " + timediff_fancy);
+            } else {
+                window.console && console.log('timestamp=' + timestamp + ' timediff=' + timediff);
+            }
 
             var columns = response.results[0].series[0].columns;
             var values = response.results[0].series[0].values[0];
