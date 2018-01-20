@@ -230,7 +230,7 @@ $(document).ready(function() {
     // First update
     updateStatus();
     updateDevices();
-    updateNetworkSpeeds();
+    //updateNetworkSpeeds();
     updateTempValues();
 
     // Don't populate Tumblr if not on info-panel.html page
@@ -243,11 +243,10 @@ $(document).ready(function() {
     }
 
     // Update network speeds every 30 seconds
-    window.setInterval("updateNetworkSpeeds()", 1000 * 30);
+    //window.setInterval(updateNetworkSpeeds, 1000 * 30);
 
     // Update status, devices and temperature every 5 minutes
-    window.setInterval("updateStatus()", 1000 * 60 * 5);
-    window.setInterval("updateDevices()", 1000 * 60 * 5);
-    window.setInterval("updateTempValues()", 1000 * 60 * 5);
-
+    window.setInterval(updateStatus, 1000 * 60 * 5);
+    window.setInterval(updateDevices, 1000 * 60 * 5);
+    window.setInterval(updateTempValues, 1000 * 60 * 5);
 });
