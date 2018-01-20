@@ -246,7 +246,8 @@ $(document).ready(function() {
     //window.setInterval(updateNetworkSpeeds, 1000 * 30);
 
     // Update status, devices and temperature every 5 minutes
-    window.setInterval(updateStatus, 1000 * 60 * 5);
-    window.setInterval(updateDevices, 1000 * 60 * 5);
-    window.setInterval(updateTempValues, 1000 * 60 * 5);
+    var mins = 1000 * 60;
+    window.setInterval(updateStatus, 5*mins);
+    window.setInterval(updateDevices, 5*mins);
+    window.setInterval(updateTempValues, 5*mins);
 });
