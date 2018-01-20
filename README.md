@@ -21,6 +21,8 @@ Graphs are implemented with [Flot](http://www.flotcharts.org/) and metrics are s
 
 Run `npm install` to install all required `npm` modules, then `gulp` to rebuild all front-end assets.
 
+If you make changes in non-minified JS assets, you must run `gulp` to rebuild minified versions.
+
 ### Metrics database
 Metrics are currently stored in [Influxdb](https://influxdb.com/docs/v0.9/introduction/overview.html) by the scripts in [kika-info-bus](https://github.com/skopjehacklab/kika-info-bus/tree/master/influxdb-logger). Example queries:
 
