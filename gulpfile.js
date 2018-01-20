@@ -2,8 +2,8 @@ var gulp = require('gulp');
 var less = require('gulp-less');
 var cleanCSS = require('gulp-clean-css');
 var autoprefixer = require('gulp-autoprefixer');
+var uglify = require('gulp-uglify');
 // var sourcemaps = require('gulp-sourcemaps'); - Uncomment when developing
-// var uglify = require('gulp-uglify');
 // var rename = require('gulp-rename');
 
 // The default Gulp.js task
@@ -40,6 +40,7 @@ gulp.task('jquery', function () {
 // Copy jQuery Flot js assets
 gulp.task('jquery-flot', function () {
     return gulp.src('node_modules/jquery.flot/jquery.flot*.js')
+        .pipe(uglify())
         .pipe(gulp.dest('js/flot'));
 });
 
