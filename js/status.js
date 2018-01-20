@@ -16,7 +16,8 @@ function updateStatus() {
             q: influxdbQuery,
             epoch: 'ms'
         }
-    }).then(function(response) {
+    })
+    .then(function(response) {
         var now = (new Date()).getTime();
         var last_value = response.results[0].series[0].values[0];
         var timestamp = last_value[0];
@@ -50,37 +51,37 @@ function updateDevices() {
             db: INFLUXDB_DBNAME,
             q: influxdbQuery,
             epoch: 'ms'
-        },
-        success: function(response) {
-            var total_devices = response.results[0].series[0].values[0][1];
-            var str_uredi = 'уреди';
-            devices_container.removeClass('panel-danger panel-success');
-            devices_container.addClass('panel-success');
-
-            if (total_devices % 10 === 1 && total_devices !== 11) {
-                str_uredi = "уред";
-            }
-
-            $('.current-devices .value').text("вкупно " + total_devices + " " + str_uredi);
-            $('.current-devices .description').text("на мрежата во КИКА");
-/*
-            var last_value = response.results[0].series[0].values[0];
-            var timestamp = last_value[0];
-            var now = (new Date()).getTime();
-            var timediff = (now - timestamp) / 1000;
-            noInternetAccess = false;
-            if (timediff > 3600) {
-                noInternetAccess = true;
-                var status_container = $("#status").parent().parent();
-                status_container.removeClass('panel-open panel-closed');
-                $("#status").text("Непознато");
-                status_container.addClass('panel-closed');
-                var timediff_fancy = secondsToString(timediff);
-                $("#status-time").text("нема одговор веќе " + timediff_fancy);
-            } else {
-                window.console && console.log('timestamp=' + timestamp + ' timediff=' + timediff);
-            }*/
         }
+    })
+    .then(function(response) {
+        var total_devices = response.results[0].series[0].values[0][1];
+        var str_uredi = 'уреди';
+        devices_container.removeClass('panel-danger panel-success');
+        devices_container.addClass('panel-success');
+
+        if (total_devices % 10 === 1 && total_devices !== 11) {
+            str_uredi = "уред";
+        }
+
+        $('.current-devices .value').text("вкупно " + total_devices + " " + str_uredi);
+        $('.current-devices .description').text("на мрежата во КИКА");
+/*
+        var last_value = response.results[0].series[0].values[0];
+        var timestamp = last_value[0];
+        var now = (new Date()).getTime();
+        var timediff = (now - timestamp) / 1000;
+        noInternetAccess = false;
+        if (timediff > 3600) {
+            noInternetAccess = true;
+            var status_container = $("#status").parent().parent();
+            status_container.removeClass('panel-open panel-closed');
+            $("#status").text("Непознато");
+            status_container.addClass('panel-closed');
+            var timediff_fancy = secondsToString(timediff);
+            $("#status-time").text("нема одговор веќе " + timediff_fancy);
+        } else {
+            window.console && console.log('timestamp=' + timestamp + ' timediff=' + timediff);
+        }*/
     });
 }
 
@@ -88,14 +89,14 @@ function updateNetworkSpeeds() {
     $.ajax({
         url: "http://hacklab.ie.mk/ftp/vnstat/json/average.json?callback=?",
         type: 'GET',
-        dataType: 'json',
-        success: function(response) {
+        dataType: 'json'
+    })
+    .then(function(response) {
             var TK = response['Telekabel'];
             var BL = response['Blizoo'];
             $('#rxkbs').text(parseFloat(TK['rxkbs']) + parseFloat(BL['rxkbs']) + " kB/s");
             $('#txkbs').text(parseFloat(TK['txkbs']) + parseFloat(BL['txkbs']) + " kB/s");
-        }
-    });
+    })
 }
 
 function updateTempValues() {
@@ -111,40 +112,39 @@ function updateTempValues() {
             db: INFLUXDB_DBNAME,
             q: influxdbQuery,
             epoch: 'ms'
-        },
-        success: function(response) {
+        }
+    })
+    .then(function(response) {
+        var last_value = response.results[0].series[0].values[0];
+        var timestamp = last_value[0];
+        var now = (new Date()).getTime();
+        var timediff = (now - timestamp) / 1000;
+        noInternetAccess = false;
+        if (timediff > 3600) {
+            noInternetAccess = true;
+            var status_container = $("#status").parent().parent();
+            status_container.removeClass('panel-open panel-closed');
+            $("#status").text("Непознато");
+            status_container.addClass('panel-closed');
+            var timediff_fancy = secondsToString(timediff);
+            $("#status-time").text("нема одговор веќе " + timediff_fancy);
+        } else {
+            window.console && console.log('timestamp=' + timestamp + ' timediff=' + timediff);
+        }
 
-			var last_value = response.results[0].series[0].values[0];
-            var timestamp = last_value[0];
-            var now = (new Date()).getTime();
-            var timediff = (now - timestamp) / 1000;
-            noInternetAccess = false;
-            if (timediff > 3600) {
-                noInternetAccess = true;
-                var status_container = $("#status").parent().parent();
-                status_container.removeClass('panel-open panel-closed');
-                $("#status").text("Непознато");
-                status_container.addClass('panel-closed');
-                var timediff_fancy = secondsToString(timediff);
-                $("#status-time").text("нема одговор веќе " + timediff_fancy);
+        var columns = response.results[0].series[0].columns;
+        var values = response.results[0].series[0].values[0];
+
+        for (var i = 1; i < values.length; i++) {
+            var html_output = '';
+            if (values[i]) {
+                html_output = values[i] + "&deg;C";
             } else {
-                window.console && console.log('timestamp=' + timestamp + ' timediff=' + timediff);
+                html_output = "не се мери";
             }
-
-            var columns = response.results[0].series[0].columns;
-            var values = response.results[0].series[0].values[0];
-
-            for (var i = 1; i < values.length; i++) {
-                var html_output = '';
-                if (values[i]) {
-                    html_output = values[i] + "&deg;C";
-                } else {
-                    html_output = "не се мери";
-                }
-                $("#" + columns[i] + " span.value").html(html_output).css({
-                    'color': plot_colors[i - 1]
-                });
-            }
+            $("#" + columns[i] + " span.value").html(html_output).css({
+                'color': plot_colors[i - 1]
+            });
         }
     });
 }
