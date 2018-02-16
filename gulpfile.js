@@ -60,6 +60,6 @@ gulp.task('bootstrap-fonts', function () {
 
 // Watch for LESS and JS file changes
 gulp.task('watch', function () {
-    gulp.watch(['less/less/**/*.less'], ['less']);
+    gulp.watch(['less/**/*.less'], ['less']);
     gulp.watch(['js/**/*.js'], ['minify-js']);
 });
