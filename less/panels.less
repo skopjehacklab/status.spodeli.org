@@ -1,3 +1,8 @@
+.panel {
+  border: 1px solid @panel-default-border;
+  border-radius: @border-radius-base;
+}
+
 .panel-open {
   color: @white;
   border-color: darken(@brand-success, 13%);
@@ -29,5 +34,15 @@
 }
 
 .panel-heading {
-  line-height: @line-height-base;
+  background: @panel-default-heading-bg;
+  border-bottom: 1px solid @panel-default-border;
+  padding: @grid-gutter-width/2;
+}
+
+.panel-body {
+  margin: @grid-gutter-width;
+}
+
+.panel-title {
+  margin: 0;
 }

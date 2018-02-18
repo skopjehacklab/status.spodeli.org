@@ -1,3 +1,7 @@
+body {
+  font-family: @font-family-base;
+}
+
 header {
   @media (max-width: @screen-sm-max) {
     text-align: center;
@@ -20,12 +24,13 @@ header {
   }
 }
 
+.navbar-collapse {
+  padding: 0;
+}
+
 .container {
-  margin-top: @container-margin*1.2;
-  margin-bottom: @container-margin;
-  .title-description {
-    margin-bottom: @padding-large-horizontal;
-  }
+  max-width: 80%;
+  margin: @grid-gutter-width * 2 auto;
   .panel-title {
     .text-uppercase;
     font-size: @font-size-h4;
@@ -60,8 +65,6 @@ header {
         padding-bottom: @padding-large-horizontal;
         margin-bottom: 0;
       }
-      padding-left: 0;
-      padding-right: 0;
     }
   }
 }
@@ -72,6 +75,7 @@ header {
 
 .info-block {
   .text-center;
+  padding: @grid-gap;
   .value {
     font-size: @font-size-h4;
     font-weight: @headings-font-weight;
