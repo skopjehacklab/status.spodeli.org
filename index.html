@@ -29,41 +29,37 @@
 <body>
   <div class="container">
     <div class="grid">
-      <a rel="home" class="col-1 flex justify-center title" href="http://status.spodeli.org/">
+      <a rel="home" class="col-1 flex justify-center" href="http://status.spodeli.org/">
         <figure>
-          <img class="logo img-responsive" width="80" height="80" src="svg/kika-logo-symbol-only-c2b.svg" alt="лого на хаклаб КИКА">
+          <img class="logo" width="80" height="80" src="svg/kika-logo-symbol-only-c2b.svg" alt="лого на хаклаб КИКА">
         </figure>
       </a>
-      <header class="col-5 flex justify-center">
-        <div class="title-description">
-          <h1>
-            <a rel="home" href="http://status.spodeli.org/">Xаклаб КИКА, сега</a>
-          </h1>
-          <p class="text-muted">КИКА е јавен простор на ул. Наум Наумовски Борче бр. 38/12 во центарот на Скопје. Постои од
-            <strong>17-ти октомври 2009</strong> година.</p>
-          <p>
-            <a rel="external" href="http://b10g.spodeli.org/">Дознајте повеќе</a>
-          </p>
-        </div>
+      <header class="col-5 flex flex-column align-center">
+        <h1>
+          <a rel="home" href="http://status.spodeli.org/">Xаклаб КИКА, сега</a>
+        </h1>
+        <p class="text-muted">КИКА е јавен простор на ул. Наум Наумовски Борче бр. 38/12 во центарот на Скопје. Постои од
+          <strong>17-ти октомври 2009</strong> година.</p>
+        <p>
+          <a rel="external" href="http://b10g.spodeli.org/">Дознајте повеќе</a>
+        </p>
       </header>
       <div class="panel panel-default tweets col-4">
         <a class="twitter-timeline" data-widget-id="674870156879896576" data-chrome="noheader nofooter noborders" data-aria-polite="assertive"
           href="https://twitter.com/search?q=-%D0%B7%D0%B0%D1%82%D0%B2%D0%BE%D1%80%D0%B5%D0%BD%20-%D0%BE%D1%82%D0%B2%D0%BE%D1%80%D0%B5%D0%BD%20%23skopjehacklab%20OR%20%23%D1%85%D0%B0%D0%BA%D0%BB%D0%B0%D0%B1"></a>
       </div>
       <nav class="main-navigation col-2">
-        <div class="collapse navbar-collapse">
-          <ul class="list-unstyled list-related-pages flex flex-column justify-center">
-            <li>
-              <a class="btn btn-block btn-default" rel="external" href="http://b10g.spodeli.org/">Блог на КИКА</a>
-            </li>
-            <li>
-              <a class="btn btn-block btn-default" rel="external" href="https://wiki.spodeli.org/%D0%A5%D0%B0%D0%BA%D0%BB%D0%B0%D0%B1/%D0%90%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D0%BE%D1%81%D1%82%D0%B8">Активности</a>
-            </li>
-            <li>
-              <a class="btn btn-block btn-default" rel="external" href="http://b10g.spodeli.org/p/blog-page_17.html">Контакт</a>
-            </li>
-          </ul>
-        </div>
+        <ul class="list-unstyled list-related-pages grid">
+          <li class="col-4">
+            <a class="btn btn-block btn-default" rel="external" href="http://b10g.spodeli.org/">Блог на КИКА</a>
+          </li>
+          <li class="col-4">
+            <a class="btn btn-block btn-default" rel="external" href="https://wiki.spodeli.org/%D0%A5%D0%B0%D0%BA%D0%BB%D0%B0%D0%B1/%D0%90%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D0%BE%D1%81%D1%82%D0%B8">Активности</a>
+          </li>
+          <li class="col-4">
+            <a class="btn btn-block btn-default" rel="external" href="http://b10g.spodeli.org/p/blog-page_17.html">Контакт</a>
+          </li>
+        </ul>
       </nav>
       <div class="panel panel-default col-3 flex flex-column align-center justify-center">
         <div class="info-block">
@@ -89,19 +85,19 @@
           <span class="description">брзина на upload</span>
         </div>
       </div>
-      <div class="btns-call-to-action col-2 flex flex-column align-center justify-center">
-        <a role="button" class="btn btn-member btn-info btn-block" href="#" data-toggle="modal" data-target="#zachleneteSe">Зачленете се</a>
-        <a role="button" class="btn btn-donate btn-success btn-block" data-toggle="modal" data-target="#donirajte">Донирајте</a>
+      <div class="col-2 grid">
+        <a role="button" class="col-12 btn btn-member btn-info" href="#" data-target="#zachleneteSe">Зачленете се</a>
+        <a role="button" class="col-12 btn btn-donate btn-success" data-target="#donirajte">Донирајте</a>
       </div>
       <div class="panel panel-default col-6">
         <div class="panel-heading flex align-center justify-space-between">
           <h3 class="panel-title">Уреди во КИКА</h3>
           <div class="panel-controls">
             <button title="Дополнителни визуелизации" class="btn btn-xs btn-primary btn-grafana">
-              <span class="glyphicon glyphicon-stats"></span>
+              <span class="fa fa-dashboard"></span>
             </button>
             <button class="btn btn-xs btn-primary btn-refresh">
-              <span class="glyphicon glyphicon-refresh"></span>
+              <span class="fa fa-refresh"></span>
             </button>
           </div>
         </div>
@@ -115,10 +111,10 @@
           <h3 class="panel-title">Температурата во КИКА</h3>
           <div class="panel-controls">
             <button title="Дополнителни визуелизации" class="btn btn-xs btn-primary btn-grafana">
-              <span class="glyphicon glyphicon-stats"></span>
+              <span class="fa fa-dashboard"></span>
             </button>
             <button class="btn btn-xs btn-primary btn-refresh">
-              <span class="glyphicon glyphicon-refresh"></span>
+              <span class="fa fa-refresh"></span>
             </button>
           </div>
         </div>
@@ -149,19 +145,9 @@
           data-plot-options='{"calcMedian":true, "yaxis": {"axisLabel": "℃"} }'>
         </div>
       </div>
-      <footer class="text-small text-center text-muted col-12">
-        <ul class="list-unstyled">
-          <li>
-            <a rel="external" href="http://b10g.spodeli.org/">Хаклаб КИКА</a>
-          </li>
-          <li>ул. Наум Наумовски Борче бр. 38/12, 1000 Скопје</li>
-          <li>Сметка:
-            <strong>210057088340110</strong>
-          </li>
-          <li>Банка:
-            <strong>НЛБ Тутунска Скопје</strong>
-          </li>
-        </ul>
+      <footer class="text-small text-center col-12">
+        <p class="col-6 text-muted">
+          <a rel="external" href="http://b10g.spodeli.org/">Хаклаб КИКА</a>, ул. Наум Наумовски Борче бр. 38/12, 1000 Скопје</p>
         <p>
           <a rel="external" href="https://github.com/gocemitevski/status.spodeli.org" class="github-corner">
             <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#808080; color:#fff; position: absolute; top: 0; border: 0; right: 0;">
@@ -365,7 +351,6 @@
     </div>
   </div>
   <script src="js/jquery.min.js"></script>
-  <script defer src="js/bootstrap.min.js"></script>
   <script defer src="js/flot/jquery.flot.js"></script>
   <script defer src="js/flot/jquery.flot.time.js"></script>
   <script defer src="js/flot/jquery.flot.resize.js"></script>

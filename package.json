@@ -24,6 +24,7 @@
   "homepage": "https://github.com/skopjehacklab/status.spodeli.org#readme",
   "devDependencies": {
     "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-clean-css": "^3.9.0",

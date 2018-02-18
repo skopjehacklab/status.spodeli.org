@@ -29,3 +29,39 @@
   right: 0;
   height: @jumbotron-padding;
 }
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.btn(@text-color: @text-color, @bg-color: @body-bg, @size: @font-size-base) {
+  &,
+  &:visited {
+    color: @text-color;
+    background-color: @bg-color;
+    border: 1px solid darken(@bg-color, 10%);
+  }
+  outline: none;
+  cursor: pointer;
+  font-size: @size;
+  text-align: center;
+  padding: @grid-gap/2 @grid-gap;
+  text-decoration: none;
+  // white-space: nowrap;
+  &:hover {
+    background-color: darken(@bg-color, 5%);
+    border-color: darken(@bg-color, 15%);
+  }
+  &:focus {
+    background-color: darken(@bg-color, 1%);
+    border-color: darken(@bg-color, 20%);
+  }
+}
