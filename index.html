@@ -61,19 +61,19 @@
           </li>
         </ul>
       </nav>
-      <div class="panel panel-default col-3 flex flex-column align-center justify-center">
+      <div class="panel panel-default col-6 flex flex-column align-center justify-center">
         <div class="info-block">
           <span id="status" class="value text-uppercase" data-influx-query="SELECT doorstatus FROM doorstatus WHERE location='hacklab' ORDER BY time DESC LIMIT 1">се вчитува</span>
           <span id="status-time" class="description">се вчитува</span>
         </div>
       </div>
-      <div class="panel panel-default col-3 flex flex-column align-center justify-center">
+      <div class="panel panel-default col-4 flex flex-column align-center justify-center">
         <div class="info-block current-devices">
           <span id="currentDevices" class="value" data-influx-query="SELECT value,total FROM landevices WHERE location='hacklab' ORDER BY time DESC LIMIT 1">се вчитува</span>
           <span class="description">се вчитува</span>
         </div>
       </div>
-      <div class="panel panel-default col-2 flex flex-column align-center justify-center">
+      <!--<div class="panel panel-default col-2 flex flex-column align-center justify-center">
         <div class="info-block">
           <span id="rxkbs" class="value">се вчитува</span>
           <span class="description">брзина на download</span>
@@ -84,8 +84,8 @@
           <span id="txkbs" class="value">се вчитува</span>
           <span class="description">брзина на upload</span>
         </div>
-      </div>
-      <div class="col-2 grid">
+      </div>-->
+      <div class="call-to-action col-2 grid">
         <a role="button" class="col-12 btn btn-member btn-info" href="#" data-target="#zachleneteSe">Зачленете се</a>
         <a role="button" class="col-12 btn btn-donate btn-success" data-target="#donirajte">Донирајте</a>
       </div>

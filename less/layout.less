@@ -120,6 +120,12 @@ header {
   }
 }
 
+.call-to-action {
+  @media (max-width: @screen-sm-max) {
+    grid-column: auto;
+  }
+}
+
 .info-block {
   .text-center;
   padding: @grid-gap;
@@ -147,7 +153,7 @@ header {
 .list-related-pages {
   margin: 0;
   grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
-  @media (max-width: @screen-phone){
+  @media (max-width: @screen-phone) {
     display: none;
   }
   a {
