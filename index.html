@@ -23,7 +23,6 @@
   <link rel="shortcut icon" href="img/kika-hacklab-favicon-192x192.png" sizes="192x192" type="image/png">
   <link rel="apple-touch-icon" href="img/kika-hacklab-favicon-512x512-ios.png" sizes="512x512" type="image/png">
   <!--<link rel="icon" href="svg/kika-logo-symbol-favicon-c2b.svg" sizes="any" type="image/svg+xml">-->
-  <!-- ./ Favicons -->
 </head>
 
 <body>
@@ -86,8 +85,8 @@
         </div>
       </div>-->
       <div class="call-to-action col-2 grid">
-        <a role="button" class="col-12 btn btn-member btn-info" href="#zachleneteSe">Зачленете се</a>
-        <a role="button" class="col-12 btn btn-donate btn-success" href="#donirajte">Донирајте</a>
+        <a role="button" class="col-12 btn btn-member btn-info modal-toggle" href="#/zachleneteSe">Зачленете се</a>
+        <a role="button" class="col-12 btn btn-donate btn-success modal-toggle" href="#/donirajte">Донирајте</a>
       </div>
       <div class="panel panel-default col-6">
         <div class="panel-heading flex align-center justify-space-between">
@@ -96,14 +95,11 @@
             <button title="Дополнителни визуелизации" class="btn btn-xs btn-primary btn-grafana">
               <span class="fa fa-dashboard"></span>
             </button>
-            <button class="btn btn-xs btn-primary btn-refresh">
-              <span class="fa fa-refresh"></span>
-            </button>
           </div>
         </div>
         <div class="panel-body">
-          <div class="graph devices" data-influx-query="SELECT value as &quot;Најавени уреди на мрежата во КИКА&quot; FROM landevices WHERE location='hacklab' AND time > now() - 30h"
-            data-plot-options='{ "yaxis": {"tickDecimals":0, "minTickSize": 1}, "lines": {"steps": true}}'></div>
+          <iframe class="graph devices" src="https://grafana.softver.org.mk/dashboard-solo/db/khaklab?orgId=1&amp;panelId=2&amp;theme=light&amp;refresh=5m"
+            frameborder="0"></iframe>
         </div>
       </div>
       <div class="panel panel-default panel-temperature col-6">
@@ -113,50 +109,28 @@
             <button title="Дополнителни визуелизации" class="btn btn-xs btn-primary btn-grafana">
               <span class="fa fa-dashboard"></span>
             </button>
-            <button class="btn btn-xs btn-primary btn-refresh">
-              <span class="fa fa-refresh"></span>
-            </button>
           </div>
         </div>
         <div class="panel-body">
-          <span class="hidden temperature-values" data-influx-query="SELECT random_room, lounge_area, hardware_room FROM temperatures WHERE location='hacklab' ORDER BY time DESC LIMIT 1"></span>
-          <div class="grid grid-column">
-            <div class="panel panel-default col-4" id="hardware_room">
-              <div class="info-block">
-                <span class="value">&#8230;</span>
-                <span class="description">Хардвер</span>
-              </div>
-            </div>
-            <div class="panel panel-default col-4" id="lounge_area">
-              <div class="info-block">
-                <span class="value">&#8230;</span>
-                <span class="description">Рандом</span>
-              </div>
-            </div>
-            <div class="panel panel-default col-4" id="random_room">
-              <div class="info-block">
-                <span class="value">&#8230;</span>
-                <span class="description">Lounge</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="graph temperature" data-influx-query="SELECT random_room as &quot;Lounge&quot;, lounge_area as &quot;Рандом&quot;, hardware_room as &quot;Хардвер&quot; FROM temperatures WHERE location='hacklab' AND time > now() - 30h"
-          data-plot-options='{"calcMedian":true, "yaxis": {"axisLabel": "℃"} }'>
+          <iframe class="graph temperature" src="https://grafana.softver.org.mk/dashboard-solo/db/khaklab?orgId=1&amp;panelId=1&amp;theme=light&amp;refresh=5m"
+            frameborder="0"></iframe>
         </div>
       </div>
-      <footer class="text-small text-center col-12">
-        <p class="col-6 text-muted">
-          <a rel="external" href="http://b10g.spodeli.org/">Хаклаб КИКА</a>, ул. Наум Наумовски Борче бр. 38/12, 1000 Скопје</p>
+      <footer class="text-small text-muted text-center col-12 flex align-center justify-space-between">
+        <p>
+          <a rel="external" href="http://blog.spodeli.org/p/blog-page.html">Хаклаб КИКА</a>, ул. Наум Наумовски Борче бр. 38/12, 1000 Скопје</p>
+        <p>Сметка за донации во Република Македонија:
+          <a class="modal-toggle" href="#/donirajte">210057088340110</a>
+        </p>
       </footer>
     </div>
   </div>
-  <div id="zachleneteSe" class="col-12 modal" tabindex="-1" role="dialog">
+  <div id="/zachleneteSe" class="col-12 modal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header flex align-center justify-space-between">
           <h2 class="modal-title">Зачленете се во хаклабот КИКА</h2>
-          <a href="#" class="btn btn-default align-self-center">
+          <a href="#/" class="btn btn-default align-self-center modal-toggle">
             <span class="fa fa-times"></span>
           </a>
         </div>
@@ -224,19 +198,19 @@
           </div>
         </div>
         <div class="modal-footer">
-          <a href="#" class="btn btn-member">
+          <a href="#/" class="btn btn-member modal-toggle">
             <span aria-hidden="true">Затвори</span>
           </a>
         </div>
       </div>
     </div>
   </div>
-  <div id="donirajte" class="col-12 modal" tabindex="-1" role="dialog">
+  <div id="/donirajte" class="col-12 modal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header flex align-center justify-space-between">
           <h2 class="modal-title">Донирајте за хаклабот КИКА</h2>
-          <a href="#" class="btn btn-default align-self-center">
+          <a href="#/" class="btn btn-default align-self-center modal-toggle">
             <span class="fa fa-times"></span>
           </a>
         </div>
@@ -334,14 +308,13 @@
             коишто се одржуваат во него.</p>
         </div>
         <div class="modal-footer">
-          <a href="#" class="btn btn-donate">
+          <a href="#/" class="btn btn-donate modal-toggle">
             <span aria-hidden="true">Затвори</span>
           </a>
         </div>
       </div>
     </div>
   </div>
-
   <p>
     <a rel="external" href="https://github.com/gocemitevski/status.spodeli.org" class="github-corner">
       <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#808080; color:#fff; position: absolute; top: 0; border: 0; right: 0;">
@@ -354,9 +327,6 @@
     </a>
   </p>
   <script src="js/jquery.min.js"></script>
-  <script defer src="js/flot/jquery.flot.js"></script>
-  <script defer src="js/flot/jquery.flot.time.js"></script>
-  <script defer src="js/flot/jquery.flot.resize.js"></script>
 
   <script>
     // Define Plot colors and make them reusable for the individual room temperature values.
@@ -370,7 +340,6 @@
   </script>
 
   <!-- Implementation from https://damjan.softver.org.mk/status.spodeli.org/ -->
-  <script defer src="js/plot.min.js"></script>
   <script defer src="js/status.min.js"></script>
 
   <script async>
@@ -380,6 +349,7 @@
         families: ['Roboto+Condensed:400,700&subset=cyrillic']
       }
     };
+
     (function () {
       var wf = document.createElement('script');
       wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +

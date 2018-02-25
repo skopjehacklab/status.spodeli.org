@@ -54,7 +54,7 @@ header {
     text-align: center;
   }
   h1 {
-    margin: 0 0 @grid-gap;
+    margin: 0 0 @grid-gap/2;
     a {
       color: inherit;
     }
@@ -80,7 +80,6 @@ header {
 }
 
 .container {
-  position: relative;
   max-width: 80%;
   margin: @grid-gutter-width * 2 auto;
   .panel-title {
@@ -274,6 +273,7 @@ header {
 }
 
 footer {
+  margin: 0 @grid-gutter-width/2;
   a {
     font-weight: 700;
     color: inherit;
