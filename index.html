@@ -383,6 +383,12 @@
                 }
             }(document, "script", "twitter-wjs");
         }
+		
+		$(document).ready(function() {
+		    if(window.location.hash)
+			    $(window.location.hash).modal('show');
+		});
+		
     </script>
 </body>
 
