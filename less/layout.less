@@ -126,12 +126,16 @@ header {
   padding-left: 0;
 }
 
-.list-related-pages {
-  margin: 0;
-  grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+.list-related-pages,
+.call-to-action {
   @media (max-width: @screen-phone) {
     display: none;
   }
+}
+
+.list-related-pages {
+  margin: 0;
+  grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
   a {
     .btn();
   }
@@ -274,6 +278,15 @@ header {
 
 footer {
   margin: 0 @grid-gutter-width/2;
+  @media (max-width: @screen-sm-max) {
+    &.flex {
+      margin: @grid-gutter-width 0;
+      justify-content: center;
+      p {
+        margin-bottom: @grid-gutter-width/2;
+      }
+    }
+  }
   a {
     font-weight: 700;
     color: inherit;
