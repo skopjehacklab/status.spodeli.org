@@ -42,7 +42,7 @@ h3,
 h4,
 h5,
 h6 {
-  line-height: 1.2;
+  line-height: @headings-line-height;
 }
 
 figure {
@@ -63,12 +63,8 @@ header {
     margin-bottom: @grid-gap/2;
   }
   .lead {
-    font-size: @font-size-small;
+    font-size: @font-size-large;
   }
-}
-
-.logo {
-  margin: @grid-gap auto;
 }
 
 .navbar-collapse {
@@ -79,32 +75,99 @@ header {
   color: @gray-light;
 }
 
-.container {
-  max-width: 80%;
-  margin: @grid-gutter-width * 2 auto;
-  .panel-title {
-    .text-uppercase;
-    font-size: @font-size-h4;
+.container-flex {
+  display: flex;
+  flex-direction: column;
+  max-width: 90%;
+  margin: @spacer*2 auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow: auto;
+  // justify-content: center;
+  // align-items: center;
+  .col {
+    margin: @spacer/2;
   }
-  header {
-    border-bottom: none;
-    @media (max-width: @screen-phone) {
-      figure {
-        display: inline-block;
-      }
+}
+
+.col-half{
+  flex: 2;
+}
+
+.logo-wrap {
+  display: flex;
+  margin: @spacer @spacer/2;
+}
+
+  .header,
+  .main-navigation,
+  .status,
+  .devices,
+  .temperature {
+    flex-basis: 100%;
+  }
+
+  .header{
+    justify-content: center;
+  }
+
+  @media (min-width: @screen-desktop) {
+    .logo-wrap {
+      margin-top: 0;
+      margin-right: @spacer*2;
+      margin-left: 0;
+      margin-bottom: 0; // flex-basis: 25%;
+    align-self: flex-start;
+    align-items: center;
+    justify-content: center;
+  }
+  .header {
+    flex: 3;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  .main-navigation {
+    flex: 1;
+  }
+  .status {
+    flex: 3;
+  }
+  .devices {
+    flex: 2;
+    &.col {
+      flex: 1.98;
     }
+  }
+  .temperature {
+    flex: 2;
   }
 }
 
 .call-to-action {
-  @media (max-width: @screen-sm-max) {
-    grid-column: auto;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  .btn {
+    margin: 0.25rem 0;
+  }
+}
+
+.list-related-pages {
+  align-items: stretch;
+  .col {
+    .btn {
+      margin: auto;
+    }
   }
 }
 
 .info-block {
   .text-center;
-  padding: @grid-gap;
+  padding: @spacer;
   .value {
     font-size: @font-size-h4;
     font-weight: @headings-font-weight;
@@ -114,31 +177,15 @@ header {
   }
 }
 
-.list-avatars {
-  img {
-    border-radius: @border-radius-small;
-    max-width: @jumbotron-padding * 1.5;
-  }
-}
-
+// .list-avatars {
+//   img {
+//     border-radius: @border-radius-small;
+//     max-width: @jumbotron-padding * 1.5;
+//   }
+// }
 .list-unstyled {
   list-style: none;
   padding-left: 0;
-}
-
-.list-related-pages,
-.call-to-action {
-  @media (max-width: @screen-phone) {
-    display: none;
-  }
-}
-
-.list-related-pages {
-  margin: 0;
-  grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
-  a {
-    .btn();
-  }
 }
 
 .figure-caption {
@@ -168,7 +215,6 @@ header {
     margin-left: @padding-xs-horizontal;
   }
 }
-
 
 /* https://damjan.softver.org.mk/status.spodeli.org/css/loader.css */
 
@@ -205,34 +251,25 @@ header {
   }
 }
 
-
 /* ./ https://damjan.softver.org.mk/status.spodeli.org/css/loader.css*/
 
 .tweets {
+  flex: 2;
   position: relative;
-  @media (min-width: @screen-md-min) {
-    max-height: 120px;
-  }
+  background: transparent;
+  min-height: 80% !important;
+  box-shadow: none;
   @media (max-width: @screen-sm-max) {
-    min-height: 90px;
-  }
-  @media (max-width: @screen-xs-max) {
     display: none;
   }
-  background: transparent;
-  box-shadow: none;
-  @media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
-    padding-left: @padding-small-vertical;
-    padding-right: @padding-small-vertical;
-  }
   &:before {
-    .loading-text('содржина од Twitter');
+    .loading-text('Содржина од Twitter');
   }
   .twitter-timeline {
     width: 100% !important;
     @media (min-width: @screen-md-min) {
-      height: 120px !important;
-      min-height: 120px !important;
+      height: 80% !important;
+      min-height: 80% !important;
     }
   }
 }
@@ -276,16 +313,18 @@ header {
   border-bottom: 1px solid @hr-border;
 }
 
-footer {
-  margin: 0 @grid-gutter-width/2;
+.footer {
+  margin-left: @spacer;
+  margin-right: @spacer;
+  font-size: @font-size-small;
   @media (max-width: @screen-sm-max) {
-    &.flex {
-      margin: @grid-gutter-width 0;
-      justify-content: center;
-      p {
-        margin-bottom: @grid-gutter-width/2;
-      }
+    text-align: center;
+    .col {
+      align-items: center;
     }
+  }
+  @media (min-width: @screen-desktop) {
+    justify-content: space-between;
   }
   a {
     font-weight: 700;
