@@ -26,71 +26,65 @@
 </head>
 
 <body>
-  <div class="container">
-    <div class="grid">
-      <a rel="home" class="col-1 flex justify-center" href="http://status.spodeli.org/">
-        <figure>
-          <img class="logo" width="80" height="80" src="svg/kika-logo-symbol-only-c2b.svg" alt="лого на хаклаб КИКА">
+  <div class="container-flex">
+    <div class="row">
+      <header class="col header row">
+        <figure class="logo-wrap">
+          <a rel="home" href="http://status.spodeli.org/">
+            <img class="logo" width="120" height="120" src="svg/kika-logo-symbol-only-c2b.svg" alt="лого на хаклаб КИКА">
+          </a>
         </figure>
-      </a>
-      <header class="col-5 flex flex-column align-center">
-        <h1>
-          <a rel="home" href="http://status.spodeli.org/">Xаклаб КИКА, сега</a>
-        </h1>
-        <p class="text-muted">КИКА е јавен простор на ул. Наум Наумовски Борче бр. 38/12 во центарот на Скопје. Постои од
-          <strong>17-ти октомври 2009</strong> година.</p>
-        <p>
-          <a rel="external" href="http://b10g.spodeli.org/">Дознајте повеќе</a>
-        </p>
+        <div>
+          <h1>
+            <a rel="home" href="http://status.spodeli.org/">Xаклаб КИКА, сега</a>
+          </h1>
+          <p class="text-muted">КИКА е јавен простор на ул. Наум Наумовски Борче бр. 38/12 во центарот на Скопје. Постои од
+            <strong>17-ти октомври 2009</strong> година.</p>
+          <p>
+            <a rel="external" href="http://b10g.spodeli.org/">Дознајте повеќе</a>
+          </p>
+        </div>
       </header>
-      <div class="panel panel-default tweets col-4">
+      <div class="col panel panel-default tweets">
         <a class="twitter-timeline" data-widget-id="674870156879896576" data-chrome="noheader nofooter noborders" data-aria-polite="assertive"
           href="https://twitter.com/search?q=-%D0%B7%D0%B0%D1%82%D0%B2%D0%BE%D1%80%D0%B5%D0%BD%20-%D0%BE%D1%82%D0%B2%D0%BE%D1%80%D0%B5%D0%BD%20%23skopjehacklab%20OR%20%23%D1%85%D0%B0%D0%BA%D0%BB%D0%B0%D0%B1"></a>
       </div>
-      <nav class="main-navigation col-2">
-        <ul class="list-unstyled list-related-pages grid">
-          <li class="col-4">
+      <nav class="col main-navigation">
+        <ul class="list-unstyled list-related-pages call-to-action">
+          <li>
             <a class="btn btn-block btn-default" rel="external" href="http://b10g.spodeli.org/">Блог на КИКА</a>
           </li>
-          <li class="col-4">
+          <li>
             <a class="btn btn-block btn-default" rel="external" href="https://wiki.spodeli.org/%D0%A5%D0%B0%D0%BA%D0%BB%D0%B0%D0%B1/%D0%90%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D0%BE%D1%81%D1%82%D0%B8">Активности</a>
           </li>
-          <li class="col-4">
+          <li>
             <a class="btn btn-block btn-default" rel="external" href="http://b10g.spodeli.org/p/blog-page_17.html">Контакт</a>
           </li>
         </ul>
       </nav>
-      <div class="panel panel-default col-6 flex flex-column align-center justify-center">
+    </div>
+    <div class="row">
+      <div class="panel panel-default status col">
         <div class="info-block">
           <span id="status" class="value text-uppercase" data-influx-query="SELECT doorstatus FROM doorstatus WHERE location='hacklab' ORDER BY time DESC LIMIT 1">се вчитува</span>
           <span id="status-time" class="description">се вчитува</span>
         </div>
       </div>
-      <div class="panel panel-default col-4 flex flex-column align-center justify-center">
+      <div class="panel panel-default col devices">
         <div class="info-block current-devices">
           <span id="currentDevices" class="value" data-influx-query="SELECT value,total FROM landevices WHERE location='hacklab' ORDER BY time DESC LIMIT 1">се вчитува</span>
           <span class="description">се вчитува</span>
         </div>
       </div>
-      <!--<div class="panel panel-default col-2 flex flex-column align-center justify-center">
-        <div class="info-block">
-          <span id="rxkbs" class="value">се вчитува</span>
-          <span class="description">брзина на download</span>
-        </div>
+      <div class="col call-to-action">
+        <a role="button" class="btn btn-member btn-info modal-toggle" href="#/zachleneteSe">Зачленете се</a>
+        <a role="button" class="btn btn-donate btn-success modal-toggle" href="#/donirajte">Донирајте</a>
       </div>
-      <div class="panel panel-default col-2 flex flex-column align-center justify-center">
-        <div class="info-block">
-          <span id="txkbs" class="value">се вчитува</span>
-          <span class="description">брзина на upload</span>
-        </div>
-      </div>-->
-      <div class="call-to-action col-2 grid">
-        <a role="button" class="col-12 btn btn-member btn-info modal-toggle" href="#/zachleneteSe">Зачленете се</a>
-        <a role="button" class="col-12 btn btn-donate btn-success modal-toggle" href="#/donirajte">Донирајте</a>
-      </div>
-      <div class="panel panel-default col-6">
+    </div>
+    <div class="row">
+      <div class="col devices panel panel-default">
         <div class="panel-heading flex align-center justify-space-between">
-          <h3 class="panel-title">Уреди во КИКА</h3>
+          <h4 class="panel-title">Уреди во КИКА</h4>
           <div class="panel-controls">
             <button title="Дополнителни визуелизации" class="btn btn-xs btn-primary btn-grafana">
               <span class="fa fa-dashboard"></span>
@@ -102,9 +96,9 @@
             frameborder="0"></iframe>
         </div>
       </div>
-      <div class="panel panel-default panel-temperature col-6">
+      <div class="col temperature panel panel-default">
         <div class="panel-heading flex align-center justify-space-between">
-          <h3 class="panel-title">Температурата во КИКА</h3>
+          <h4 class="panel-title">Температурата во КИКА</h4>
           <div class="panel-controls">
             <button title="Дополнителни визуелизации" class="btn btn-xs btn-primary btn-grafana">
               <span class="fa fa-dashboard"></span>
@@ -116,14 +110,14 @@
             frameborder="0"></iframe>
         </div>
       </div>
-      <footer class="text-small text-muted text-center col-12 flex align-center justify-space-between">
-        <p>
-          <a rel="external" href="http://blog.spodeli.org/p/blog-page.html">Хаклаб КИКА</a>, ул. Наум Наумовски Борче бр. 38/12, 1000 Скопје</p>
-        <p>Сметка за донации во Република Македонија:
-          <a class="modal-toggle" href="#/donirajte">210057088340110</a>
-        </p>
-      </footer>
     </div>
+    <footer class="footer text-small text-muted text-center row">
+      <p class="col">
+        <a rel="external" href="http://blog.spodeli.org/p/blog-page.html">Хаклаб КИКА</a>, ул. Наум Наумовски Борче бр. 38/12, 1000 Скопје</p>
+      <p class="col">Сметка за донации во Република Македонија:
+        <a class="modal-toggle" href="#/donirajte">210057088340110</a>
+      </p>
+    </footer>
   </div>
   <div id="/zachleneteSe" class="col-12 modal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
@@ -147,8 +141,8 @@
             <figcaption class="figure-caption">Просторијата за хардвер во хаклабот КИКА</figcaption>
           </figure>
           <hr>
-          <div class="grid">
-            <div class="col-6">
+          <div class="row">
+            <div class="col col-half">
               <p>За уплата на членарината ви се потребни истите информации како и за уплатата на донација.</p>
               <p>За готовинско плаќање можете да го користите образецот
                 <strong>ПП10</strong> (уплатница), а за безготовинско плаќање, образецот
@@ -187,7 +181,7 @@
                 </li>
               </ol>
             </div>
-            <div class="col-6">
+            <div class="col col-half">
               <figure>
                 <a href="img/kika-hacklab-uplatnica-pp10.jpg">
                   <img class="img-responsive" src="img/kika-hacklab-uplatnica-pp10.jpg" alt="уплатница ПП10 со ознаки">
@@ -226,8 +220,8 @@
             <figcaption class="figure-caption">Активности во хаклабот КИКА</figcaption>
           </figure>
           <hr>
-          <div class="grid">
-            <div class="col-6">
+          <div class="row">
+            <div class="col col-half">
               <h3>Донации во Република Македонија</h3>
               <p>За готовинско плаќање можете да го користите образецот
                 <strong>ПП10</strong> (уплатница), а за безготовинско плаќање, образецот
@@ -257,7 +251,7 @@
                 <dd>TUTNMK22</dd>
               </dl>
             </div>
-            <div class="col-6">
+            <div class="col col-half">
               <h4>Пополнување на образец ПП10 за донација за хаклабот КИКА</h4>
               <figure>
                 <a href="img/kika-hacklab-uplatnica-pp10.jpg">
