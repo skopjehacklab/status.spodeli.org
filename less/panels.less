@@ -1,3 +1,16 @@
+.panel {
+  border: 1px solid @panel-default-border;
+  border-radius: @border-radius-base;
+}
+
+.panel-success {
+  border-color: lighten(@brand-success, 10%);
+}
+
+.panel-danger {
+  border-color: lighten(@brand-danger, 10%);
+}
+
 .panel-open {
   color: @white;
   border-color: darken(@brand-success, 13%);
@@ -29,5 +42,19 @@
 }
 
 .panel-heading {
-  line-height: @line-height-base;
+  background: @panel-default-heading-bg;
+  border-bottom: 1px solid @panel-default-border;
+  padding: @grid-gutter-width/2;
+}
+
+.panel-body {
+  margin: @grid-gutter-width;
+  iframe {
+    width: 100%;
+  }
+}
+
+.panel-title {
+  text-transform: uppercase;
+  margin: auto auto auto 0;
 }

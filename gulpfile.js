@@ -7,7 +7,7 @@ var rename = require('gulp-rename');
 // var sourcemaps = require('gulp-sourcemaps'); - Uncomment when developing
 
 // The default Gulp.js task
-gulp.task('default', ['bootstrap-fonts', 'bootstrap-js', 'jquery', 'jquery-flot', 'minify-js', 'less', 'watch']);
+gulp.task('default', ['font-awesome-fonts', 'jquery', 'minify-js', 'less', 'watch']);
 
 // Rebuild CSS from LESS
 gulp.task('less', function () {
@@ -25,23 +25,10 @@ gulp.task('less', function () {
         .pipe(gulp.dest('css'));
 });
 
-// Copy Bootstrap js assets
-gulp.task('bootstrap-js', function () {
-    return gulp.src('node_modules/bootstrap/dist/js/bootstrap.min.js')
-        .pipe(gulp.dest('js'));
-});
-
 // Copy jQuery js assets
 gulp.task('jquery', function () {
     return gulp.src('node_modules/jquery/dist/jquery.min.js')
         .pipe(gulp.dest('js'));
-});
-
-// Copy jQuery Flot js assets
-gulp.task('jquery-flot', function () {
-    return gulp.src('node_modules/jquery.flot/jquery.flot*.js')
-        .pipe(uglify())
-        .pipe(gulp.dest('js/flot'));
 });
 
 // Minify custom JS assets
@@ -53,8 +40,8 @@ gulp.task('minify-js', function () {
 })
 
 // Copy Bootstrap font files in assets/fonts
-gulp.task('bootstrap-fonts', function () {
-    return gulp.src('node_modules/bootstrap/dist/fonts/*')
+gulp.task('font-awesome-fonts', function () {
+    return gulp.src('node_modules/font-awesome/fonts/*')
         .pipe(gulp.dest('fonts'));
 });
 

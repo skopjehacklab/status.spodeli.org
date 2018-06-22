@@ -3,7 +3,7 @@
     margin-top: @jumbotron-padding;
   }
   .logo {
-    @media (min-width: @screen-md-min) {
+    @media (min-width: var(--screen-md-min)) {
       float: left;
       margin-right: @padding-large-horizontal;
     }
@@ -25,7 +25,7 @@
     font-size: inherit !important;
     min-height: @panel-height - 0.8;
     .twitter-timeline {
-      @media (min-width: @screen-md-min) {
+      @media (min-width: var(--screen-md-min)) {
         max-height: @panel-height - 0.8 !important;
       }
     }
@@ -37,12 +37,12 @@
       padding: 0;
       &:not(:first-child),
       &:not(:last-child) {
-        margin: 0 @padding-large-vertical;
+        margin: 0 var(--padding-large-vertical);
       }
     }
   }
   .panel-temperature {
-    @media (min-width: @screen-md-min) {
+    @media (min-width: var(--screen-md-min)) {
       min-height: @panel-height;
       max-height: @panel-height;
     }
@@ -50,7 +50,7 @@
   .panel-tumblr {
     padding: 0;
     min-height: (@panel-height - 2.5)/2;
-    @media (min-width: @screen-md-min) {
+    @media (min-width: var(--screen-md-min)) {
       max-height: (@panel-height - 2.5)/2;
     }
     img {
