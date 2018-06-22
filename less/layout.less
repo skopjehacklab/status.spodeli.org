@@ -86,15 +86,14 @@ header {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  overflow: auto;
-  // justify-content: center;
+  overflow: auto; // justify-content: center;
   // align-items: center;
   .col {
     margin: @spacer/2;
   }
 }
 
-.col-half{
+.col-half {
   flex: 2;
 }
 
@@ -103,24 +102,24 @@ header {
   margin: @spacer @spacer/2;
 }
 
-  .header,
-  .main-navigation,
-  .status,
-  .devices,
-  .temperature {
-    flex-basis: 100%;
-  }
+.header,
+.main-navigation,
+.status,
+.devices,
+.temperature {
+  flex-basis: 100%;
+}
 
-  .header{
-    justify-content: center;
-  }
+.header {
+  justify-content: center;
+}
 
-  @media (min-width: @screen-desktop) {
-    .logo-wrap {
-      margin-top: 0;
-      margin-right: @spacer*2;
-      margin-left: 0;
-      margin-bottom: 0; // flex-basis: 25%;
+@media (min-width: @screen-desktop) {
+  .logo-wrap {
+    margin-top: 0;
+    margin-right: @spacer*2;
+    margin-left: 0;
+    margin-bottom: 0;
     align-self: flex-start;
     align-items: center;
     justify-content: center;
@@ -144,6 +143,18 @@ header {
   }
   .temperature {
     flex: 2;
+  }
+}
+
+.temperature,
+.devices {
+  .panel-body {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    &:before {
+      .loading-text();
+    }
   }
 }
 
@@ -216,43 +227,6 @@ header {
   }
 }
 
-/* https://damjan.softver.org.mk/status.spodeli.org/css/loader.css */
-
-.loader {
-  position: absolute;
-  top: -@jumbotron-padding/2;
-  right: 0;
-  bottom: 0;
-  left: @jumbotron-padding/4;
-  margin: auto;
-  overflow: visible;
-  text-align: center;
-  font-size: 80%;
-  border-top: @loader-size solid fade(@gray-light, 20%);
-  border-right: @loader-size solid fade(@gray-light, 20%);
-  border-bottom: @loader-size solid fade(@gray-light, 20%);
-  border-left: @loader-size solid @gray-light;
-  .force-hardware-acceleration;
-  .animation(load8 1.1s infinite linear);
-  &,
-  &:after {
-    border-radius: 50%;
-    width: @jumbotron-padding * 4;
-    height: @jumbotron-padding * 4;
-  }
-}
-
-@keyframes load8 {
-  0% {
-    .transform(rotate(0deg));
-  }
-  100% {
-    .transform(rotate(360deg));
-  }
-}
-
-/* ./ https://damjan.softver.org.mk/status.spodeli.org/css/loader.css*/
-
 .tweets {
   flex: 2;
   position: relative;
@@ -263,7 +237,7 @@ header {
     display: none;
   }
   &:before {
-    .loading-text('Содржина од Twitter');
+    .loading-text();
   }
   .twitter-timeline {
     width: 100% !important;
