@@ -14,7 +14,7 @@
   transform: @parameters;
 }
 
-.loading-text(@text) {
+.loading-text(@text: 'Содржината се вчитува ...') {
   display: block;
   text-align: center;
   content: @text;
@@ -54,8 +54,7 @@
   font-size: @size;
   text-align: center;
   padding: @grid-gap/2 @grid-gap;
-  text-decoration: none;
-  // white-space: nowrap;
+  text-decoration: none; // white-space: nowrap;
   &:hover {
     background-color: darken(@bg-color, 5%);
     border-color: darken(@bg-color, 15%);
