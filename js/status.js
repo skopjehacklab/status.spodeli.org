@@ -7,16 +7,23 @@ var noInternetAccess = false;
 function updateStatus() {
   var influxdbQuery = $('#status').attr('data-influx-query');
   var status_container = $("#status").parent().parent();
-  $.ajax({
-      url: INFLUXDB_URL,
+  var request = new URL(INFLUXDB_URL);
+
+  data = {
+    db: INFLUXDB_DBNAME,
+    q: influxdbQuery,
+    epoch: 'ms'
+  }
+
+  Object.keys(data).forEach(function(key){ request.searchParams.append(key, data[key])}) // Za da gi Dodade na URLOT. https://stackoverflow.com/questions/39245994/use-fetch-to-send-get-request-with-data-object
+
+  fetch(request,{
       type: 'GET',
       dataType: 'json',
-      data: {
-        db: INFLUXDB_DBNAME,
-        q: influxdbQuery,
-        epoch: 'ms'
-      }
     })
+    .then(function(resp){
+      return resp.json()
+  })
     .then(function (response) {
       var now = (new Date()).getTime();
       var last_value = response.results[0].series[0].values[0];
@@ -37,22 +44,30 @@ function updateStatus() {
           $("#status-time").text("пред " + timediff_fancy);
         }
       }
-    });
+  })  
 }
+
 
 function updateDevices() {
   var influxdbQuery = $('#currentDevices').attr('data-influx-query');
   var devices_container = $("#currentDevices").parent().parent();
-  $.ajax({
-      url: INFLUXDB_URL,
+  var request = new URL(INFLUXDB_URL)
+
+  data = {
+    db: INFLUXDB_DBNAME,
+    q: influxdbQuery,
+    epoch: 'ms'
+  }
+
+  Object.keys(data).forEach(function(key){ request.searchParams.append(key, data[key])}), // Za da gi Dodade na URLOT. https://stackoverflow.com/questions/39245994/use-fetch-to-send-get-request-with-data-object
+
+  fetch(request, {
       type: 'GET',
       dataType: 'json',
-      data: {
-        db: INFLUXDB_DBNAME,
-        q: influxdbQuery,
-        epoch: 'ms'
-      }
+    }).then(function(resp){
+      return resp.json()
     })
+
     .then(function (response) {
       var total_devices = response.results[0].series[0].values[0][1];
       var str_uredi = 'уреди';
@@ -69,10 +84,11 @@ function updateDevices() {
 }
 
 function updateNetworkSpeeds() {
-  $.ajax({
-      url: "http://hacklab.ie.mk/ftp/vnstat/json/average.json?callback=?",
+  fetch("http://hacklab.ie.mk/ftp/vnstat/json/average.json?callback=?",{
       type: 'GET',
       dataType: 'json'
+    }).then(function(resp){
+      return resp.json()
     })
     .then(function (response) {
       var TK = response['Telekabel'];
@@ -84,18 +100,23 @@ function updateNetworkSpeeds() {
 
 function updateTempValues() {
   var influxdbQuery = $('.temperature-values').attr('data-influx-query');
+  var request = new URL(INFLUXDB_URL)
+
   $('.panel-temperature .value').css({
     'color': 'inherit'
   }).html("&#8230;");
-  $.ajax({
-      url: INFLUXDB_URL,
+
+  data = {
+    db: INFLUXDB_DBNAME,
+    q: influxdbQuery,
+    epoch: 'ms'
+  }
+
+  Object.keys(data).forEach(function(key){ request.searchParams.append(key, data[key])}) // Za da gi Dodade na URLOT. https://stackoverflow.com/questions/39245994/use-fetch-to-send-get-request-with-data-object
+
+  fetch(request, {
       type: 'GET',
       dataType: 'json',
-      data: {
-        db: INFLUXDB_DBNAME,
-        q: influxdbQuery,
-        epoch: 'ms'
-      }
     })
     .then(function (response) {
       var last_value = response.results[0].series[0].values[0];
