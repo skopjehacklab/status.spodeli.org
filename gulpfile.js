@@ -34,7 +34,7 @@ gulp.task('jquery', function () {
 // Minify custom JS assets
 gulp.task('minify-js', function () {
     return gulp.src(['js/plot.js', 'js/status.js'])
-        .pipe(uglify())
+        .pipe(uglify().on('error', function(e){console.log(e)}))
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('js'));
 })
