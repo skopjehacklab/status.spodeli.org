@@ -6,9 +6,6 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 // var sourcemaps = require('gulp-sourcemaps'); - Uncomment when developing
 
-// The default Gulp.js task
-gulp.task('default', ['font-awesome-fonts', 'minify-js', 'less', 'watch']);
-
 // Rebuild CSS from LESS
 gulp.task('less', function () {
     return gulp.src('less/style.less')
@@ -27,7 +24,7 @@ gulp.task('less', function () {
 
 // Minify custom JS assets
 gulp.task('minify-js', function () {
-    return gulp.src(['js/plot.js', 'js/status.js'])
+    return gulp.src(['js/status.js'])
         .pipe(uglify().on('error', function(e){console.log(e)}))
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('js'));
@@ -41,6 +38,9 @@ gulp.task('font-awesome-fonts', function () {
 
 // Watch for LESS and JS file changes
 gulp.task('watch', function () {
-    gulp.watch(['less/**/*.less'], ['less']);
-    gulp.watch(['js/**/*.js'], ['minify-js']);
+    gulp.watch(['less/**/*.less'], gulp.parallel('less'));
+    gulp.watch(['js/**/*.js'], gulp.parallel('minify-js'));
 });
+
+// The default Gulp.js task
+gulp.task('default', gulp.parallel('font-awesome-fonts', 'minify-js', 'less', 'watch'));
