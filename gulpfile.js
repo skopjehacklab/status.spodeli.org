@@ -7,7 +7,7 @@ var rename = require('gulp-rename');
 // var sourcemaps = require('gulp-sourcemaps'); - Uncomment when developing
 
 // The default Gulp.js task
-gulp.task('default', ['font-awesome-fonts', 'jquery', 'minify-js', 'less', 'watch']);
+gulp.task('default', ['font-awesome-fonts', 'minify-js', 'less', 'watch']);
 
 // Rebuild CSS from LESS
 gulp.task('less', function () {
@@ -23,12 +23,6 @@ gulp.task('less', function () {
         }))
         // .pipe(sourcemaps.write()) - Uncomment when developing
         .pipe(gulp.dest('css'));
-});
-
-// Copy jQuery js assets
-gulp.task('jquery', function () {
-    return gulp.src('node_modules/jquery/dist/jquery.min.js')
-        .pipe(gulp.dest('js'));
 });
 
 // Minify custom JS assets

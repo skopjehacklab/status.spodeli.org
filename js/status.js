@@ -3,10 +3,13 @@
 var INFLUXDB_URL = "https://db.softver.org.mk/influxdb/query";
 var INFLUXDB_DBNAME = "status";
 var noInternetAccess = false;
+var current_status = document.querySelector('#status');
+var current_status_time = document.querySelector('#status-time');
+var current_devices = document.querySelector('#currentDevices');
 
 function updateStatus() {
-  var influxdbQuery = $('#status').attr('data-influx-query');
-  var status_container = $("#status").parent().parent();
+  var influxdbQuery = current_status.getAttribute('data-influx-query');
+  var status_container = current_status.parentNode.parentElement;
   var request = new URL(INFLUXDB_URL);
 
   data = {
@@ -15,15 +18,17 @@ function updateStatus() {
     epoch: 'ms'
   }
 
-  Object.keys(data).forEach(function(key){ request.searchParams.append(key, data[key])}) // Za da gi Dodade na URLOT. https://stackoverflow.com/questions/39245994/use-fetch-to-send-get-request-with-data-object
+  Object.keys(data).forEach(function (key) {
+    request.searchParams.append(key, data[key])
+  }) // Za da gi Dodade na URLOT. https://stackoverflow.com/questions/39245994/use-fetch-to-send-get-request-with-data-object
 
-  fetch(request,{
+  fetch(request, {
       type: 'GET',
       dataType: 'json',
     })
-    .then(function(resp){
+    .then(function (resp) {
       return resp.json()
-  })
+    })
     .then(function (response) {
       var now = (new Date()).getTime();
       var last_value = response.results[0].series[0].values[0];
@@ -33,24 +38,24 @@ function updateStatus() {
 
       var timediff_fancy = secondsToString(timediff);
       if (!noInternetAccess) {
-        status_container.removeClass('panel-open panel-closed');
+        status_container.classList.remove(['panel-open', 'panel-closed']);
         if (status === "CLOSED") {
-          $("#status").text("Затворен");
-          status_container.addClass('panel-closed');
-          $("#status-time").text("веќе " + timediff_fancy);
+          current_status.innerText = "Затворен";
+          status_container.classList.add(['panel-closed']);
+          current_status_time.innerHTML = "веќе " + timediff_fancy;
         } else {
-          $("#status").text("Отворен");
-          status_container.addClass('panel-open');
-          $("#status-time").text("пред " + timediff_fancy);
+          current_status.innerText = "Отворен";
+          status_container.classList.add(['panel-open']);
+          current_status_time.innerHTML = "пред " + timediff_fancy;
         }
       }
-  })  
+    })
 }
 
 
 function updateDevices() {
-  var influxdbQuery = $('#currentDevices').attr('data-influx-query');
-  var devices_container = $("#currentDevices").parent().parent();
+  var influxdbQuery = current_devices.getAttribute('data-influx-query');
+  var devices_container = current_devices.parentNode.parentElement;
   var request = new URL(INFLUXDB_URL)
 
   data = {
@@ -59,97 +64,29 @@ function updateDevices() {
     epoch: 'ms'
   }
 
-  Object.keys(data).forEach(function(key){ request.searchParams.append(key, data[key])}), // Za da gi Dodade na URLOT. https://stackoverflow.com/questions/39245994/use-fetch-to-send-get-request-with-data-object
+  Object.keys(data).forEach(function (key) {
+      request.searchParams.append(key, data[key])
+    }), // Za da gi Dodade na URLOT. https://stackoverflow.com/questions/39245994/use-fetch-to-send-get-request-with-data-object
 
-  fetch(request, {
+    fetch(request, {
       type: 'GET',
       dataType: 'json',
-    }).then(function(resp){
+    }).then(function (resp) {
       return resp.json()
     })
 
     .then(function (response) {
       var total_devices = response.results[0].series[0].values[0][1];
       var str_uredi = 'уреди';
-      devices_container.removeClass('panel-danger panel-success');
-      devices_container.addClass('panel-success');
+      devices_container.classList.remove(['panel-danger', 'panel-success']);
+      devices_container.classList.add(['panel-success']);
 
       if (total_devices % 10 === 1 && total_devices !== 11) {
         str_uredi = "уред";
       }
 
-      $('.current-devices .value').text("вкупно " + total_devices + " " + str_uredi);
-      $('.current-devices .description').text("на мрежата во КИКА");
-    });
-}
-
-function updateNetworkSpeeds() {
-  fetch("http://hacklab.ie.mk/ftp/vnstat/json/average.json?callback=?",{
-      type: 'GET',
-      dataType: 'json'
-    }).then(function(resp){
-      return resp.json()
-    })
-    .then(function (response) {
-      var TK = response['Telekabel'];
-      var BL = response['Blizoo'];
-      $('#rxkbs').text(parseFloat(TK['rxkbs']) + parseFloat(BL['rxkbs']) + " kB/s");
-      $('#txkbs').text(parseFloat(TK['txkbs']) + parseFloat(BL['txkbs']) + " kB/s");
-    })
-}
-
-function updateTempValues() {
-  var influxdbQuery = $('.temperature-values').attr('data-influx-query');
-  var request = new URL(INFLUXDB_URL)
-
-  $('.panel-temperature .value').css({
-    'color': 'inherit'
-  }).html("&#8230;");
-
-  data = {
-    db: INFLUXDB_DBNAME,
-    q: influxdbQuery,
-    epoch: 'ms'
-  }
-
-  Object.keys(data).forEach(function(key){ request.searchParams.append(key, data[key])}) // Za da gi Dodade na URLOT. https://stackoverflow.com/questions/39245994/use-fetch-to-send-get-request-with-data-object
-
-  fetch(request, {
-      type: 'GET',
-      dataType: 'json',
-    })
-    .then(function (response) {
-      var last_value = response.results[0].series[0].values[0];
-      var timestamp = last_value[0];
-      var now = (new Date()).getTime();
-      var timediff = (now - timestamp) / 1000;
-      noInternetAccess = false;
-      if (timediff > 3600) {
-        noInternetAccess = true;
-        var status_container = $("#status").parent().parent();
-        status_container.removeClass('panel-open panel-closed');
-        $("#status").text("Непознато");
-        status_container.addClass('panel-closed');
-        var timediff_fancy = secondsToString(timediff);
-        $("#status-time").text("нема одговор веќе " + timediff_fancy);
-      } else {
-        window.console && console.log('timestamp=' + timestamp + ' timediff=' + timediff);
-      }
-
-      var columns = response.results[0].series[0].columns;
-      var values = response.results[0].series[0].values[0];
-
-      for (var i = 1; i < values.length; i++) {
-        var html_output = '';
-        if (values[i]) {
-          html_output = values[i] + "&deg;C";
-        } else {
-          html_output = "не се мери";
-        }
-        $("#" + columns[i] + " span.value").html(html_output).css({
-          'color': plot_colors[i - 1]
-        });
-      }
+      document.querySelector('.current-devices .value').innerText = "вкупно " + total_devices + " " + str_uredi;
+      document.querySelector('.current-devices .description').innerText = "на мрежата во КИКА";
     });
 }
 
@@ -211,24 +148,24 @@ function populateTumblr(tumblr_id) {
   var imgs = shuffle(tumblr_api_read.posts);
   var activeClass = '';
 
-  $(imgs).each(function (key, item) {
+  Object.keys(imgs).forEach(function (key, item) {
     if (key < 1) {
       activeClass = 'active';
     } else {
       activeClass = '';
     }
-    $(tumblr_id.selector).find(".carousel-inner").append('<div class="item ' + activeClass + '"><img src="' + item['photo-url-500'] + '" ></div>');
+    document.querySelector(tumblr_id.selector).find(".carousel-inner").append('<div class="item ' + activeClass + '"><img src="' + item['photo-url-500'] + '" ></div>');
   });
 }
 
-$(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function (event) {
 
   function modalVisibleAdd() {
-    $('body').toggleClass('modal-open');
+    document.querySelector('body').classList.add('modal-open');
   }
 
   // Hide modal if ESC pressed
-  $(document).keypress(function (e) {
+  document.addEventListener("keypress", function (e) {
     if (e.keyCode == 27) {
       modalVisibleAdd();
       window.location.hash = '/';
@@ -236,12 +173,12 @@ $(document).ready(function () {
   });
 
   // Go to the Grafana Dashboard on button click
-  $('.btn-grafana').click(function () {
+  document.querySelector('.btn-grafana').addEventListener("click", function (event) {
     window.location = "http://grafana.softver.org.mk/";
   });
 
   // Toggle class to <body> when .modal-toggle clicked
-  $('.modal-toggle').click(function (e) {
+  document.querySelector('.modal-toggle').addEventListener("click", function (e) {
     modalVisibleAdd();
   });
 
@@ -251,9 +188,9 @@ $(document).ready(function () {
 
   // Don't populate Tumblr if not on info-panel.html page
   if (window.location.href.indexOf("info-panel") > -1) {
-    populateTumblr($("#tumblr"));
-    populateTumblr($("#tumblr2"));
-    $('.carousel').carousel({
+    populateTumblr(document.getElementById("tumblr"));
+    populateTumblr(document.getElementById("tumblr2"));
+    document.querySelector('.carousel').carousel({
       interval: 8000
     });
   }
