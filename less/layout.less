@@ -231,20 +231,14 @@ header {
   flex: 2;
   position: relative;
   background: transparent;
-  min-height: 80% !important;
+  max-height: 140px !important;
+  overflow-y: scroll;
   box-shadow: none;
   @media (max-width: @screen-sm-max) {
     display: none;
   }
   &:before {
     .loading-text();
-  }
-  .twitter-timeline {
-    width: 100% !important;
-    @media (min-width: @screen-md-min) {
-      height: 80% !important;
-      min-height: 80% !important;
-    }
   }
 }
 
