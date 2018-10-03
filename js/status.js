@@ -161,13 +161,17 @@ function populateTumblr(tumblr_id) {
 document.addEventListener('DOMContentLoaded', function (event) {
 
   function modalVisibleAdd() {
-    document.querySelector('body').classList.add('modal-open');
+    document.body.classList.add('modal-open');
+  }
+
+  function modalVisibleRemove() {
+    document.body.classList.remove('modal-open');
   }
 
   // Hide modal if ESC pressed
   document.addEventListener("keypress", function (e) {
     if (e.keyCode == 27) {
-      modalVisibleAdd();
+      modalVisibleRemove();
       window.location.hash = '/';
     }
   });
@@ -178,8 +182,16 @@ document.addEventListener('DOMContentLoaded', function (event) {
   });
 
   // Toggle class to <body> when .modal-toggle clicked
-  document.querySelector('.modal-toggle').addEventListener("click", function (e) {
-    modalVisibleAdd();
+  document.querySelectorAll('.modal-toggle').forEach(function (element) {
+    element.addEventListener("click", function (e) {
+      modalVisibleAdd();
+    })
+  });
+
+  document.querySelectorAll('.modal-close').forEach(function (element) {
+    element.addEventListener("click", function (e) {
+      modalVisibleRemove();
+    })
   });
 
   // First update
